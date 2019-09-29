@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/photos', 'PhotosController@index');
+
+// photos
+    // 入力フォーム
+    Route::get('/photos/create', 'PhotosController@showCreateForm')->name('photos.create');
+    // 確認画面
+    Route::post('/photos/create_confirm', 'PhotosController@confirm');
+    // 完了
+    Route::post('/photos/create_complete', 'PhotosController@create');
