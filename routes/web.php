@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/photos', 'PhotosController@index');
 
 // photos
+    // 一覧表示
+    Route::get('/photos', 'PhotosController@index');
+    // 投稿削除
+    Route::post('/photos/delete/{id}', 'PhotosController@delete');
     // 入力フォーム
     Route::get('/photos/create', 'PhotosController@showCreateForm')->name('photos.create');
     // 確認画面
     Route::post('/photos/create_confirm', 'PhotosController@confirm');
-    // 完了
+    // 保存
     Route::post('/photos/create_complete', 'PhotosController@create');
+
