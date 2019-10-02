@@ -29,6 +29,20 @@ class PhotosController extends Controller
     }
 
     /**
+     * 投稿詳細表示
+     */
+    public function showPostDetail($id)
+    {
+        // 詳細を表示する投稿を取得
+        $photo = Photo::find($id);
+
+        return view('photos/detail', [
+           'photo' => $photo,
+           'read_img_path' => $this->read_img_path,
+        ]);
+    }
+
+    /**
      * 投稿削除
      */
     public function delete($id){

@@ -15,6 +15,8 @@
 // photos
     // 一覧表示
     Route::get('/photos', 'PhotosController@index');
+    // 個別投稿
+    Route::get('/photos/post/{id}', 'PhotosController@showPostDetail');
     // 投稿削除
     Route::post('/photos/delete/{id}', 'PhotosController@delete');
     // 入力フォーム
@@ -24,3 +26,7 @@
     // 保存
     Route::post('/photos/create_complete', 'PhotosController@create');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
