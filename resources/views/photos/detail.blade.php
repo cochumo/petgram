@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <div class="">
+    <div class="preview--area">
         <img src="{{ url($read_img_path . $photo->filename) }}">
         <form action="/photos/delete/{{ $photo->id }}" method="post">
             @csrf

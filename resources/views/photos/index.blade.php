@@ -8,4 +8,7 @@
             </a>
         @endforeach
     </div>
+    <div class="">
+        {{ $photos->links() }}
+    </div>
 @endsection

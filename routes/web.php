@@ -11,6 +11,9 @@
 |
 */
 
+Route::get('/', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'auth'], function() {
 
 // photos
     // 一覧表示
@@ -26,7 +29,7 @@
     // 保存
     Route::post('/photos/create_complete', 'PhotosController@create');
 
+});
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');

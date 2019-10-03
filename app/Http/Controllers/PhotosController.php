@@ -20,7 +20,9 @@ class PhotosController extends Controller
     public function index()
     {
         // 投稿を取得
-        $photos = Photo::latest()->get();
+//        $photos = Photo::latest()->get();
+        $photos = Photo::latest()->paginate(4);
+//        dd($photos);
 
         return view('photos/index', [
             'photos' => $photos,
@@ -96,7 +98,6 @@ class PhotosController extends Controller
         );
 
         $request->session()->put('data', $data);
-
 
         return view('photos/create_confirm', compact('data'));
     }

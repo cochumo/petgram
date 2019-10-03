@@ -54,4 +54,10 @@ a.my-navbar-item:hover {
     background-color: #fff;
 }
 
+.preview--area {
+    width: 100%;
+}
 
+.preview--area img {
+    max-width: 100%;
+}
