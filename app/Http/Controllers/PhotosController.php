@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Storage;
 class PhotosController extends Controller
 {
     // 読み込むパス
-    public $read_img_path = "storage/photos/";
+    const read_img_path = "storage/photos/";
     // 保存されるパス
-    public $save_img_path = "public/photos/";
+    const save_img_path = "public/photos/";
 
     /**
      * 投稿一覧表示
@@ -26,28 +26,28 @@ class PhotosController extends Controller
 
         return view('photos/index', [
             'photos' => $photos,
-            'read_img_path' => $this->read_img_path,
+            'read_img_path' => self::read_img_path,
         ]);
     }
 
     /**
      * 投稿詳細表示
      */
-    public function showPostDetail($id)
+    public function show($id)
     {
         // 詳細を表示する投稿を取得
         $photo = Photo::find($id);
 
         return view('photos/detail', [
            'photo' => $photo,
-           'read_img_path' => $this->read_img_path,
+           'read_img_path' => self::read_img_path,
         ]);
     }
 
     /**
      * 投稿削除
      */
-    public function delete($id){
+    public function destroy($id){
         // 削除する投稿を取得
         $photo = Photo::find($id);
 //        dump($id);
@@ -55,7 +55,7 @@ class PhotosController extends Controller
 //        dd($photo);
 
         // 該当の投稿の画像を削除
-        Storage::disk('local')->delete($this->save_img_path . $photo->filename);
+        Storage::disk('local')->delete(self::save_img_path . $photo->filename);
 
         // レコードの削除
         $photo->delete();
@@ -66,7 +66,7 @@ class PhotosController extends Controller
     /**
      * 投稿入力フォーム
      */
-    public function showCreateForm()
+    public function create()
     {
         return view('photos/create');
     }
@@ -91,11 +91,11 @@ class PhotosController extends Controller
 
 //        dd($read_temp_path);
 
-        $data = array(
+        $data = [
             'temp_path' => $temp_path,
             'read_temp_path' => $read_temp_path,
             'filename' => $filename,
-        );
+            ];
 
         $request->session()->put('data', $data);
 
@@ -105,7 +105,7 @@ class PhotosController extends Controller
     /**
      * 投稿保存
      */
-    public function create(Request $request)
+    public function store(Request $request)
     {
         // session の data を取得
         $data = $request->session()->get('data');
@@ -116,7 +116,7 @@ class PhotosController extends Controller
         $filename = $data['filename'];
 
         // 保存されるパス + ファイル名
-        $storage_path = $this->save_img_path . $filename;
+        $storage_path = self::save_img_path . $filename;
 //        dump($storage_path);
 
         // session の data を初期化
@@ -126,7 +126,7 @@ class PhotosController extends Controller
         Storage::move($temp_path, $storage_path);
 
         // 読み込むパス + ファイル名
-        $read_path = str_replace($this->save_img_path, $this->read_img_path, $storage_path);
+        $read_path = str_replace(self::save_img_path, self::read_img_path, $storage_path);
 //        dd($read_path);
 
         $photo = new Photo();

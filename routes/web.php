@@ -19,15 +19,15 @@ Route::group(['middleware' => 'auth'], function() {
     // 一覧表示
     Route::get('/photos', 'PhotosController@index');
     // 個別投稿
-    Route::get('/photos/post/{id}', 'PhotosController@showPostDetail');
+    Route::get('/photos/post/{id}', 'PhotosController@show');
     // 投稿削除
-    Route::post('/photos/delete/{id}', 'PhotosController@delete');
+    Route::post('/photos/delete/{id}', 'PhotosController@destroy');
     // 入力フォーム
-    Route::get('/photos/create', 'PhotosController@showCreateForm')->name('photos.create');
+    Route::get('/photos/create', 'PhotosController@create')->name('photos.create');
     // 確認画面
     Route::post('/photos/create_confirm', 'PhotosController@confirm');
     // 保存
-    Route::post('/photos/create_complete', 'PhotosController@create');
+    Route::post('/photos/create_complete', 'PhotosController@store');
 
 });
 
