@@ -110,6 +110,10 @@ class PhotosController extends Controller
         // session の data を取得
         $data = $request->session()->get('data');
 
+        // ログインしているuserの情報を取得
+        $user = auth()->user();
+//        dd($user['id']);
+
         // 初期化する前に変数へ代入
         $temp_path = $data['temp_path'];
         $read_temp_path = $data['read_temp_path'];
@@ -131,7 +135,7 @@ class PhotosController extends Controller
 
         $photo = new Photo();
 
-        $photo->user_id = 1; // 暫定
+        $photo->user_id = $user['id'];
         $photo->filename = $filename;
         $photo->save();
 
