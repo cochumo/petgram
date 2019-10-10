@@ -78,9 +78,10 @@ class PhotosController extends Controller
     {
 //        dd($request);
 
+        $input = $request->all();
         $imagefile = $request->file('photo');
 
-//        dd($imagefile);
+//        dd($input['message']);
 
         // 保存した時に生成した一意なファイル名とパス
         $temp_path = $imagefile->store('public/temp');
@@ -95,6 +96,7 @@ class PhotosController extends Controller
             'temp_path' => $temp_path,
             'read_temp_path' => $read_temp_path,
             'filename' => $filename,
+            'message' => $input['message'],
             ];
 
         $request->session()->put('data', $data);
@@ -109,6 +111,7 @@ class PhotosController extends Controller
     {
         // session の data を取得
         $data = $request->session()->get('data');
+//        dd($data);
 
         // ログインしているuserの情報を取得
         $user = auth()->user();
@@ -118,6 +121,7 @@ class PhotosController extends Controller
         $temp_path = $data['temp_path'];
         $read_temp_path = $data['read_temp_path'];
         $filename = $data['filename'];
+        $message = $data['message'];
 
         // 保存されるパス + ファイル名
         $storage_path = self::save_img_path . $filename;
@@ -137,6 +141,7 @@ class PhotosController extends Controller
 
         $photo->user_id = $user['id'];
         $photo->filename = $filename;
+        $photo->message = $message;
         $photo->save();
 
         return redirect('/photos');
