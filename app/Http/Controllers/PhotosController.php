@@ -146,4 +146,18 @@ class PhotosController extends Controller
 
         return redirect('/photos');
     }
+
+    /**
+     * 編集フォーム表示
+     */
+    public function edit($id)
+    {
+        // 編集する投稿を取得
+        $photo = Photo::find($id);
+
+        return view('photos/edit', [
+            'photo' => $photo,
+            'read_img_path' => self::read_img_path,
+        ]);
+    }
 }
