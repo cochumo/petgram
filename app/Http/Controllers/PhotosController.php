@@ -160,4 +160,26 @@ class PhotosController extends Controller
             'read_img_path' => self::read_img_path,
         ]);
     }
+
+    /**
+     * 編集処理
+     */
+    public function update($id, Request $request)
+    {
+        $user = auth()->user();
+
+        $photo = Photo::find($id);
+        $data = $request->all();
+
+        // 編集者が投稿者と同じか検査
+        if(!($user['id'] == $photo['user_id'])) {
+            return redirect('/photos');
+        }
+
+        // メッセージをupdate
+        $photo->message = $data['message'];
+        $photo->save();
+
+        return redirect('/photos');
+    }
 }
