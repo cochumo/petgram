@@ -10,5 +10,6 @@
 <form action="create_confirm" method="post" enctype="multipart/form-data">
     @csrf
     <input type="file" name="photo">
+    <input type="text" name="message">
     <input type="submit" value="確認">
 </form>

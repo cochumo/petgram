@@ -28,6 +28,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/photos/create_confirm', 'PhotosController@confirm');
     // 保存
     Route::post('/photos/create_complete', 'PhotosController@store');
+    // 編集フォーム
+    Route::get('/photos/edit/{id}', 'PhotosController@edit');
+    // 編集処理
+    Route::post('/photos/edit/{id}', 'PhotosController@update');
 
 });
 

@@ -17,6 +17,7 @@ class CreatePhotosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->string('filename');
+            $table->string('message');
             $table->timestamps();
 
             $table->foreign('user_id')
