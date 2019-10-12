@@ -12,8 +12,19 @@
     @endif
     <form action="create_confirm" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="file" name="photo">
-        <input type="text" name="message">
-        <input type="submit" value="確認">
+        <div class="c-buttonWrap--file">
+            <label for="file_upload" class="c-button__file">
+                <input type="file" id="file_upload" name="photo">
+            </label>
+        </div>
+        <ul class="c-form__inputWrap">
+            <li class="c-form__inputList">
+                <h3 class="c-form__title">コメント</h3>
+                <input type="text" name="message" class="c-form__input--text">
+            </li>
+        </ul>
+        <div class="u-flxJCnt">
+            <input type="submit" value="確認" class="c-button--01">
+        </div>
     </form>
 @endsection

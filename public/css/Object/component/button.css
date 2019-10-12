@@ -1,0 +1,56 @@
+/* ボタンタイプ01 */
+.c-button--01 {
+    background-color: #707070;
+    padding: .5em 1.5em;
+    color: #fff;
+    border-radius: 15px;
+    font-size: 1.5rem;
+}
+
+/* ファイルアップロードボタン */
+
+.c-buttonWrap--file {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.c-button__file {
+    width: 250px;
+    height: 250px;
+    background-color: #d2d2d2;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 3rem;
+}
+
+.c-button__file::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 100px;
+    transform: translateY(-50%) translateX(-50%);
+    background-color: #fff;
+}
+
+.c-button__file::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 10px;
+    transform: translateY(-50%) translateX(-50%);
+    background-color: #fff;
+}
+
+.c-button__file input[type="file"] {
+    /*display: none;*/
+    opacity: .5;
+    position: absolute;
+    left: -10px;
+    bottom: -3rem;
+}

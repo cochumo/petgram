@@ -1,0 +1,65 @@
+.u-dispN {display: none;}
+.u-dispB {display: block;}
+
+.u-textR {text-align: right;}
+.u-textL {text-align: left;}
+.u-textC {text-align: center;}
+
+/* flex */
+.u-flx {
+    display: flex;
+    flex-wrap: wrap;
+}
+.u-flxACnt { /* 高さ中央寄せ */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.u-flxJCnt { /* 幅中央寄せ */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.u-flxMid { /* 高さ,幅中央寄せ */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.u-fStart{
+    align-items: flex-start;
+}
+.u-fStr {
+    align-items: stretch;
+}
+.u-fEnd {
+    align-items: flex-end;
+}
+.u-fJcEnd {
+    justify-content: flex-end;
+}
+.u-fBet {
+    justify-content: space-between;
+}
+.u-fAro {
+    justify-content: space-around;
+}
+.u-fEvn {
+    justify-content: space-evenly;
+}
+.u-fCnt {
+    justify-content: center;
+}
+.u-flxNoWrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.u-fRow_r {
+    flex-direction: row-reverse;
+}
+.u-fCol {
+    flex-direction: column;
+}
+.u-fCol_r {
+    flex-direction: column-reverse;
+}

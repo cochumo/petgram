@@ -3,6 +3,7 @@
 @section('content')
     <div class="preview--area">
         <img src="{{ url($read_img_path . $photo->filename) }}">
+        <h3>メッセージ</h3>
         <p>{{ $photo['message'] }}</p>
         <form action="/photos/delete/{{ $photo->id }}" method="post">
             @csrf
