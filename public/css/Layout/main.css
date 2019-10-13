@@ -1,4 +1,12 @@
+body {
+    min-height: 100vh;
+}
+
 main {
-    margin: 3rem 0;
+    margin-bottom: 60px;
+}
+
+.l-main__content {
+    padding: 20px 0;
 }
 

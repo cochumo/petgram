@@ -1,0 +1,40 @@
+footer {
+    height: 60px;
+    background-color: #ffd500;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.l-footerWrap {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.l-footer__list {
+    position: relative;
+}
+
+.l-footer__left {
+    position: absolute;
+    left: -50px;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 20px;
+}
+
+.l-footer__right {
+    position: absolute;
+    right: -80px;
+    top: 0;
+    bottom: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 20px;
+}

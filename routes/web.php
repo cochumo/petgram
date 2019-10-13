@@ -17,7 +17,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 // photos
     // 一覧表示
-    Route::get('/photos', 'PhotosController@index');
+    Route::get('/photos', 'PhotosController@index')->name('photos.index');
     // 個別投稿
     Route::get('/photos/post/{id}', 'PhotosController@show');
     // 投稿削除
