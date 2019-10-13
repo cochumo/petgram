@@ -1,5 +1,11 @@
 @extends('layout')
 
+@section('movie')
+    <video autoplay="" loop="" muted="" name="media" class="u-movie">
+        <source src="{{ asset('movie/dog.mp4') }}" type="video/mp4">
+    </video>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -10,7 +16,6 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -66,6 +71,10 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="">
+                <p class="">アカウントをお持ちでない場合はこちらから</p>
+                <a href="{{ route('register') }}" class="c-button--02">新規登録</a>
             </div>
         </div>
     </div>

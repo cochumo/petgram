@@ -1,10 +1,18 @@
-/* ボタンタイプ01 */
+/* ボタンタイプ */
 .c-button--01 {
     background-color: #707070;
     padding: .5em 1.5em;
     color: #fff;
     border-radius: 15px;
     font-size: 1.5rem;
+}
+
+.c-button--02 {
+    background-color: #ff2692;
+    padding: .6em 2em;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1.7rem;
 }
 
 /* ファイルアップロードボタン */

@@ -7,11 +7,13 @@
     <title>Petgram</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/common.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Object/utility.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Foundation/reset.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/footer.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Layout/sidebar.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Object/component/button.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Object/component/grid.css') }}">
@@ -20,11 +22,17 @@
     @yield('styles')
 </head>
 <body>
-@include('header')
+@yield('movie')
+@guest
+    @include('header')
+@endguest
 <main>
     @yield('content')
 </main>
-@include('footer')
+@auth
+    @include('footer')
+@endauth
+@include('sidebar')
 
 @yield('scripts')
 </body>
