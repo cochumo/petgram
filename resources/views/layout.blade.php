@@ -32,7 +32,9 @@
 @auth
     @include('footer')
 @endauth
-@include('sidebar')
+@auth
+    @include('sidebar')
+@endauth
 
 @yield('scripts')
 </body>

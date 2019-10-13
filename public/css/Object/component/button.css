@@ -9,8 +9,18 @@
 
 .c-button--02 {
     background-color: #ff2692;
-    padding: .6em 2em;
+    padding: .5em 2em;
     color: #fff;
+    border-radius: 5px;
+    font-size: 1.7rem;
+    display: inline-block;
+}
+
+.c-button--03 {
+    background-color: transparent;
+    padding: .45em 2em;
+    color: #fff;
+    border: solid 1px #fff;
     border-radius: 5px;
     font-size: 1.7rem;
 }
