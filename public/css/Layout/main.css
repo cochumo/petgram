@@ -13,3 +13,7 @@ main {
 .l-main__content {
     padding: 20px 0;
 }
+
+.l-main__pagenation {
+    text-align: center;
+}

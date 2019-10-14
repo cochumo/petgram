@@ -4,6 +4,7 @@
     left: -130%;
     opacity: .5;
     z-index: -1;
+    height: 100%;
 }
 
 .u-dispN {display: none;}

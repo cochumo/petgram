@@ -51,6 +51,7 @@
     padding: 0 2rem;
 }
 
+.c-form__loginInput input[type="text"],
 .c-form__loginInput input[type="email"],
 .c-form__loginInput input[type="password"] {
     font-size: 1.5rem;

@@ -1,6 +1,9 @@
 @extends('layout')
 
 @section('content')
+    <div class="l-main__pagenation">
+        {{ $photos->links() }}
+    </div>
     <div id="grid" class="c-gridWrap">
         @foreach($photos as $photo)
             <a href="{{ url('photos/post/' . $photo->id) }}" id="{{ pathinfo($photo->filename, PATHINFO_FILENAME) }}" class="c-grid__list">
@@ -8,7 +11,7 @@
             </a>
         @endforeach
     </div>
-    <div class="c-pagenation">
+    <div class="l-main__pagenation">
         {{ $photos->links() }}
     </div>
 @endsection
