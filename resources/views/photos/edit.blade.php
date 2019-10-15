@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('content')
     <form action="{{ $photo->id }}" method="post">

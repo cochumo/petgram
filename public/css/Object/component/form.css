@@ -25,40 +25,40 @@
     text-align: left;
 }
 
-.c-form__loginWrap {
+.c-form__authWrap {
     display: flex;
     align-items: center;
-    height: calc(100vh - 60px);
+    min-height: 100vh;
 }
 
-.c-form__loginWrapInner {
+.c-form__authWrapInner {
     width: 100%;
 }
 
-.c-form__loginForm {
+.c-form__authForm {
     margin-bottom: 2rem;
 }
 
-.c-form__login--title {
+.c-form__auth--title {
     font-family: 'Pacifico', cursive;
     font-size: 6rem;
     margin-top: 1rem;
     margin-bottom: 4rem;
 }
 
-.c-form__loginInput {
+.c-form__authInput {
     margin-bottom: 1rem;
     padding: 0 2rem;
 }
 
-.c-form__loginInput input[type="text"],
-.c-form__loginInput input[type="email"],
-.c-form__loginInput input[type="password"] {
+.c-form__authInput input[type="text"],
+.c-form__authInput input[type="email"],
+.c-form__authInput input[type="password"] {
     font-size: 1.5rem;
     padding: 1rem .75rem;
     height: initial;
 }
 
-.c-form__loginInput label {
+.c-form__authInput label {
     font-weight: normal;
 }

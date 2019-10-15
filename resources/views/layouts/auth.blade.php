@@ -23,18 +23,8 @@
 </head>
 <body>
 @yield('movie')
-@guest
-    @include('header')
-@endguest
-<main>
-    @yield('content')
-</main>
-@auth
-    @include('footer')
-@endauth
-@auth
-    @include('sidebar')
-@endauth
+
+@yield('content')
 
 @yield('scripts')
 </body>

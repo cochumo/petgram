@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.auth')
 
 @section('movie')
     <video autoplay="" loop="" muted="" name="media" class="u-movie">
@@ -7,14 +7,14 @@
 @endsection
 
 @section('content')
-    <div class="c-form__loginWrap">
-        <div class="c-form__loginWrapInner">
+    <div class="c-form__authWrap">
+        <div class="c-form__authWrapInner">
             <div class="u-textC">
-                <h1 class="c-form__login--title">Petgram</h1>
+                <h1 class="c-form__auth--title">Petgram</h1>
             </div>
-            <form method="POST" action="{{ route('login') }}" class="c-form__loginForm">
+            <form method="POST" action="{{ route('login') }}" class="c-form__authForm">
                 @csrf
-                <div class="c-form__loginInput">
+                <div class="c-form__authInput">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="ユーザーID (メールアドレス)">
 
                     @error('email')
@@ -23,7 +23,7 @@
                     </span>
                     @enderror
                 </div>
-                <div class="c-form__loginInput">
+                <div class="c-form__authInput">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="パスワード">
 
                     @error('password')
@@ -32,7 +32,7 @@
                     </span>
                     @enderror
                 </div>
-                <div class="c-form__loginInput">
+                <div class="c-form__authInput">
                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                     <label class="form-check-label" for="remember">
