@@ -30,12 +30,3 @@
         </form>
     </div>
 @endsection
-
-@section('scripts')
-    <script>
-        // こっちに書くと動かない
-        // $(window).on('load',function(){
-        //     file_preview();
-        // });
-    </script>
-@endsection
