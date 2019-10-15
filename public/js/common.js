@@ -29,4 +29,34 @@ $(function(){
         }
     });
 
+    // 画像のプレビューを表示
+    function file_preview(){
+        $('input[type=file]').after('<span class="c-form__preview"></span>');
+
+        $('input[type=file]').change(function () {
+            var file = $(this).prop('files')[0];
+
+            if (!file.type.match('image.*')) {
+                $(this).val('');
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function () {
+                var img_src = $('<img>').attr('src', reader.result);
+                $('.c-form__preview').html(img_src);
+            }
+            reader.readAsDataURL(file);
+
+            $('.c-button__file').css('background-color', 'transparent');
+        });
+
+    }
+
+    // こっちに書くと動く
+    // if ($('input[type=file]').length) {
+    //     file_preview();
+    // }
+
 });
+

@@ -62,3 +62,14 @@
 .c-form__authInput label {
     font-weight: normal;
 }
+
+.c-form__preview {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.c-form__preview img {
+    z-index: 100;
+}
