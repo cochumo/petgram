@@ -68,8 +68,10 @@
     height: 100%;
     align-items: center;
     justify-content: center;
+    border-radius: 15px;
 }
 
 .c-form__preview img {
     z-index: 100;
+    max-height: 100%;
 }

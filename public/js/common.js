@@ -31,7 +31,8 @@ $(function(){
 
     // 画像のプレビューを表示
     function file_preview(){
-        $('.c-buttonWrap--file').after('<span class="c-form__preview"></span>');
+        // $('.c-buttonWrap--file').after('<span class="c-form__preview"></span>');
+        $('input[type=file]').after('<span class="c-form__preview"></span>');
 
         $('input[type=file]').change(function () {
             var file = $(this).prop('files')[0];
@@ -48,7 +49,9 @@ $(function(){
             }
             reader.readAsDataURL(file);
 
-            $('.c-button__file').css('display', 'none');
+            // $('.c-button__file').css('display', 'none');
+            $('.c-button__file').css('background-color', 'transparent');
+            $('.c-form__preview').css('background-color', '#fff');
         });
 
     }
