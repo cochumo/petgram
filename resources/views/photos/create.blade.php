@@ -18,6 +18,7 @@
                     <input type="file" id="file_upload" name="photo">
                 </label>
             </div>
+            <span class="c-form__preview"></span>
             <ul class="c-form__inputWrap">
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">コメント</h3>
