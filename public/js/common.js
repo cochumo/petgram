@@ -1,11 +1,14 @@
 $(function(){
 
+    // 現在のルート
+    const routeName = $('body').attr('data-route');
+
     // サイドバー
-    var menu = $('#slide_menu');
-    var closeBtn = $('#close');
-    var menuBtn = $('#slide_menu_btn');
-    var body = $(document.body);
-    var menuWidth = menu.outerWidth();
+    const menu = $('#slide_menu');
+    const closeBtn = $('#close');
+    const menuBtn = $('#slide_menu_btn');
+    const body = $(document.body);
+    const menuWidth = menu.outerWidth();
 
     menuBtn.on('click', function(){
         body.toggleClass('open');
@@ -28,6 +31,10 @@ $(function(){
             body.animate({'right' : 0 }, 300);
         }
     });
+
+    /**
+     * function
+     */
 
     // 画像のプレビューを表示
     function file_preview(){
@@ -56,7 +63,12 @@ $(function(){
 
     }
 
-    if ($('input[type=file]').length || $('.c-form__preview').length) {
+    /**
+     * ページ固有の処理
+     */
+
+    // 投稿ページ
+    if (routeName == 'photos.create') {
         file_preview();
     }
 

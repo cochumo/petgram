@@ -21,13 +21,13 @@
     <link rel="stylesheet" href="{{ asset('css/Object/component/form.css') }}">
     @yield('styles')
 </head>
-<body>
-<div class="wrapper">
-    <main>
-        @yield('content')
-    </main>
-    @include('component.footer')
-    @include('component.sidebar')
-</div>
+<body data-route="{{ Route::currentRouteName() }}">
+    <div class="wrapper">
+        <main>
+            @yield('content')
+        </main>
+        @include('component.footer')
+        @include('component.sidebar')
+    </div>
 </body>
 </html>
