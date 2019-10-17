@@ -8,8 +8,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="{{ asset('js/common.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/Object/utility.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Foundation/reset.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Foundation/common.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Object/utility.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/sidebar.css') }}">
@@ -21,14 +22,12 @@
     @yield('styles')
 </head>
 <body>
-
-<main>
-    @yield('content')
-</main>
-@include('component.footer')
-
-@include('component.sidebar')
-
-@yield('scripts')
+<div class="wrapper">
+    <main>
+        @yield('content')
+    </main>
+    @include('component.footer')
+    @include('component.sidebar')
+</div>
 </body>
 </html>
