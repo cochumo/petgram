@@ -32,6 +32,17 @@ $(function(){
         }
     });
 
+    // footer全般
+    $(window).resize(function() {
+        console.log('リサイズしたよ')
+    });
+
+    $(window).on("touchmove", function(){
+        console.log($(window).scrollTop());
+        $("footer").stop();
+        $("footer").css('display', 'none').delay(500).fadeIn('fast');
+    });
+
     /**
      * function
      */
