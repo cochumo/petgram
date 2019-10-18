@@ -28,7 +28,6 @@ html {
 ::after {
   text-decoration: inherit; /* Inherit text-decoration and vertical align to ::before and ::after pseudo elements */
   vertical-align: inherit;
-    /*content: ""; contentを書く手間を省く */
 }
 
 * {
