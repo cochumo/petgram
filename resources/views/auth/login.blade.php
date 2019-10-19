@@ -1,9 +1,11 @@
 @extends('layouts.auth')
 
 @section('movie')
-    <video autoplay="" loop="" muted="" name="media" class="u-movie">
-        <source src="{{ asset('movie/dog.mp4') }}" type="video/mp4">
-    </video>
+    <div class="c-movieWrap">
+        <video autoplay="" loop="" muted="" name="media" class="c-movie js-movie">
+            <source src="{{ asset('movie/dog.mp4') }}" type="video/mp4">
+        </video>
+    </div>
 @endsection
 
 @section('content')
