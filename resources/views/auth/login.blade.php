@@ -2,8 +2,9 @@
 
 @section('movie')
     <div class="c-movieWrap">
-        <video autoplay="" loop="" muted="" name="media" class="c-movie js-movie">
+        <video autoplay loop muted name="media" class="c-movie js-movie">
             <source src="{{ asset('movie/dog.mp4') }}" type="video/mp4">
+            <source src="{{ asset('movie/dog.webm') }}" type="video/webm">
         </video>
     </div>
 @endsection

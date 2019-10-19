@@ -34,7 +34,7 @@ $(function(){
 
     // footer全般
     $(window).resize(function() {
-        console.log('リサイズしたよ')
+        // console.log('リサイズしたよ');
     });
 
     $(window).on("touchmove", function(){
