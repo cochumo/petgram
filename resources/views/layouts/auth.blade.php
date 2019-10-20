@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{ asset('css/Object/component/form.css') }}">
     @yield('styles')
 </head>
-<body>
+<body data-route="{{ Route::currentRouteName() }}">
 @yield('movie')
 
 @yield('content')
