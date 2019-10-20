@@ -47,11 +47,11 @@ $(function(){
     });
 
     // formの2重submit対策
-    $('form input[type="submit"]').click(function (event) {
+    $('form button[type="submit"]').click(function (event) {
         var TIMEOUT = 10000;
         var target  = event.target;
         var $form   = $(target).closest('form');
-        var $submit = $form.find('input[type="submit"]');
+        var $submit = $form.find('button[type="submit"]');
 
         // clickしたsubmitの値をhiddenに保存
         var $hidden = $('<input/>', {
@@ -64,20 +64,12 @@ $(function(){
         event.stopPropagation();
 
         // 全てのsubmitを無効化
-        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-            $submit.attr('disabled', 'disabled')
-        } else {
-            $submit.prop('disabled', true);
-        }
+        $submit.prop('disabled', true);
 
         // 時間経過でsubmitの無効化を解除
         setTimeout(function () {
             $hidden.remove();
-            if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
-                $submit.attr('disabled', '')
-            } else {
-                $submit.prop('disabled', false);
-            }
+            $submit.prop('disabled', false);
         }, TIMEOUT);
 
         $form.submit();
