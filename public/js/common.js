@@ -34,13 +34,45 @@ $(function(){
 
     // footer全般
     $(window).resize(function() {
-        // console.log('リサイズしたよ');
+        console.log('リサイズしたよ');
+        console.log('有効画面高: ' + screen.availHeight);
+        console.log('表示領域高: ' + window.innerHeight);
+        console.log('ウィンドウ高: ' + window.outerHeight);
     });
 
     $(window).on("touchmove", function(){
-        console.log($(window).scrollTop());
+        // console.log($(window).scrollTop());
         $("footer").stop();
         $("footer").css('display', 'none').delay(500).fadeIn('fast');
+    });
+
+    // formの2重submit対策
+    $('form :submit').click(function (event) {
+        var TIMEOUT = 10000;
+        var target  = event.target;
+        var $form   = $(target).closest('form');
+        var $submit = $form.find(':submit');
+
+        // clickしたsubmitの値をhiddenに保存
+        var $hidden = $('<input/>', {
+            type: 'hidden',
+            name: target.name,
+            value: target.value
+        }).appendTo($form);
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        // 全てのsubmitを無効化
+        $submit.prop('disabled', true);
+
+        // 時間経過でsubmitの無効化を解除
+        setTimeout(function () {
+            $hidden.remove();
+            $submit.prop('disabled', false);
+        }, TIMEOUT);
+
+        $form.submit();
     });
 
     /**
