@@ -32,6 +32,10 @@ $(function(){
         }
     });
 
+    console.log('有効画面高: ' + screen.availHeight);
+    console.log('表示領域高: ' + window.innerHeight);
+    console.log('ウィンドウ高: ' + window.outerHeight);
+
     // footer全般
     $(window).resize(function() {
         console.log('リサイズしたよ');
