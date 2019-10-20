@@ -47,7 +47,7 @@ $(function(){
     });
 
     // formの2重submit対策
-    $('form :submit').click(function (event) {
+    $('form input[type="submit"]').click(function (event) {
         var TIMEOUT = 10000;
         var target  = event.target;
         var $form   = $(target).closest('form');
