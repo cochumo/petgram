@@ -9,6 +9,7 @@ $(function(){
     const menuBtn = $('#slide_menu_btn');
     const body = $(document.body);
     const menuWidth = menu.outerWidth();
+    $('#slide_menu').css('height', window.innerHeight);
 
     menuBtn.on('click', function(){
         sidebarToggle();
@@ -16,17 +17,6 @@ $(function(){
 
     closeBtn.on('click', function(){
         sidebarToggle();
-    });
-
-    // リサイズ処理
-    $(window).resize(function() {
-        if (body.hasClass('open')) {
-            $('#slide_menu').css('height', window.innerHeight);
-        }
-        console.log('リサイズしたよ');
-        console.log('有効画面高: ' + screen.availHeight);
-        console.log('表示領域高: ' + window.innerHeight);
-        console.log('ウィンドウ高: ' + window.outerHeight);
     });
 
     console.log('有効画面高: ' + screen.availHeight);
@@ -70,47 +60,38 @@ $(function(){
     });
 
     /**
-     * 背景動画
-     * https://qiita.com/drasky1132/items/93ab71742175914e61cb
-     * $(function(){})の中には.on()は書けないので個別で書く
+     * load function
      */
+
     $(window).on('load',function(){
-        var getWindowMovieHeight = function() {
-            console.log('loadしたよ');
-            // ここでブラウザの縦横のサイズを取得します。
-            var windowSizeHeight = $(window).outerHeight();
-            var windowSizeWidth = $(window).outerWidth();
+        console.log('loadしたよ');
 
-            // メディアの縦横比に合わせて数値は変更して下さい。(メディアのサイズが width < heightの場合で書いています。逆の場合は演算子を逆にしてください。)
-            var windowMovieSizeWidth = windowSizeHeight * 1.76388889;
-            var windowMovieSizeHeight = windowSizeWidth / 1.76388889;
-            var windowMovieSizeWidthLeftMargin = (windowMovieSizeWidth - windowSizeWidth) / 2;
-
-            if (windowMovieSizeHeight < windowSizeHeight) {
-                // 横幅のほうが大きくなってしまう場合にだけ反応するようにしています。
-                $(".js-movie").css({left: -windowMovieSizeWidthLeftMargin});
-            }
-        };
-        getWindowMovieHeight();
+        // ログイン画面かどうか検査
+        if (routeName == 'login') {
+            backgroundMovie();
+        }
     });
+
+    /**
+     * resize function
+     */
+
     $(window).on('resize', function(){
         console.log('resizeしたよ');
-        var getWindowMovieHeight = function() {
-            // ここでブラウザの縦横のサイズを取得します。
-            var windowSizeHeight = $(window).outerHeight();
-            var windowSizeWidth = $(window).outerWidth();
 
-            // メディアの縦横比に合わせて数値は変更して下さい。(メディアのサイズが width < heightの場合で書いています。逆の場合は演算子を逆にしてください。)
-            var windowMovieSizeWidth = windowSizeHeight * 1.76388889;
-            var windowMovieSizeHeight = windowSizeWidth / 1.76388889;
-            var windowMovieSizeWidthLeftMargin = (windowMovieSizeWidth - windowSizeWidth) / 2;
+        // ログイン画面かどうか検査
+        if (routeName == 'login') {
+            backgroundMovie();
+        }
 
-            if (windowMovieSizeHeight < windowSizeHeight) {
-                // 横幅のほうが大きくなってしまう場合にだけ反応するようにしています。
-                $(".js-movie").css({left: -windowMovieSizeWidthLeftMargin});
-            }
-        };
-        getWindowMovieHeight();
+        // サイドバーが開いているか検査
+        if (body.hasClass('open')) {
+            $('#slide_menu').css('height', window.innerHeight);
+        }
+        console.log('リサイズしたよ');
+        console.log('有効画面高: ' + screen.availHeight);
+        console.log('表示領域高: ' + window.innerHeight);
+        console.log('ウィンドウ高: ' + window.outerHeight);
     });
 
     /**
@@ -156,6 +137,22 @@ $(function(){
         }
     }
 
+    // 背景動画 https://qiita.com/drasky1132/items/93ab71742175914e61cb
+    function backgroundMovie() {
+        // ここでブラウザの縦横のサイズを取得します。
+        var windowSizeHeight = $(window).outerHeight();
+        var windowSizeWidth = $(window).outerWidth();
+
+        // メディアの縦横比に合わせて数値は変更して下さい。(メディアのサイズが width < heightの場合で書いています。逆の場合は演算子を逆にしてください。)
+        var windowMovieSizeWidth = windowSizeHeight * 1.76388889;
+        var windowMovieSizeHeight = windowSizeWidth / 1.76388889;
+        var windowMovieSizeWidthLeftMargin = (windowMovieSizeWidth - windowSizeWidth) / 2;
+
+        if (windowMovieSizeHeight < windowSizeHeight) {
+            // 横幅のほうが大きくなってしまう場合にだけ反応するようにしています。
+            $(".js-movie").css({left: -windowMovieSizeWidthLeftMargin});
+        }
+    }
 
     /**
      * ページ固有の処理
