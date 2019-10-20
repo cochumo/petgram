@@ -76,6 +76,7 @@ $(function(){
      */
     $(window).on('load',function(){
         var getWindowMovieHeight = function() {
+            console.log('loadしたよ');
             // ここでブラウザの縦横のサイズを取得します。
             var windowSizeHeight = $(window).outerHeight();
             var windowSizeWidth = $(window).outerWidth();
@@ -93,6 +94,7 @@ $(function(){
         getWindowMovieHeight();
     });
     $(window).on('resize', function(){
+        console.log('resizeしたよ');
         var getWindowMovieHeight = function() {
             // ここでブラウザの縦横のサイズを取得します。
             var windowSizeHeight = $(window).outerHeight();
