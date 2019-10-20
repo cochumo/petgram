@@ -11,25 +11,22 @@ $(function(){
     const menuWidth = menu.outerWidth();
 
     menuBtn.on('click', function(){
-        body.toggleClass('open');
-        if(body.hasClass('open')){
-            body.animate({'right' : menuWidth }, 300);
-            menu.animate({'right' : 0 }, 300);
-        } else {
-            menu.animate({'right' : -menuWidth }, 300);
-            body.animate({'right' : 0 }, 300);
-        }
+        sidebarToggle();
     });
 
     closeBtn.on('click', function(){
-        body.toggleClass('open');
-        if(body.hasClass('open')){
-            body.animate({'right' : menuWidth }, 300);
-            menu.animate({'right' : 0 }, 300);
-        } else {
-            menu.animate({'right' : -menuWidth }, 300);
-            body.animate({'right' : 0 }, 300);
+        sidebarToggle();
+    });
+
+    // リサイズ処理
+    $(window).resize(function() {
+        if (body.hasClass('open')) {
+            $('#slide_menu').css('height', window.innerHeight);
         }
+        console.log('リサイズしたよ');
+        console.log('有効画面高: ' + screen.availHeight);
+        console.log('表示領域高: ' + window.innerHeight);
+        console.log('ウィンドウ高: ' + window.outerHeight);
     });
 
     console.log('有効画面高: ' + screen.availHeight);
@@ -37,13 +34,6 @@ $(function(){
     console.log('ウィンドウ高: ' + window.outerHeight);
 
     // footer全般
-    $(window).resize(function() {
-        console.log('リサイズしたよ');
-        console.log('有効画面高: ' + screen.availHeight);
-        console.log('表示領域高: ' + window.innerHeight);
-        console.log('ウィンドウ高: ' + window.outerHeight);
-    });
-
     $(window).on("touchmove", function(){
         // console.log($(window).scrollTop());
         $("footer").stop();
@@ -107,8 +97,21 @@ $(function(){
             $('.c-button__file').css('background-color', 'transparent');
             $('.c-form__preview').css('background-color', '#fff');
         });
-
     }
+
+    // サイドバー 出し入れ
+    function sidebarToggle() {
+        $('#slide_menu').css('height', window.innerHeight);
+        body.toggleClass('open');
+        if(body.hasClass('open')){
+            body.animate({'right' : menuWidth }, 300);
+            menu.animate({'right' : 0 }, 300);
+        } else {
+            menu.animate({'right' : -menuWidth }, 300);
+            body.animate({'right' : 0 }, 300);
+        }
+    }
+
 
     /**
      * ページ固有の処理
