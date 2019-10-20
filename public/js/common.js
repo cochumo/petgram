@@ -51,7 +51,7 @@ $(function(){
         var TIMEOUT = 10000;
         var target  = event.target;
         var $form   = $(target).closest('form');
-        var $submit = $form.find(':submit');
+        var $submit = $form.find('input[type="submit"]');
 
         // clickしたsubmitの値をhiddenに保存
         var $hidden = $('<input/>', {
@@ -64,12 +64,20 @@ $(function(){
         event.stopPropagation();
 
         // 全てのsubmitを無効化
-        $submit.prop('disabled', true);
+        if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+            $submit.attr('disabled', 'disabled')
+        } else {
+            $submit.prop('disabled', true);
+        }
 
         // 時間経過でsubmitの無効化を解除
         setTimeout(function () {
             $hidden.remove();
-            $submit.prop('disabled', false);
+            if (navigator.userAgent.match(/(iPod|iPhone|iPad)/)) {
+                $submit.attr('disabled', '')
+            } else {
+                $submit.prop('disabled', false);
+            }
         }, TIMEOUT);
 
         $form.submit();
