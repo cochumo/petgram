@@ -22,7 +22,7 @@ class PhotosController extends Controller
     {
         // 投稿を取得
 //        $photos = Photo::latest()->get();
-        $photos = Photo::latest()->paginate(4);
+        $photos = Photo::latest()->paginate(10);
 //        dd($photos);
 
         return view('photos/index', [
@@ -61,7 +61,7 @@ class PhotosController extends Controller
         // レコードの削除
         $photo->delete();
 
-        return redirect('/photos');
+        return redirect('/photos')->with('success', '投稿の削除を完了しました！');
     }
 
     /**
@@ -81,6 +81,9 @@ class PhotosController extends Controller
 
         $input = $request->all();
         $imagefile = $request->file('photo');
+        if ($input['message'] == null) {
+            $input['message'] = "";
+        }
 
 //        dd($input['message']);
 
@@ -188,7 +191,7 @@ class PhotosController extends Controller
         $photo->message = $message;
         $photo->save();
 
-        return redirect('/photos');
+        return redirect('/photos')->with('success', '画像の投稿を完了しました！');
     }
 
     /**
@@ -224,6 +227,6 @@ class PhotosController extends Controller
         $photo->message = $data['message'];
         $photo->save();
 
-        return redirect('/photos');
+        return redirect('/photos')->with('success', '投稿の編集を完了しました！');
     }
 }

@@ -23,6 +23,13 @@
 </head>
 <body data-route="{{ Route::currentRouteName() }}">
     <div class="wrapper">
+        @if (session('success'))
+            <header>
+                <div id="success" class="l-header__success">
+                    {{ session('success') }}
+                </div>
+            </header>
+        @endif
         <main>
             @yield('content')
         </main>

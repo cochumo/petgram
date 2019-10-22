@@ -1,0 +1,10 @@
+.l-header__success {
+    background-color: #64b7ff;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: none;
+    overflow: hidden;
+}

@@ -127,9 +127,25 @@ $(function(){
         }
     }
 
+    // サクセスメッセージの通知
+    function successNotification() {
+        $('#success').slideDown();
+        setTimeout(function(){
+            $('#success').slideUp();
+        },10000);
+    }
+
     /**
      * ページ固有の処理
      */
+
+    // 一覧ページ
+    if (routeName == 'photos.index') {
+        // サクセスメッセージ
+        if ($('#success').length) {
+            successNotification();
+        }
+    }
 
     // 投稿ページ
     if (routeName == 'photos.create') {
