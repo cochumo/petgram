@@ -1,5 +1,6 @@
-/* form */
-
+/*--------------------------------------
+  Form
+--------------------------------------*/
 .c-movieWrap {
     position: fixed;
     top: 0;
@@ -48,11 +49,11 @@
     text-align: left;
 }
 
-.c-form__authWrap {
+/* .c-form__authWrap {
     display: flex;
     align-items: center;
     min-height: 100vh;
-}
+} */
 
 .c-form__authWrapInner {
     width: 100%;
@@ -97,4 +98,27 @@
 .c-form__preview img {
     z-index: 100;
     max-height: 100%;
+}
+
+/* register
+-----------------------------------*/
+.c-form__authWrap {
+    margin-bottom: 0;
+}
+.c-form__logoWrap {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #FFD500;
+}
+.c-form__logo {
+    width: 100px;
+}
+.c-form__authTtl {
+    font-size: 20px;
+    text-align: center;
+    margin: 5rem 0;
+}
+.c-form__confirmBtnWrap {
+    text-align: center;
+    margin: 4em 0;
 }
