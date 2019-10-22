@@ -139,46 +139,46 @@ class PhotosController extends Controller
 //        dd($read_path);
 
         // ExifのOrientation正常化処理
-        $minify_photo = Image::make($read_temp_path)->getCore();
+//        $minify_photo = Image::make($read_temp_path)->getCore();
 
         // 画像のプロパティ
-        $properties = $minify_photo->getImageProperties();
+//        $properties = $minify_photo->getImageProperties();
 
         // autoOrient()もgetImageOrientation()も思ったとおりに動かないため、プロパティを見て自分でrotateする処理
-        if (isset($minify_photo->getImageProperties()['exif:Orientation'])) {
-            $orientation = $minify_photo->getImageProperties()['exif:Orientation'];
-//            dd($orientation);
-            switch ($orientation) {
-                case 2:
-                    $minify_photo->flopImage();
-                    break;
-                case 3:
-                    $minify_photo->rotateImage('#000000', 180);
-                    break;
-                case 4:
-                    $minify_photo->flipImage();
-                    break;
-                case 5:
-                    $minify_photo->flopImage();
-                    $minify_photo->rotateImage('#000000', 270);
-                    break;
-                case 6:
-                    $minify_photo->rotateImage('#000000', 90);
-                    break;
-                case 7:
-                    $minify_photo->flopImage();
-                    $minify_photo->rotateImage('#000000', 90);
-                    break;
-                case 8:
-                    $minify_photo->rotateImage('#000000', 270);
-                    break;
-            }
-            //Exif情報を全削除
-            $minify_photo->stripImage();
-            //回転させたあとにExifに無回転だと設定
-            $minify_photo->setImageOrientation(1);
-            $minify_photo->writeImage($read_temp_path);
-        }
+//        if (isset($minify_photo->getImageProperties()['exif:Orientation'])) {
+//            $orientation = $minify_photo->getImageProperties()['exif:Orientation'];
+////            dd($orientation);
+//            switch ($orientation) {
+//                case 2:
+//                    $minify_photo->flopImage();
+//                    break;
+//                case 3:
+//                    $minify_photo->rotateImage('#000000', 180);
+//                    break;
+//                case 4:
+//                    $minify_photo->flipImage();
+//                    break;
+//                case 5:
+//                    $minify_photo->flopImage();
+//                    $minify_photo->rotateImage('#000000', 270);
+//                    break;
+//                case 6:
+//                    $minify_photo->rotateImage('#000000', 90);
+//                    break;
+//                case 7:
+//                    $minify_photo->flopImage();
+//                    $minify_photo->rotateImage('#000000', 90);
+//                    break;
+//                case 8:
+//                    $minify_photo->rotateImage('#000000', 270);
+//                    break;
+//            }
+//            //Exif情報を全削除
+//            $minify_photo->stripImage();
+//            //回転させたあとにExifに無回転だと設定
+//            $minify_photo->setImageOrientation(1);
+//            $minify_photo->writeImage($read_temp_path);
+//        }
 
         // 一時保存場所から移動
         Storage::move($temp_path, $storage_path);
