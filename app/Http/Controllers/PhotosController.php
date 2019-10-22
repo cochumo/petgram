@@ -139,7 +139,7 @@ class PhotosController extends Controller
 //        dd($read_path);
 
         // ExifのOrientation正常化処理
-        $minify_photo = Image::make($read_temp_path)->getCore();
+        $minify_photo = \Image::make($read_temp_path)->getCore();
 
         // 画像のプロパティ
         $properties = $minify_photo->getImageProperties();
