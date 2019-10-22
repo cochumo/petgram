@@ -6,7 +6,7 @@ use App\Http\Requests\PhotosRequest;
 use App\Photo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image as Image;
 
 class PhotosController extends Controller
 {
