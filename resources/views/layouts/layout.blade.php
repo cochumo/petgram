@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/Object/component/grid.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Object/component/modal.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Object/component/form.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/Object/component/post.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Object/utility.css') }}">
     @yield('styles')
 </head>
