@@ -20,15 +20,16 @@ footer {
     position: relative;
 }
 
+.l-footer__logo {
+    width: 100px;
+}
+
 .l-footer__left {
     position: absolute;
-    left: -50px;
-    top: 0;
+    left: -55px;
+    top: -20px;
     bottom: 0;
-    margin-top: auto;
-    margin-bottom: auto;
     height: 50px;
-    background-color: #fff;
     border-radius: 50%;
     width: 50px;
     text-align: center;
@@ -38,10 +39,9 @@ footer {
 
 .l-footer__right {
     position: absolute;
-    right: -80px;
-    top: 0;
+    right: -55px;
+    top: -20px;
     bottom: 0;
-    margin-top: auto;
-    margin-bottom: auto;
-    height: 20px;
+    height: 50px;
+    width: 50px;
 }

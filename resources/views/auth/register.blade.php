@@ -2,7 +2,7 @@
 
 @section('content')
     <header class="c-form__logoWrap">
-        <img src="/img/logo-petgram.svg" alt="Petgram" class="c-form__logo">
+        <img src="{{ asset('img/logo-petgram.svg') }}" alt="Petgram" class="c-form__logo">
     </header>
     <main class="c-form__authWrap">
         <div class="c-form__authWrapInner--register">
