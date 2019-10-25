@@ -57,17 +57,23 @@
 
 .c-form__authWrapInner {
     width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .c-form__authForm {
-    margin-bottom: 2rem;
+
 }
 
-.c-form__auth--title {
-    font-family: 'Pacifico', cursive;
-    font-size: 6rem;
-    margin-top: 1rem;
-    margin-bottom: 4rem;
+.c-form__auth--logo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.c-form__auth--logo img {
+    width: 60%;
 }
 
 .c-form__authInput {
@@ -81,10 +87,21 @@
     font-size: 1.5rem;
     padding: 1rem .75rem;
     height: initial;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
 }
 
 .c-form__authInput label {
     font-weight: normal;
+}
+
+.c-form__authInput .form-check-label {
+    font-size: 1.3rem;
+}
+
+.c-form__authInput .form-check-input {
+    vertical-align: text-bottom;
 }
 
 .c-form__preview {
@@ -113,6 +130,15 @@
 .c-form__logo {
     width: 100px;
 }
+
+.c-form__authWrapInner--register {
+    width: 100%;
+    height: calc(100vh - 62.36px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 .c-form__authTtl {
     font-size: 20px;
     text-align: center;
@@ -121,4 +147,18 @@
 .c-form__confirmBtnWrap {
     text-align: center;
     margin: 4em 0;
+}
+
+.c-form__registrationGuidance {
+    text-align: center;
+}
+
+.c-form__registrationGuidance--link {
+    font-size: 1.3rem;
+    text-decoration: underline;
+}
+
+.c-form__registrationGuidance p {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
 }

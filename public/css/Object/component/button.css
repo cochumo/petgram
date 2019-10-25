@@ -19,10 +19,12 @@
 .c-button--03 {
     background-color: transparent;
     padding: .45em 2em;
-    color: #fff;
+    color: #707070;
     border: solid 1px #fff;
     border-radius: 5px;
     font-size: 1.7rem;
+    width: 100%;
+    background-color: #ffd500;
 }
 
 /* ファイルアップロードボタン */
