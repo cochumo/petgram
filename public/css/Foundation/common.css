@@ -4,6 +4,10 @@ body {
     overscroll-behavior: none;
 }
 
+a {
+    color: #707070;
+}
+
 #logo {
     font-family: 'Pacifico', cursive;
     font-size: 28px;
