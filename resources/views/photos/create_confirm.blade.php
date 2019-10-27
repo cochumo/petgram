@@ -7,10 +7,6 @@
             <img src="{{ asset($data['read_temp_path']) }}" class="form_img">
             <ul class="c-form__inputWrap">
                 <li class="c-form__inputList">
-                    <h3 class="c-form__title">ファイル名</h3>
-                    <p class="c-form__input--text">{{ $data['filename'] }}</p>
-                </li>
-                <li class="c-form__inputList">
                     <h3 class="c-form__title">メッセージ</h3>
                     <p class="c-form__input--text">{{ $data['message'] }}</p>
                 </li>
@@ -19,5 +15,26 @@
                 <input type="submit" name="action" value="投稿" class="c-button--01">
             </div>
         </form>
+    </div>
+
+    <div class="c-modalWrap" id="leave-pages">
+        <div class="c-modal__overLay c-modal__close">
+            <div class="c-modal__inner">
+                <div class="c-modal__header">
+                    <h3 class="">ページの離脱確認</h3>
+                </div>
+                <div class="c-modal__main">
+                    <p class="">
+                        ページを離れるとアップロードした<br>
+                        画像が削除されます。<br>
+                        よろしいですか？
+                    </p>
+                </div>
+                <div class="c-modal__footer">
+                    <button class="c-button__no--01">キャンセル</button>
+                    <button class="c-button__yes--01">OK</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

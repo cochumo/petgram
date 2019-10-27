@@ -1,13 +1,5 @@
-body {
-    min-height: 100vh;
-    position: relative;
-    top: 0;
-    left: 0;
-    overflow-x: hidden;
-}
-
 main {
-    margin-bottom: 60px;
+    padding-bottom: 60px;
 }
 
 .l-main__content {
@@ -17,3 +9,15 @@ main {
 .l-main__pagenation {
     text-align: center;
 }
+
+.l-main__pagenation .pagination {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.l-main__pagenation .pagination .page-item:first-child,
+.l-main__pagenation .pagination .page-item:last-child {
+    margin: 0 1rem;
+}
+

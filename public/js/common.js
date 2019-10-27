@@ -35,13 +35,13 @@ $(function(){
 
     // formの2重submit対策
     $('form button[type="submit"]').click(function (event) {
-        var TIMEOUT = 10000;
-        var target  = event.target;
-        var $form   = $(target).closest('form');
-        var $submit = $form.find('button[type="submit"]');
+        let TIMEOUT = 10000;
+        let target  = event.target;
+        let $form   = $(target).closest('form');
+        let $submit = $form.find('button[type="submit"]');
 
         // clickしたsubmitの値をhiddenに保存
-        var $hidden = $('<input/>', {
+        let $hidden = $('<input/>', {
             type: 'hidden',
             name: target.name,
             value: target.value
@@ -94,16 +94,16 @@ $(function(){
         $('input[type=file]').after('<span class="c-form__preview"></span>');
 
         $('input[type=file]').change(function () {
-            var file = $(this).prop('files')[0];
+            let file = $(this).prop('files')[0];
 
             if (!file.type.match('image.*')) {
                 $(this).val('');
                 return;
             }
 
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function () {
-                var img_src = $('<img>').attr('src', reader.result);
+                let img_src = $('<img>').attr('src', reader.result);
                 $('.c-form__preview').html(img_src);
             }
             reader.readAsDataURL(file);
@@ -135,6 +135,20 @@ $(function(){
         },10000);
     }
 
+    function leavePages() {
+        let submitFlg = false;
+
+        $(window).on('beforeunload', function(event) {
+            if (!(submitFlg)) {
+                $('#leave-pages').css('display', 'block');
+            }
+        });
+
+        $("input[type=submit]").click(function() {
+            submitFlg = true;
+        });
+    }
+
     /**
      * ページ固有の処理
      */
@@ -150,6 +164,11 @@ $(function(){
     // 投稿ページ
     if (routeName == 'photos.create') {
         file_preview();
+    }
+
+    // 投稿確認ページ
+    if (routeName == 'photos.confirm') {
+        leavePages();
     }
 
 });

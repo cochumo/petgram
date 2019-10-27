@@ -22,7 +22,7 @@ class PhotosController extends Controller
     {
         // 投稿を取得
 //        $photos = Photo::latest()->get();
-        $photos = Photo::latest()->paginate(10);
+        $photos = Photo::latest()->simplePaginate(20);
 //        dd($photos);
 
         return view('photos/index', [

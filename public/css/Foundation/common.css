@@ -1,7 +1,17 @@
 body {
-    background-color: #f4f7f8;
+    min-height: 100vh;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: #fff;
     -webkit-text-size-adjust: 100%;
     overscroll-behavior: none;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 a {
