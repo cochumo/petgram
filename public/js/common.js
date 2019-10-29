@@ -132,7 +132,7 @@ $(function(){
         $('#success').slideDown();
         setTimeout(function(){
             $('#success').slideUp();
-        },10000);
+        },5000);
     }
 
     function leavePages() {

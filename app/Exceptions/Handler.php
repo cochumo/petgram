@@ -46,6 +46,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exceotion instanceof MethodNotAllowedHttpException) {
+            return redirect('/photos')->with('success', '不正なアドレスにアクセスされました。');
+        }
         return parent::render($request, $exception);
     }
 }
