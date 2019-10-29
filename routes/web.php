@@ -19,9 +19,9 @@ Route::group(['middleware' => 'auth'], function() {
     // 一覧表示
     Route::get('/photos', 'PhotosController@index')->name('photos.index');
     // 個別投稿
-    Route::get('/photos/post/{id}', 'PhotosController@show')->name('photos.show');
+    Route::get('/photos/post/{photo}', 'PhotosController@show')->name('photos.show');
     // 投稿削除
-    Route::post('/photos/delete/{id}', 'PhotosController@destroy');
+    Route::post('/photos/delete/{photo}', 'PhotosController@destroy');
     // 入力フォーム
     Route::get('/photos/create', 'PhotosController@create')->name('photos.create');
     // 確認画面
@@ -29,9 +29,9 @@ Route::group(['middleware' => 'auth'], function() {
     // 保存
     Route::post('/photos/create_complete', 'PhotosController@store');
     // 編集フォーム
-    Route::get('/photos/edit/{id}', 'PhotosController@edit')->name('photos.edit');
+    Route::get('/photos/edit/{photo}', 'PhotosController@edit')->name('photos.edit');
     // 編集処理
-    Route::post('/photos/edit/{id}', 'PhotosController@update');
+    Route::post('/photos/edit/{photo}', 'PhotosController@update');
 
 });
 

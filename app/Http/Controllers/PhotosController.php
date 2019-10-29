@@ -34,10 +34,10 @@ class PhotosController extends Controller
     /**
      * 投稿詳細表示
      */
-    public function show($id)
+    public function show(Photo $photo)
     {
         // 詳細を表示する投稿を取得
-        $photo = Photo::find($id);
+//        $photo = Photo::find($id);
 
         return view('photos/detail', [
            'photo' => $photo,
@@ -48,9 +48,9 @@ class PhotosController extends Controller
     /**
      * 投稿削除
      */
-    public function destroy($id){
+    public function destroy(Photo $photo){
         // 削除する投稿を取得
-        $photo = Photo::find($id);
+//        $photo = Photo::find($id);
 //        dump($id);
 //        dump($photo->filename);
 //        dd($photo);
@@ -204,10 +204,10 @@ class PhotosController extends Controller
     /**
      * 編集フォーム表示
      */
-    public function edit($id)
+    public function edit(Photo $photo)
     {
         // 編集する投稿を取得
-        $photo = Photo::find($id);
+//        $photo = Photo::find($id);
 
         return view('photos/edit', [
             'photo' => $photo,
@@ -218,11 +218,11 @@ class PhotosController extends Controller
     /**
      * 編集処理
      */
-    public function update($id, Request $request)
+    public function update(Photo $photo, Request $request)
     {
         $user = auth()->user();
 
-        $photo = Photo::find($id);
+//        $photo = Photo::find($id);
         $data = $request->all();
 
         // 編集者が投稿者と同じか検査
