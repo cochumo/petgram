@@ -137,15 +137,29 @@ $(function(){
 
     function leavePages() {
         let submitFlg = false;
+        // サイドバーのログアウトボタンを押せないようにする
+        $('#logout_btn').css('pointer-events', 'none');
 
-        $(window).on('beforeunload', function(event) {
-            if (!(submitFlg)) {
-                $('#leave-pages').css('display', 'block');
-            }
-        });
-
+        // 投稿ボタンフラグを立てる
         $("input[type=submit]").click(function() {
             submitFlg = true;
+        });
+
+        // $(window).on('beforeunload', function(event) {
+        //     if (!(submitFlg)) {
+        //
+        //     }
+        // });
+
+        // 離脱確認ポップアップ表示
+        $('a, #sidebar__logout').click(function (event) {
+            event.preventDefault();
+            $('#leave-pages').css('display', 'block');
+        });
+
+        // モーダルを閉じる
+        $('.c-modal__close').click(function () {
+            $('#leave-pages').css('display', 'none');
         });
     }
 

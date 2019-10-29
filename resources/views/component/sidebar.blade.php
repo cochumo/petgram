@@ -1,6 +1,6 @@
 <div id="slide_menu" class="l-sidebarWrap">
-    <div class="l-sidebar__list">
-        <a class="l-sidebar__btn" href="{{ route('logout') }}"
+    <div id="sidebar__logout" class="l-sidebar__list">
+        <a id="logout_btn" class="l-sidebar__btn" href="{{ route('logout') }}"
            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
             ログアウト
         </a>
