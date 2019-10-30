@@ -154,7 +154,7 @@ $(function(){
                 console.log(transition_page);
                 $('#finished_confirmation').attr('href', transition_page);
             } else if (localName == 'div') {
-                $('#finished_confirmation').attr('href', '');
+                $('#finished_confirmation').attr('href', 'logout');
             }
             event.preventDefault();
             $('#leave-pages').css('display', 'block');
@@ -162,7 +162,7 @@ $(function(){
         });
 
         $('#finished_confirmation').click(function (event) {
-            if ($(this).attr('href') == '') {
+            if ($(this).attr('href') == 'logout') {
                 event.preventDefault();
                 document.getElementById('logout-form').submit();
             }
