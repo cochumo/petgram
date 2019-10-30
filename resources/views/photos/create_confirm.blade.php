@@ -32,7 +32,7 @@
                 </div>
                 <div class="c-modal__footer">
                     <button class="c-button__no--01 c-modal__close">キャンセル</button>
-                    <button class="c-button__yes--01">OK</button>
+                    <a href="{{ url('photos/') }}" id="finished_confirmation" class="c-button__yes--01">OK</a>
                 </div>
             </div>
         </div>

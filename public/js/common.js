@@ -145,16 +145,27 @@ $(function(){
             submitFlg = true;
         });
 
-        // $(window).on('beforeunload', function(event) {
-        //     if (!(submitFlg)) {
-        //
-        //     }
-        // });
-
         // 離脱確認ポップアップ表示
-        $('a, #sidebar__logout').click(function (event) {
+        $('a:not(#finished_confirmation), #sidebar__logout').click(function (event) {
+            let localName = $(this).prop('localName').toLowerCase();
+            console.log(localName);
+            if (localName == 'a') {
+                let transition_page = $(this).prop('href');
+                console.log(transition_page);
+                $('#finished_confirmation').attr('href', transition_page);
+            } else if (localName == 'div') {
+                $('#finished_confirmation').attr('href', '');
+            }
             event.preventDefault();
             $('#leave-pages').css('display', 'block');
+            $('#leave-pages').addClass('modal-open');
+        });
+
+        $('#finished_confirmation').click(function (event) {
+            if ($(this).attr('href') == '') {
+                event.preventDefault();
+                document.getElementById('logout-form').submit();
+            }
         });
 
         // モーダルを閉じる
