@@ -16,22 +16,30 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
 
 // photos
-    // 一覧表示
+    // 投稿画像一覧表示
     Route::get('/photos', 'PhotosController@index')->name('photos.index');
-    // 個別投稿
+    // 投稿画像詳細表示
     Route::get('/photos/post/{photo}', 'PhotosController@show')->name('photos.show');
-    // 投稿削除
+    // 投稿画像削除処理
     Route::post('/photos/delete/{photo}', 'PhotosController@destroy');
-    // 入力フォーム
+    // 投稿画像入力フォーム
     Route::get('/photos/create', 'PhotosController@create')->name('photos.create');
-    // 確認画面
+    // 投稿画像確認
     Route::post('/photos/create_confirm', 'PhotosController@confirm')->name('photos.confirm');
-    // 保存
+    // 投稿画像保存処理
     Route::post('/photos/create_complete', 'PhotosController@store');
-    // 編集フォーム
+    // 投稿画像編集フォーム
     Route::get('/photos/edit/{photo}', 'PhotosController@edit')->name('photos.edit');
-    // 編集処理
+    // 投稿画像編集処理
     Route::post('/photos/edit/{photo}', 'PhotosController@update');
+
+// User
+    // 登録情報編集フォーム
+    Route::get('/mypage/edit', 'UsersController@edit')->name('users.edit');
+    // 編集内容確認
+    Route::post('/mypage/edit_confirm', 'UsersController@confirm')->name('users.confirm');
+    // 登録情報編集処理
+    Route::post('/mypage/edit/{user}', 'UsersController@update');
 
 });
 
