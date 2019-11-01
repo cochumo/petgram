@@ -18,6 +18,10 @@ a {
     color: #707070;
 }
 
+li {
+    list-style: none;
+}
+
 #logo {
     font-family: 'Pacifico', cursive;
     font-size: 28px;

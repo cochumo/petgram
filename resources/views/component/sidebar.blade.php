@@ -1,9 +1,9 @@
 <div id="slide_menu" class="l-sidebarWrap">
     <div class="l-sidebar__list">
-        <a href="#" class="l-sidebar__btn">プロフィールの編集</a>
+        <a href="#" class="l-sidebar__btn">プロフィール編集</a>
     </div>
     <div class="l-sidebar__list">
-        <a href="{{ route('users.edit') }}" class="l-sidebar__btn">アカウント情報の変更</a>
+        <a href="{{ route('users.edit') }}" class="l-sidebar__btn">アカウント設定</a>
     </div>
     <div id="sidebar__logout" class="l-sidebar__list">
         <a id="logout_btn" class="l-sidebar__btn" href="{{ route('logout') }}"

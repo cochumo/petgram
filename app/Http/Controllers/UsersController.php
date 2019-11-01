@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -25,17 +26,17 @@ class UsersController extends Controller
     /**
      * 編集内容の確認
      */
-    public function confirm(Request $request, User $user)
+    public function confirm(UserRequest $request, User $user)
     {
         // formのuser_idが入る箇所を編集して送信した場合の処理
         if (!(auth()->user()->id == $user->id)) {
             return redirect('/photos')->with('success', '指定されたリンクは無効です。');
         }
 
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required'
-        ]);
+//        $request->validate([
+//            'name' => 'required|string',
+//            'email' => 'required'
+//        ]);
 
 
     }
