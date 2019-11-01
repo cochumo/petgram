@@ -5,8 +5,8 @@
         <div class="c-form__authWrapInner--register">
             <div class="">
 
-                <h1 class="c-form__authTtl">登録情報の編集</h1>
-                <form method="POST" action="edit_confirm" class="c-form__authForm">
+                <h1 class="c-form__authTtl">アカウント情報の変更</h1>
+                <form method="POST" action="edit_confirm/{{ $user->id }}" class="c-form__authForm">
                     @csrf
                     <div class="c-form__authInput">
                         @empty((old('name')))
@@ -36,7 +36,7 @@
                         @enderror
                     </div>
                     <div class="c-form__authInput">
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="パスワード">
+                        <input id="current-password" type="password" class="form-control @error('password') is-invalid @enderror" name="current_password" required autocomplete="new-password" placeholder="現在のパスワード">
 
                         @error('password')
                         <span class="invalid-feedback" role="alert">
@@ -45,7 +45,16 @@
                         @enderror
                     </div>
                     <div class="c-form__authInput">
-                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="パスワードの確認">
+                        <input id="new-password" type="password" class="form-control @error('password') is-invalid @enderror" name="new_password" required autocomplete="new-password" placeholder="新しいパスワード">
+
+                        @error('password')
+                        <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="c-form__authInput">
+                        <input id="new-password-confirm" type="password" class="form-control" name="new_password_confirmation" required autocomplete="new-password" placeholder="新しいパスワードの確認">
                     </div>
                     <div class="c-form__confirmBtnWrap">
                         <button type="submit" class="c-button--02">確認へ進む</button>
