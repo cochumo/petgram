@@ -33,6 +33,7 @@ class UserRequest extends FormRequest
                 'string',
                 'min:8',
                 function ($attribute, $value, $fail) {
+                    \Debugbar::info($value);
                     if (!Hash::check($value, Auth::user()->password)) {
                         $fail('現在のパスワードが違います');
                     }
