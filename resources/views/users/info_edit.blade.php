@@ -4,6 +4,7 @@
     <main class="c-form__authWrap">
         <div class="c-form__authWrapInner--register">
             <div class="">
+                <h1 class="c-form__authTtl">アカウント情報の変更</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -13,7 +14,6 @@
                         </ul>
                     </div>
                 @endif
-                <h1 class="c-form__authTtl">アカウント情報の変更</h1>
                 <form method="POST" action="edit_confirm/{{ $user->id }}" class="c-form__authForm">
                     @csrf
                     <div class="c-form__authInput">

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -26,16 +27,19 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
-            'email' => ['email'],
+            'name' => ['required', 'string', 'max:12'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'current-password' => [
                 'required',
-//                function ($attribute, $value, $fail) {
-//                    if (!Hash::check($value, Auth::user()->password)) {
-//                        $fail('現在のパスワードが違います');
-//                    }
-//                }
+                'string',
+                'min:8',
+                function ($attribute, $value, $fail) {
+                    if (!Hash::check($value, Auth::user()->password)) {
+                        $fail('現在のパスワードが違います');
+                    }
+                }
             ],
+            'new-password' => ['required', 'string', 'min:8', 'confirmed'],
         ];
     }
 }
