@@ -120,8 +120,8 @@ return [
         'name' => '名前',
         'email' => 'メールアドレス',
         'password' => 'パスワード',
-        'current-password' => '現在のパスワード',
-        'new-password' => '新しいパスワード',
+        'current_password' => '現在のパスワード',
+        'new_password' => '新しいパスワード',
     ],
 
 ];
