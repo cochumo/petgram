@@ -117,8 +117,9 @@
     max-height: 100%;
 }
 
-/* register
------------------------------------*/
+/*--------------------------------------
+  register
+--------------------------------------*/
 .c-form__authWrap {
     margin-bottom: 0;
 }
@@ -161,4 +162,21 @@
 .c-form__registrationGuidance p {
     margin-bottom: 1rem;
     font-size: 1.3rem;
+}
+
+/*--------------------------------------
+  user info edit
+--------------------------------------*/
+.c-form__confirmTtl {
+    color: #848484;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.c-form__confirmTxt {
+    color: #434a54;
+    font-size: 1.3rem;
+    text-align: left;
+    border-bottom: solid 1px #434a54;
+    padding: .5rem 0 .25rem;
 }

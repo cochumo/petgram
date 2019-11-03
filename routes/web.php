@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 編集内容確認
     Route::post('/mypage/edit_confirm/{user}', 'UsersController@confirm')->name('users.confirm');
     // 登録情報編集処理
-    Route::post('/mypage/edit/{user}', 'UsersController@update');
+    Route::post('/mypage/edit_complete/{user}', 'UsersController@update');
 
 });
 

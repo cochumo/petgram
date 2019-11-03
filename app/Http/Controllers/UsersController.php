@@ -18,7 +18,7 @@ class UsersController extends Controller
         $user = auth()->user();
 //        dd($user);
 
-        return view('users/info_edit', [
+        return view('users/edit', [
             'user' => $user,
         ]);
     }
@@ -33,11 +33,18 @@ class UsersController extends Controller
             return redirect('/photos')->with('success', '指定されたリンクは無効です。');
         }
 
-//        $request->validate([
-//            'name' => 'required|string',
-//            'email' => 'required'
-//        ]);
+        $input = $request->all();
 
+        $data = [
+            'name' => $input['name'],
+            'email' => $input['email'],
+            'password' => $input['new_password'],
+            'password_face' => str_repeat('*', strlen($input['new_password'])),
+        ];
+
+        $request->session()->put('data', $data);
+
+        return view('users/edit_confirm', compact('data'));
 
     }
 
@@ -46,7 +53,20 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+//        $user->name = $request->get('name');
+//        $user->email = $request->get('email');
+//        $user->password = bcrypt($request->get('password'));
+
+        $data = $request->session()->get('data');
+
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
+        $user->save();
+
+        $request->session()->forget('data');
+
+        return redirect('/photos')->with('success', 'アカウント情報を変更しました！');
     }
 }
 

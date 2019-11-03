@@ -65,3 +65,7 @@
 .u-fCol_r {
     flex-direction: column-reverse;
 }
+
+.u-inversion {
+    transform: scale(-1, 1);
+}

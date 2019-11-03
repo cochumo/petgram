@@ -16,8 +16,21 @@ main {
     justify-content: space-between;
 }
 
-.l-main__pagenation .pagination .page-item:first-child,
-.l-main__pagenation .pagination .page-item:last-child {
+.l-main__pagenation .pagination .page-item {
     margin: 0 1rem;
+}
+
+.l-main__pagenation .pagination .page-item .page-link {
+    border: none;
+}
+
+.l-main__triangle {
+    height: 25px;
+    padding: 0 3px;
+}
+
+.l-main__footprints {
+    height: 25px;
+    padding: 1px 0;
 }
 
