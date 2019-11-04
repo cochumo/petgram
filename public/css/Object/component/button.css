@@ -50,10 +50,22 @@
 }
 
 a.c-button__yes--01 {
-    background-color: #4c9aff;
+     background-color: #4c9aff;
+     color: #fff;
+     font-size: 1.3rem;
+     border: solid 1px #4c9aff;
+     border-radius: 15px;
+     padding: .5rem;
+     margin: 0 .5rem;
+     min-width: 25%;
+     display: inline-block;
+}
+
+a.c-button__yes--02 {
+    background-color: #ff6a6a;
     color: #fff;
     font-size: 1.3rem;
-    border: solid 1px #4c9aff;
+    border: solid 1px #ff6a6a;
     border-radius: 15px;
     padding: .5rem;
     margin: 0 .5rem;

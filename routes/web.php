@@ -21,17 +21,17 @@ Route::group(['middleware' => 'auth'], function() {
     // 投稿画像詳細表示
     Route::get('/photos/post/{photo}', 'PhotosController@show')->name('photos.show');
     // 投稿画像削除処理
-    Route::post('/photos/delete/{photo}', 'PhotosController@destroy');
+    Route::post('/photos/delete/{photo}', 'PhotosController@destroy')->name('photos.destroy');
     // 投稿画像入力フォーム
     Route::get('/photos/create', 'PhotosController@create')->name('photos.create');
     // 投稿画像確認
     Route::post('/photos/create_confirm', 'PhotosController@confirm')->name('photos.confirm');
     // 投稿画像保存処理
-    Route::post('/photos/create_complete', 'PhotosController@store');
+    Route::post('/photos/create_complete', 'PhotosController@store')->name('photos.complete');
     // 投稿画像編集フォーム
     Route::get('/photos/edit/{photo}', 'PhotosController@edit')->name('photos.edit');
     // 投稿画像編集処理
-    Route::post('/photos/edit/{photo}', 'PhotosController@update');
+    Route::post('/photos/edit/{photo}', 'PhotosController@update')->name('photos.update');
 
 // User
     // 登録情報編集フォーム
@@ -39,7 +39,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 編集内容確認
     Route::post('/mypage/edit_confirm/{user}', 'UsersController@confirm')->name('users.confirm');
     // 登録情報編集処理
-    Route::post('/mypage/edit_complete/{user}', 'UsersController@update');
+    Route::post('/mypage/edit_complete/{user}', 'UsersController@update')->name('users.update');
 
 });
 

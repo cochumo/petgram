@@ -14,7 +14,7 @@
                         </ul>
                     </div>
                 @endif
-                <form method="POST" action="edit_confirm/{{ auth()->user()->id }}" class="c-form__authForm">
+                <form method="POST" action="{{ route('users.confirm', [ auth()->user()->id ]) }}" class="c-form__authForm">
                     @csrf
                     <div class="c-form__authInput">
                         @empty((old('name')))

@@ -1,5 +1,9 @@
 @extends('layouts.layout')
 
+@section('styles')
+    <script src="https://kit.fontawesome.com/322edd454d.js" crossorigin="anonymous"></script>
+@endsection
+
 @section('content')
     <div class="p-detail__header">
         <a href="{{ url()->previous() }}" class="p-detail__header__back">◀戻る</a>
@@ -25,7 +29,7 @@
             </div>
         </div>
         <img src="{{ url($read_img_path . $photo->filename) }}">
-        <form action="/photos/delete/{{ $photo->id }}" method="post" id="delete-form" class="u-dispN">
+        <form action="{{ route('photos.destroy', [ $photo->id ]) }}" method="post" id="delete-form" class="u-dispN">
             @csrf
             <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
         </form>
@@ -43,7 +47,7 @@
                 </div>
                 <div class="c-modal__footer">
                     <button class="c-button__no--01 c-modal__close">キャンセル</button>
-                    <a id="finished_confirmation" class="c-button__yes--01">OK</a>
+                    <a id="finished_confirmation" class="c-button__yes--02">OK</a>
                 </div>
             </div>
         </div>

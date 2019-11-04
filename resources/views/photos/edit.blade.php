@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="{{ $photo->id }}" method="post">
+    <form action="{{ route('photos.update', [ $photo->id ]) }}" method="post">
         @csrf
         <img src="{{ url($read_img_path . $photo->filename) }}" class="form_img">
         <input type="hidden" name="id" value="{{ $photo['id'] }}">

@@ -11,7 +11,7 @@
                 </ul>
             </div>
         @endif
-        <form action="create_confirm" method="post" enctype="multipart/form-data">
+        <form action="{{ route('photos.confirm') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="c-buttonWrap--file">
                 <label for="file_upload" class="c-button__file">
@@ -23,7 +23,7 @@
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">コメント</h3>
                     <p class="c-form__note">40文字以内でご入力ください。</p>
-                    <input type="text" name="message" class="c-form__input--text">
+                    <textarea rows="2" name="message" class="c-form__input--text"></textarea>
                 </li>
             </ul>
             <div class="u-flxJCnt">

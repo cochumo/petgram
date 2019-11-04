@@ -44,6 +44,7 @@
     font-size: 1.2rem;
     text-align: left;
     padding-left: 0.5rem;
+    margin-bottom: .5rem;
 }
 
 .c-form__inputList .c-form__input--text {
@@ -177,7 +178,7 @@
 
 .c-form__confirmTxt {
     color: #434a54;
-    font-size: 1.3rem;
+    font-size: 1.7rem;
     text-align: left;
     border-bottom: solid 1px #434a54;
     padding: .5rem 0 .25rem;

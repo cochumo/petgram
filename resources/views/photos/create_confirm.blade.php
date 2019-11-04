@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="l-main__content">
-        <form action="create_complete" method="post">
+        <form action="{{ route('photos.complete') }}" method="post">
             @csrf
             <img src="{{ asset($data['read_temp_path']) }}" class="form_img">
             <ul class="c-form__inputWrap">
@@ -32,7 +32,7 @@
                 </div>
                 <div class="c-modal__footer">
                     <button class="c-button__no--01 c-modal__close">キャンセル</button>
-                    <a href="{{ url('photos/') }}" id="finished_confirmation" class="c-button__yes--01">OK</a>
+                    <a href="{{ route('photos.index') }}" id="finished_confirmation" class="c-button__yes--01">OK</a>
                 </div>
             </div>
         </div>

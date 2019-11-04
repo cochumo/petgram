@@ -5,7 +5,7 @@
         <div class="c-form__authWrapInner--register">
             <div class="">
                 <h1 class="c-form__authTtl">変更情報の確認</h1>
-                <form method="POST" action="{{ url('mypage/edit_complete/' . auth()->user()->id) }}" class="c-form__authForm">
+                <form method="POST" action="{{ route('users.update', [ auth()->user()->id ]) }}" class="c-form__authForm">
                     @csrf
                     <div class="c-form__authInput">
                         <h3 class="c-form__confirmTtl">アカウント名</h3>

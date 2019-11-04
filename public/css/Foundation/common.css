@@ -7,6 +7,7 @@ body {
     background-color: #fff;
     -webkit-text-size-adjust: 100%;
     overscroll-behavior: none;
+    font-family: 'Noto Sans', '游ゴシック体', 'メイリオ', Meiryo, sans-serif;
 }
 
 h1, h2, h3, p {
@@ -20,15 +21,6 @@ a {
 
 li {
     list-style: none;
-}
-
-#logo {
-    font-family: 'Pacifico', cursive;
-    font-size: 28px;
-    margin: 0 1rem 5px;
-    display: block;
-    text-align: center;
-    color: #000;
 }
 
 .wrapper {
