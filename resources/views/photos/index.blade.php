@@ -11,7 +11,7 @@
             </a>
         @endforeach
     </div>
-    <div class="l-main__pagenation">
+    <div class="l-main__pagenation l-main__bottomPagenation">
         {{ $photos->links() }}
     </div>
 @endsection

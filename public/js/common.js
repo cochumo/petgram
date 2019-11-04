@@ -8,23 +8,13 @@ $(function(){
 
     // サイドバー
     const menu = $('#slide_menu');
-    const closeBtn = $('#close');
-    const menuBtn = $('#slide_menu_btn');
     const body = $(document.body);
     const menuWidth = menu.outerWidth();
     $('#slide_menu').css('height', window.innerHeight);
 
-    menuBtn.on('click', function(){
+    $('#slide_menu_btn, #close').on('click', function(){
         sidebarToggle();
     });
-
-    closeBtn.on('click', function(){
-        sidebarToggle();
-    });
-
-    console.log('有効画面高: ' + screen.availHeight);
-    console.log('表示領域高: ' + window.innerHeight);
-    console.log('ウィンドウ高: ' + window.outerHeight);
 
     // footer全般
     $(window).on("touchmove", function(){
@@ -63,12 +53,23 @@ $(function(){
     });
 
     /**
+     * load function
+     */
+    $(window).on('load',function(){
+        // 現在のルート
+        const routeName = $('body').attr('data-route');
+
+        //ログイン画面かどうか検査
+        if (routeName == 'login') {
+            backgroundMovie();
+        }
+    });
+
+    /**
      * resize function
      */
 
     $(window).on('resize', function(){
-        console.log('resizeしたよ');
-
         // ログイン画面かどうか検査
         if (routeName == 'login') {
             backgroundMovie();
@@ -78,10 +79,6 @@ $(function(){
         if (body.hasClass('open')) {
             $('#slide_menu').css('height', window.innerHeight);
         }
-        console.log('リサイズしたよ');
-        console.log('有効画面高: ' + screen.availHeight);
-        console.log('表示領域高: ' + window.innerHeight);
-        console.log('ウィンドウ高: ' + window.outerHeight);
     });
 
     /**
@@ -135,6 +132,24 @@ $(function(){
         },5000);
     }
 
+    // 背景動画
+    function backgroundMovie() {
+        // ここでブラウザの縦横のサイズを取得します。
+        var windowSizeHeight = $(window).outerHeight();
+        var windowSizeWidth = $(window).outerWidth();
+
+        // メディアの縦横比に合わせて数値は変更して下さい。(メディアのサイズが width < heightの場合で書いています。逆の場合は演算子を逆にしてください。)
+        var windowMovieSizeWidth = windowSizeHeight * 1.76388889;
+        var windowMovieSizeHeight = windowSizeWidth / 1.76388889;
+        var windowMovieSizeWidthLeftMargin = (windowMovieSizeWidth - windowSizeWidth) / 2;
+
+        if (windowMovieSizeHeight < windowSizeHeight) {
+            // 横幅のほうが大きくなってしまう場合にだけ反応するようにしています。
+            $(".js-movie").css({left: -windowMovieSizeWidthLeftMargin});
+        }
+    }
+
+    // 離脱確認
     function leavePages() {
         let submitFlg = false;
         // サイドバーのログアウトボタンを押せないようにする
@@ -148,10 +163,8 @@ $(function(){
         // 離脱確認ポップアップ表示
         $('a:not(#finished_confirmation), #sidebar__logout').click(function (event) {
             let localName = $(this).prop('localName').toLowerCase();
-            console.log(localName);
             if (localName == 'a') {
                 let transition_page = $(this).prop('href');
-                console.log(transition_page);
                 $('#finished_confirmation').attr('href', transition_page);
             } else if (localName == 'div') {
                 $('#finished_confirmation').attr('href', 'logout');
@@ -171,6 +184,41 @@ $(function(){
         // モーダルを閉じる
         $('.c-modal__close').click(function () {
             $('#leave-pages').css('display', 'none');
+        });
+    }
+
+    // 投稿操作メニュー出し入れ
+    function operationMenu() {
+        // 投稿操作メニュー出し
+        $('#menu_opan_btn').on('click', function(){
+            $('#header_menu_wrap').css('display', 'block');
+            $('#header_menu_btn_wrap').slideDown();
+        });
+        // 投稿操作メニュー入れ
+        $('#menu_close_btn').on('click', function(){
+            $('#header_menu_btn_wrap').slideUp(function () {
+                $('#header_menu_wrap').css('display', 'none');
+            });
+        });
+        // 投稿操作メニュー入れて削除モーダル表示
+        $('#post_delete').on('click', function(){
+            $('#header_menu_btn_wrap').slideUp(function () {
+                $('#header_menu_wrap').css('display', 'none');
+
+                // 削除確認ポップアップ表示
+                $('#photo_delete').css('display', 'block');
+                $('#photo_delete').addClass('modal-open');
+
+                $('#finished_confirmation').click(function () {
+                    document.getElementById('delete-form').submit();
+                });
+
+                // モーダルを閉じる
+                $('.c-modal__close').click(function () {
+                    $('#photo_delete').css('display', 'none');
+                });
+
+            });
         });
     }
 
@@ -196,38 +244,10 @@ $(function(){
         leavePages();
     }
 
-});
-
-/**
- * load function
- */
-$(window).on('load',function(){
-    // 現在のルート
-    const routeName = $('body').attr('data-route');
-
-    console.log('loadしたよ');
-
-    //ログイン画面かどうか検査
-    if (routeName == 'login') {
-        backgroundMovie();
+    // 投稿詳細ページ
+    if (routeName == 'photos.show') {
+        operationMenu();
     }
+
+
 });
-
-/**
- * 背景動画 https://qiita.com/drasky1132/items/93ab71742175914e61cb
- */
-function backgroundMovie() {
-    // ここでブラウザの縦横のサイズを取得します。
-    var windowSizeHeight = $(window).outerHeight();
-    var windowSizeWidth = $(window).outerWidth();
-
-    // メディアの縦横比に合わせて数値は変更して下さい。(メディアのサイズが width < heightの場合で書いています。逆の場合は演算子を逆にしてください。)
-    var windowMovieSizeWidth = windowSizeHeight * 1.76388889;
-    var windowMovieSizeHeight = windowSizeWidth / 1.76388889;
-    var windowMovieSizeWidthLeftMargin = (windowMovieSizeWidth - windowSizeWidth) / 2;
-
-    if (windowMovieSizeHeight < windowSizeHeight) {
-        // 横幅のほうが大きくなってしまう場合にだけ反応するようにしています。
-        $(".js-movie").css({left: -windowMovieSizeWidthLeftMargin});
-    }
-}

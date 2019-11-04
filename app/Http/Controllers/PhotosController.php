@@ -37,8 +37,7 @@ class PhotosController extends Controller
      */
     public function show(Photo $photo)
     {
-        // 詳細を表示する投稿を取得
-//        $photo = Photo::find($id);
+        $photo = $photo->getPhoto($photo->id);
 
         return view('photos/detail', [
            'photo' => $photo,

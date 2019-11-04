@@ -22,6 +22,7 @@
             <ul class="c-form__inputWrap">
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">コメント</h3>
+                    <p class="c-form__note">40文字以内でご入力ください。</p>
                     <input type="text" name="message" class="c-form__input--text">
                 </li>
             </ul>
