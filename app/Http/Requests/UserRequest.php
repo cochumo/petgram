@@ -4,6 +4,8 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CheckCurrentPassword;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserRequest extends FormRequest
 {
@@ -24,9 +26,14 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
+        $myEmail = Auth::user()->email;
+
         return [
             'name' => ['required', 'string', 'max:12'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255',
+//                'unique:users',
+                Rule::unique('users', 'email')->whereNot('email', $myEmail)
+                ],
             'current_password' => ['required', 'string','min:8', new CheckCurrentPassword],
             'new_password' => ['required', 'string', 'min:8', 'confirmed', 'different:current_password'],
         ];
