@@ -61,7 +61,7 @@ class PhotosController extends Controller
         // レコードの削除
         $photo->delete();
 
-        return redirect('/photos')->with('success', '投稿の削除を完了しました！');
+        return redirect()->route('photos.index')->with('success', '投稿の削除を完了しました！');
     }
 
     /**
@@ -198,7 +198,7 @@ class PhotosController extends Controller
         $photo->message = $message;
         $photo->save();
 
-        return redirect('/photos')->with('success', '画像の投稿を完了しました！');
+        return redirect()->route('photos.index')->with('success', '画像の投稿を完了しました！');
     }
 
     /**
@@ -227,13 +227,13 @@ class PhotosController extends Controller
 
         // 編集者が投稿者と同じか検査
         if(!($user['id'] == $photo['user_id'])) {
-            return redirect('/photos');
+            return redirect()->route('photos.index');
         }
 
         // メッセージをupdate
         $photo->message = $data['message'];
         $photo->save();
 
-        return redirect('/photos')->with('success', '投稿の編集を完了しました！');
+        return redirect()->route('photos.index')->with('success', '投稿の編集を完了しました！');
     }
 }

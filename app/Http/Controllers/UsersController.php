@@ -5,18 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 
 class UsersController extends Controller
 {
     /**
      * 登録情報の編集フォーム
      */
-    public function edit()
+    public function edit(Request $request)
     {
         $user = auth()->user();
-//        dd($user);
 
         return view('users/edit', [
             'user' => $user,
@@ -53,9 +50,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
-//        $user->name = $request->get('name');
-//        $user->email = $request->get('email');
-//        $user->password = bcrypt($request->get('password'));
+        // 確認画面で戻るボタンが押された場合の処理
+        if ($request->get('action') === 'back') {
+            // 入力画面へ戻る
+            return redirect()->route('users.edit');
+        }
 
         $data = $request->session()->get('data');
 
@@ -66,7 +65,7 @@ class UsersController extends Controller
 
         $request->session()->forget('data');
 
-        return redirect('/photos')->with('success', 'アカウント情報を変更しました！');
+        return redirect()->route('photos.index')->with('success', 'アカウント情報を変更しました！');
     }
 }
 
