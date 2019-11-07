@@ -7,16 +7,22 @@
 @section('content')
     <div class="p-detail__header">
         <a href="{{ url()->previous() }}" class="p-detail__header__back">◀戻る</a>
-        <div id="menu_opan_btn" class="p-detail__header__menuLinkBtn">
-            <i class="fas fa-ellipsis-h fa-2x"></i>
-        </div>
-        <nav id="header_menu_wrap" class="p-detail__header__menuWrap" style="display: none;">
-            <div id="header_menu_btn_wrap" class="p-detail__header__menuBtnWrap" style="display: none;">
-                <a href="{{ route('photos.edit', [$photo->id]) }}" class="p-detail__header__menuBtn">編集</a>
-                <a id="post_delete" class="p-detail__header__menuBtn">投稿の削除</a>
-                <a id="menu_close_btn" class="p-detail__header__menuBtn">▲閉じる</a>
+        @if($photo->user->id == auth()->user()->id)
+            <div id="menu_opan_btn" class="p-detail__header__menuLinkBtn">
+                <i class="fas fa-ellipsis-h fa-2x"></i>
             </div>
-        </nav>
+            <nav id="header_menu_wrap" class="p-detail__header__menuWrap" style="display: none;">
+                <div id="header_menu_btn_wrap" class="p-detail__header__menuBtnWrap" style="display: none;">
+                    <a href="{{ route('photos.edit', [$photo->id]) }}" class="p-detail__header__menuBtn">編集</a>
+                    <a id="post_delete" class="p-detail__header__menuBtn">削除</a>
+                    <a id="menu_close_btn" class="p-detail__header__menuBtn">▲閉じる</a>
+                </div>
+            </nav>
+            <form action="{{ route('photos.destroy', [ $photo->id ]) }}" method="post" id="delete-form" class="u-dispN">
+                @csrf
+                <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
+            </form>
+        @endif
     </div>
     <div class="p-detail__main">
         <div class="p-detail__main__photoInfoWrap">
@@ -29,10 +35,6 @@
             </div>
         </div>
         <img src="{{ url($read_img_path . $photo->filename) }}">
-        <form action="{{ route('photos.destroy', [ $photo->id ]) }}" method="post" id="delete-form" class="u-dispN">
-            @csrf
-            <input type="submit" value="削除" class="btn btn-danger btn-sm btn-dell">
-        </form>
     </div>
     <div class="c-modalWrap" id="photo_delete">
         <div class="c-modal__overLay c-modal__close">

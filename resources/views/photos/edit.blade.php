@@ -1,15 +1,19 @@
 @extends('layouts.layout')
 
 @section('content')
-    <form action="{{ route('photos.update', [ $photo->id ]) }}" method="post">
-        @csrf
-        <img src="{{ url($read_img_path . $photo->filename) }}" class="form_img">
-        <input type="hidden" name="id" value="{{ $photo['id'] }}">
-        <h3>ファイル名</h3>
-        <p>{{ $photo['filename'] }}</p>
-        <input type="hidden" name="filename" value="{{ $photo['filename'] }}">
-        <h3>メッセージ</h3>
-        <input type="text" name="message" value="{{ $photo['message'] }}">
-        <input type="submit" name="action" class="btn btn-warning btn-sm btn-dell" value="編集">
-    </form>
+    <div class="l-main__content">
+        <form action="{{ route('photos.update', [ $photo->id ]) }}" method="post">
+            @csrf
+            <img src="{{ url($read_img_path . $photo->filename) }}" class="form_img">
+            <ul class="c-form__inputWrap">
+                <li class="c-form__inputList">
+                    <h3 class="c-form__title">メッセージ</h3>
+                    <textarea rows="2" name="message" class="c-form__input--text">{{ $photo['message'] }}</textarea>
+                </li>
+            </ul>
+            <div class="u-flxJCnt">
+                <input type="submit" name="action" value="変更" class="c-button--01">
+            </div>
+        </form>
+    </div>
 @endsection
