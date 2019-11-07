@@ -122,6 +122,7 @@ return [
         'password' => 'パスワード',
         'current_password' => '現在のパスワード',
         'new_password' => '新しいパスワード',
+        'photo' => '写真',
     ],
 
 ];

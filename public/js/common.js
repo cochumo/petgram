@@ -232,6 +232,15 @@ $(function(){
         if ($('#success').length) {
             successNotification();
         }
+        // welcomeメッセージ
+        if ($('#welcome').length) {
+            if (!(window.performance.navigation.type === 1)) {
+                $('#welcome').css('display', 'block');
+                $('#advance').click(function () {
+                    $('#welcome').remove();
+                });
+            }
+        }
     }
 
     // 投稿ページ

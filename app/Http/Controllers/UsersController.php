@@ -53,7 +53,7 @@ class UsersController extends Controller
         // 確認画面で戻るボタンが押された場合の処理
         if ($request->get('action') === 'back') {
             // 入力画面へ戻る
-            return redirect()->route('users.edit');
+            return redirect()->route('users.edit')->withInput($request->session()->get('data'));
         }
 
         $data = $request->session()->get('data');

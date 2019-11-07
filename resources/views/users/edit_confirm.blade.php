@@ -20,7 +20,7 @@
                         <p class="c-form__confirmTxt">{{ $data['password_face'] }}</p>
                     </div>
                     <div class="c-form__confirmBtnWrap">
-                        <button type="submit" name="action" value="back" class="c-button--02">修正する</button>
+                        <button type="submit" name="action" value="back" class="c-button--04">修正する</button>
                         <button type="submit" name="action" value="submit" class="c-button--02">変更する</button>
                     </div>
                 </form>

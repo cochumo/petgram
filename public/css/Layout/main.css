@@ -6,6 +6,24 @@ main {
     padding: 20px 0;
 }
 
+.l-main__categoryWrap {
+    display: flex;
+    margin: .5rem 0;
+}
+
+.l-main__categoryList {
+    width: 33.33%;
+    text-align: center;
+    padding: .75rem 0;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border-bottom: solid 4px #fff;
+}
+
+.l-main__categoryList.selected {
+    border-bottom: solid 4px #ffd500;
+}
+
 .l-main__pagenation {
     text-align: center;
 }

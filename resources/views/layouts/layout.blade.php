@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootflat/2.0.4/css/bootflat.min.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/Foundation/reset.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Foundation/common.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/Layout/footer.css') }}">
