@@ -8,6 +8,22 @@
     background-color: #e5e5e5;
 }
 
+.l-sidebar__userInfo {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+}
+
+.l-sidebar__userInfo__img {
+    width: 100px;
+    height: 100px;
+}
+
+.l-sidebar__userInfo__txt {
+    width: calc(100% - 100px);
+    padding-left: 2rem;
+}
+
 .l-sidebar__list {
     width: 100%;
     background-color: #fff;
