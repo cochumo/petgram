@@ -8,7 +8,7 @@
         </div>
     </div>
     <div class="l-sidebar__list">
-        <a href="#" class="l-sidebar__btn">プロフィール編集</a>
+        <a href="{{ route('profile.edit') }}" class="l-sidebar__btn">プロフィール編集</a>
     </div>
     <div class="l-sidebar__list">
         <a href="{{ route('users.edit') }}" class="l-sidebar__btn">アカウント設定</a>

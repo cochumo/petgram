@@ -29,7 +29,6 @@ class UserRequest extends FormRequest
         $myEmail = Auth::user()->email;
 
         return [
-            'name' => ['required', 'string', 'max:12'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users', 'email')->whereNot('email', $myEmail)],
             'current_password' => ['required', 'string','min:8', new CheckCurrentPassword],
             'new_password' => ['required', 'string', 'min:8', 'confirmed', 'different:current_password'],

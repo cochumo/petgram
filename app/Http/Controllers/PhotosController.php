@@ -222,8 +222,11 @@ class PhotosController extends Controller
     {
         $user = auth()->user();
 
-//        $photo = Photo::find($id);
         $data = $request->all();
+
+        if ($data['message'] == null) {
+            $data['message'] = "";
+        }
 
         // 編集者が投稿者と同じか検査
         if(!($user['id'] == $photo['user_id'])) {

@@ -70,6 +70,8 @@
     transform: scale(-1, 1);
 }
 
+.u-mT2 { margin-top: 2rem;}
+
 @keyframes fade-in {
     from {
         opacity: 0;

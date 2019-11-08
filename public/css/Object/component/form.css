@@ -86,7 +86,8 @@
 
 .c-form__authInput input[type="text"],
 .c-form__authInput input[type="email"],
-.c-form__authInput input[type="password"] {
+.c-form__authInput input[type="password"],
+.c-form__authInput textarea {
     font-size: 1.5rem;
     padding: 1rem .75rem;
     height: initial;
@@ -167,6 +168,12 @@
     font-size: 1.3rem;
 }
 
+.c-form__itemTtl {
+    color: #707070;
+    font-size: 1.4rem;
+    margin-bottom: .25rem;
+}
+
 /*--------------------------------------
   user info edit
 --------------------------------------*/
@@ -183,3 +190,8 @@
     border-bottom: solid 1px #434a54;
     padding: .5rem 0 .25rem;
 }
+
+/*--------------------------------------
+  user profile edit
+--------------------------------------*/
+

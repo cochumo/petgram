@@ -41,6 +41,13 @@ Route::group(['middleware' => 'auth'], function() {
     // 登録情報編集処理
     Route::post('/mypage/edit_complete/{user}', 'UsersController@update')->name('users.update');
 
+// Profile
+    // プロフィール編集フォーム
+    Route::get('/mypage/profile/edit', 'ProfileController@edit')->name('profile.edit');
+    // 編集内容確認
+    Route::post('/mypage/profile/edit_confirm/{user}', 'ProfileController@confirm')->name('profile.confirm');
+    // 登録情報編集処理
+    Route::post('/mypage/profile/edit_complete/{user}', 'ProfileController@update')->name('profile.update');
 });
 
 Auth::routes();

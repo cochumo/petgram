@@ -31,7 +31,7 @@
                     <div class="c-modal__main">
                         <p class="">
                             ようこそ、Petgramへ<br>
-                            会員登録が完了しました。
+                            会員登録が完了しました！
                         </p>
                         <img src="{{ asset('img/icon-complete.svg') }}" alt="" class="">
                     </div>
