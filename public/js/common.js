@@ -86,28 +86,39 @@ $(function(){
      */
 
     // 画像のプレビューを表示
-    function file_preview(){
-        // $('.c-buttonWrap--file').after('<span class="c-form__preview"></span>');
+    function filePreview(){
         $('input[type=file]').after('<span class="c-form__preview"></span>');
 
         $('input[type=file]').change(function () {
             let file = $(this).prop('files')[0];
 
-            if (!file.type.match('image.*')) {
-                $(this).val('');
-                return;
-            }
+            if (file != undefined) {
+                if (!($('.c-form__preview').length)) {
+                    $('input[type=file]').after('<span class="c-form__preview"></span>');
+                }
 
-            let reader = new FileReader();
-            reader.onload = function () {
-                let img_src = $('<img>').attr('src', reader.result);
-                $('.c-form__preview').html(img_src);
-            }
-            reader.readAsDataURL(file);
+                if (!file.type.match('image.*')) {
+                    $(this).val('');
+                    return;
+                }
 
-            // $('.c-button__file').css('display', 'none');
-            $('.c-button__file').css('background-color', 'transparent');
-            $('.c-form__preview').css('background-color', '#fff');
+                let reader = new FileReader();
+                reader.onload = function () {
+                    let img_src = $('<img>').attr('src', reader.result);
+                    $('.c-form__preview').html(img_src);
+                }
+                reader.readAsDataURL(file);
+
+                // $('.c-button__file').css('display', 'none');
+                $('.c-button__file').css('background-color', 'transparent');
+                $('.c-form__preview').css('background-color', '#fff');
+            } else {
+                if ($('.c-form__preview').length) {
+                    $('.c-form__preview').remove();
+                    $('.c-button__file').css('background-color', '#d2d2d2');
+
+                }
+            }
         });
     }
 
@@ -222,6 +233,30 @@ $(function(){
         });
     }
 
+    // サムネイルの加工
+    function thumbnailClip() {
+        $('#clip_area').css('height', window.innerHeight - $('footer').outerHeight());
+
+        var $image = $('#clip_image');
+
+        $image.cropper({
+            aspectRatio: 4 / 4,
+            crop: function(event) {
+                console.log(event.detail.x);
+                console.log(event.detail.y);
+                console.log(event.detail.width);
+                console.log(event.detail.height);
+                console.log(event.detail.rotate);
+                console.log(event.detail.scaleX);
+                console.log(event.detail.scaleY);
+                $('#x').val(event.detail.x);
+                $('#y').val(event.detail.y);
+                $('#width').val(event.detail.width);
+                $('#height').val(event.detail.height);
+            }
+        });
+    }
+
     /**
      * ページ固有の処理
      */
@@ -245,7 +280,7 @@ $(function(){
 
     // 投稿ページ
     if (routeName == 'photos.create') {
-        file_preview();
+        filePreview();
     }
 
     // 投稿確認ページ
@@ -256,7 +291,19 @@ $(function(){
     // 投稿詳細ページ
     if (routeName == 'photos.show') {
         operationMenu();
+        if ($('#success').length) {
+            successNotification();
+        }
     }
 
+    // サムネイルアップロード
+    if (routeName == 'thumbnail.edit') {
+        filePreview();
+    }
+
+    // サムネイルの切り取り
+    if (routeName == 'thumbnail.process') {
+        thumbnailClip();
+    }
 
 });

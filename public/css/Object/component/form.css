@@ -195,3 +195,18 @@
   user profile edit
 --------------------------------------*/
 
+.c-form__userThumbnail {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-form__userThumbnail__img {
+    margin-bottom: 1rem;
+}
+
+.c-form__userThumbnail__txt a {
+    color: #137aff;
+    font-size: 1.3rem;
+}

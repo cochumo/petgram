@@ -81,6 +81,7 @@ class PhotosController extends Controller
 
         $input = $request->all();
         $imagefile = $request->file('photo');
+
         if ($input['message'] == null) {
             $input['message'] = "";
         }
@@ -101,7 +102,7 @@ class PhotosController extends Controller
             'read_temp_path' => $read_temp_path,
             'filename' => $filename,
             'message' => $input['message'],
-            ];
+        ];
 
         $request->session()->put('data', $data);
 

@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 投稿画像確認
     Route::post('/photos/create_confirm', 'PhotosController@confirm')->name('photos.confirm');
     // 投稿画像保存処理
-    Route::post('/photos/create_complete', 'PhotosController@store')->name('photos.complete');
+    Route::post('/photos/create_complete', 'PhotosController@store')->name('photos.store');
     // 投稿画像編集フォーム
     Route::get('/photos/edit/{photo}', 'PhotosController@edit')->name('photos.edit');
     // 投稿画像編集処理
@@ -49,6 +49,16 @@ Route::group(['middleware' => 'auth'], function() {
     // 登録情報編集処理
     Route::post('/mypage/profile/edit_complete/{user}', 'ProfileController@update')->name('profile.update');
 });
+
+// Thumbnail
+    // サムネイル画像のアップロード
+    Route::get('/mypage/thumbnail/edit', 'ThumbnailController@edit')->name('thumbnail.edit');
+    // サムネイル画像の加工
+    Route::post('/mypage/thumbnail/process/{user}', 'ThumbnailController@process')->name('thumbnail.process');
+    // 加工後の画像の確認
+    Route::post('/mypage/thumbnail/edit_confirm/{user}', 'ThumbnailController@confirm')->name('thumbnail.confirm');
+    // サムネイル保存処理
+    Route::post('/mypage/thumbnail/edit_complete/{user}', 'ThumbnailController@update')->name('thumbnail.update');
 
 Auth::routes();
 

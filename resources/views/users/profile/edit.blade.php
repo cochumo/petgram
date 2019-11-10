@@ -5,6 +5,14 @@
         <div class="c-form__authWrapInner--register">
             <div class="">
                 <h1 class="c-form__authTtl">プロフィールの変更</h1>
+                <div class="c-form__userThumbnail">
+                    <div class="c-form__userThumbnail__img">
+                        <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="p-detail__main__comment__img">
+                    </div>
+                    <div class="c-form__userThumbnail__txt">
+                        <a href="{{ route('thumbnail.edit') }}" class="">プロフィール画像の変更</a>
+                    </div>
+                </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>

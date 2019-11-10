@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="l-main__content">
-        <form action="{{ route('photos.complete') }}" method="post">
+        <form action="{{ route('photos.store') }}" method="post">
             @csrf
             <img src="{{ asset($data['read_temp_path']) }}" class="form_img">
             <ul class="c-form__inputWrap">
