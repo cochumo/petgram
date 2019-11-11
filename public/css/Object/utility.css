@@ -73,6 +73,15 @@
 .u-mT1 { margin-top: 1rem;}
 .u-mT2 { margin-top: 2rem;}
 
+.u-mB1 { margin-bottom: 1rem;}
+.u-mB2 { margin-bottom: 2rem;}
+
+.u-pT1 { padding-top: 1rem;}
+.u-pT2 { padding-top: 2rem;}
+
+.u-pB1 { padding-bottom: 1rem;}
+.u-pB2 { padding-bottom: 2rem;}
+
 @keyframes fade-in {
     from {
         opacity: 0;

@@ -12,7 +12,7 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('thumbnail.process', [auth()->user()->id]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('thumbnail.crop', [auth()->user()->id]) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="c-buttonWrap--file">
                 <label for="file_upload" class="c-button__file">

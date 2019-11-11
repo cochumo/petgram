@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function() {
     // サムネイル画像のアップロード
     Route::get('/mypage/thumbnail/edit', 'ThumbnailController@edit')->name('thumbnail.edit');
     // サムネイル画像の加工
-    Route::post('/mypage/thumbnail/process/{user}', 'ThumbnailController@process')->name('thumbnail.process');
+    Route::post('/mypage/thumbnail/crop/{user}', 'ThumbnailController@crop')->name('thumbnail.crop');
     // 加工後の画像の確認
     Route::post('/mypage/thumbnail/edit_confirm/{user}', 'ThumbnailController@confirm')->name('thumbnail.confirm');
     // サムネイル保存処理

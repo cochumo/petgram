@@ -235,12 +235,13 @@ $(function(){
 
     // サムネイルの加工
     function thumbnailClip() {
-        $('#clip_area').css('height', window.innerHeight - $('footer').outerHeight());
+        $('#crop_imgArea').css('max-height', window.innerHeight - $('footer').outerHeight() - $('#crop_btnArea').outerHeight());
 
-        var $image = $('#clip_image');
+        var $image = $('#crop_image');
 
         $image.cropper({
             aspectRatio: 4 / 4,
+            viewMode: 2,
             crop: function(event) {
                 console.log(event.detail.x);
                 console.log(event.detail.y);
@@ -302,7 +303,7 @@ $(function(){
     }
 
     // サムネイルの切り取り
-    if (routeName == 'thumbnail.process') {
+    if (routeName == 'thumbnail.crop') {
         thumbnailClip();
     }
 

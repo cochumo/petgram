@@ -13,7 +13,7 @@ class ThumbnailController extends Controller
         return view('users/thumbnail/upload');
     }
 
-    public function process(ThumbnailRequest $request, User $user)
+    public function crop(ThumbnailRequest $request, User $user)
     {
         // formのuser_idが入る箇所を編集して送信した場合の処理
         if (!(auth()->user()->id == $user->id)) {
@@ -38,17 +38,19 @@ class ThumbnailController extends Controller
 
         $request->session()->put('data', $data);
 
-        return view('users/thumbnail/process', compact('data'));
+        return view('users/thumbnail/crop', compact('data'));
     }
 
     public function confirm(Request $request)
     {
         $input = $request->all();
-        $session = $request->session()->get('data');
-        dump($session);
+        $data = $request->session()->get('data');
+        dump($data);
         dd($input);
 
-        return view('users/thumbnail/process');
+
+
+        return view('users/thumbnail/confirm');
     }
 
     public function update()
