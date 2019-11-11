@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ThumbnailRequest;
 use App\User;
+use Intervention\Image\Facades\Image;
 
 class ThumbnailController extends Controller
 {
@@ -46,11 +47,49 @@ class ThumbnailController extends Controller
         $input = $request->all();
         $data = $request->session()->get('data');
         dump($data);
-        dd($input);
+        dump($input);
+//        dump($request->get('width'));
+//        dump($request->get('height'));
+//        dump($request->get('x'));
+//        dump($request->get('y'));
 
+        $temp_path = $data['temp_path'];
+        $preview_img = $data['preview_img'];
+        $filename = $data['filename'];
 
+        $x = $input['x'];
+        $y = $input['y'];
+        $width = $input['width'];
+        $height = $input['height'];
 
-        return view('users/thumbnail/confirm');
+        // session の data を初期化
+//        $request->session()->forget('data');
+
+        $crop_img = Image::make($preview_img);
+        dump($crop_img);
+//        $crop_img->crop(
+//                        $request->get('width'),
+//                        $request->get('height'),
+//                        $request->get('x'),
+//                        $request->get('y')
+//                    );
+//        $crop_img->resize(300, 200);
+        $crop_img->crop(128, 128, 94, 402)->save($preview_img);
+        dump($crop_img);
+//                    ->crop(
+//                        $request->get('width'),
+//                        $request->get('height'),
+//                        $request->get('x'),
+//                        $request->get('y')
+//                    )
+//                    ->resize(100,100)
+//                    ->save($preview_img);
+
+//        dd();
+
+        $request->session()->put('data', $data);
+
+        return view('users/thumbnail/confirm', compact('data'));
     }
 
     public function update()
