@@ -6,6 +6,11 @@ $(function(){
     // 現在のルート
     const routeName = $('body').attr('data-route');
 
+    // サクセスメッセージ
+    if ($('#success').length) {
+        successNotification();
+    }
+
     // サイドバー
     const menu = $('#slide_menu');
     const body = $(document.body);
@@ -264,10 +269,6 @@ $(function(){
 
     // 一覧ページ
     if (routeName == 'photos.index') {
-        // サクセスメッセージ
-        if ($('#success').length) {
-            successNotification();
-        }
         // welcomeメッセージ
         if ($('#welcome').length) {
             if (!(window.performance.navigation.type === 1)) {
@@ -292,9 +293,6 @@ $(function(){
     // 投稿詳細ページ
     if (routeName == 'photos.show') {
         operationMenu();
-        if ($('#success').length) {
-            successNotification();
-        }
     }
 
     // サムネイルアップロード
