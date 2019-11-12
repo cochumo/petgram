@@ -25,10 +25,10 @@ class ThumbnailController extends Controller
         $imagefile = $request->file('thumbnail');
 //        dd($imagefile);
 
-        $store_path = 'public/temp/thumbnail';
+        $store_temp_path = 'public/temp/thumbnail';
 
-        $temp_path = $imagefile->store($store_path);
-        $filename = str_replace($store_path . '/', '', $temp_path);
+        $temp_path = $imagefile->store($store_temp_path);
+        $filename = str_replace($store_temp_path . '/', '', $temp_path);
         $preview_img = str_replace('public/', 'storage/', $temp_path);
 
         $data = [
@@ -62,38 +62,46 @@ class ThumbnailController extends Controller
         $width = $input['width'];
         $height = $input['height'];
 
+        dump(round($width));
+        dump(round($height));
+        dump(round($x));
+        dump(round($y));
+
         // session の data を初期化
 //        $request->session()->forget('data');
 
         $crop_img = Image::make($preview_img);
-        dump($crop_img);
-//        $crop_img->crop(
-//                        $request->get('width'),
-//                        $request->get('height'),
-//                        $request->get('x'),
-//                        $request->get('y')
-//                    );
-//        $crop_img->resize(300, 200);
-        $crop_img->crop(128, 128, 94, 402)->save($preview_img);
-        dump($crop_img);
-//                    ->crop(
-//                        $request->get('width'),
-//                        $request->get('height'),
-//                        $request->get('x'),
-//                        $request->get('y')
-//                    )
-//                    ->resize(100,100)
-//                    ->save($preview_img);
-
-//        dd();
+        $crop_img
+            ->crop(
+                round($width),
+                round($height),
+                round($x),
+                round($y))
+            ->resize(100,100)
+            ->save($preview_img);
 
         $request->session()->put('data', $data);
 
         return view('users/thumbnail/confirm', compact('data'));
     }
 
-    public function update()
+    public function update(Request $request, User $user)
     {
+        $data = $request->session()->get('data');
+        $store_path = 'public/thumbnail';
+        $store_temp_path = 'public/temp/thumbnail';
+        dump($data);
 
+        $store_img = str_replace($store_temp_path, $store_path, $data['temp_path']);
+        dump($store_img);
+
+        dump($data['temp_path']);
+
+        Storage::move($data['temp_path'], $store_img);
+
+        $user->thumbnail = $data['filename'];
+        $user->save();
+
+        return redirect()->route('profile.edit')->with('success', 'サムネイルを変更しました！');
     }
 }
