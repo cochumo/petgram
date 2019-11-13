@@ -60,9 +60,23 @@ main {
     padding: 1px 0;
 }
 
+.l-main__thumbnail__confirm {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .l-main__thumbnailImg {
     width: 100px;
     height: 100px;
+    border-radius: 50%;
+    border: solid 1px #8e8e8e;
+}
+
+.l-main__thumbnailImg--01 {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     border: solid 1px #8e8e8e;
 }

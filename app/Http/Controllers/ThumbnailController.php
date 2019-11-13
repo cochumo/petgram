@@ -78,6 +78,7 @@ class ThumbnailController extends Controller
             'temp_path' => $temp_path,
             'preview_img' => $preview_img,
             'filename' => $filename,
+            'crop_flag' => true,
         ];
 
         $request->session()->put('data', $data);
@@ -89,7 +90,7 @@ class ThumbnailController extends Controller
     {
         $input = $request->all();
         $data = $request->session()->get('data');
-//        dump($data);
+//        dump($request->session());
 //        dump($input);
 //        dump($request->get('width'));
 //        dump($request->get('height'));
@@ -105,18 +106,24 @@ class ThumbnailController extends Controller
         $width = $input['width'];
         $height = $input['height'];
 
-        $imagick = Image::make($preview_img);
-        $imagick->getCore()->autoOrient();
+        // 2重トリミング防止
+        if ($data['crop_flag'] == true) {
+            $crop_img = Image::make($preview_img);
+            $crop_img
+                ->crop(
+                    round($width),
+                    round($height),
+                    round($x),
+                    round($y))
+                ->resize(200,200)
+                ->save($preview_img);
 
-        $crop_img = Image::make($preview_img);
-        $crop_img
-            ->crop(
-                round($width),
-                round($height),
-                round($x),
-                round($y))
-            ->resize(200,200)
-            ->save($preview_img);
+            $data['crop_flag'] = false;
+
+//        $request->session()->regenerateToken();
+        }
+
+//        dump($data);
 
         $request->session()->put('data', $data);
 
