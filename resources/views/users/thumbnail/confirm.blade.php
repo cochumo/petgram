@@ -5,7 +5,7 @@
         @csrf
         <div>
             <div>
-                <img src="{{ asset($data['preview_img']) }}" id="crop_image" class="">
+                <img src="{{ asset($data['preview_img']) }}" class="">
             </div>
             <div class="u-flxJCnt u-pT1 u-pB1">
                 <input type="submit" value="変更" class="c-button--01">

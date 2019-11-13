@@ -146,7 +146,7 @@ class PhotosController extends Controller
         $properties = $imagick_photo->getImageProperties();
 
         // autoOrient()もgetImageOrientation()も思ったとおりに動かないため、プロパティを見て自分でrotateする処理
-        if (isset($imagick_photo->getImageProperties()['exif:Orientation'])) {
+        if (isset($properties['exif:Orientation'])) {
             $orientation = $imagick_photo->getImageProperties()['exif:Orientation'];
 //            dd($orientation);
             switch ($orientation) {

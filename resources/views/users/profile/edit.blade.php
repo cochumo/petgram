@@ -7,10 +7,10 @@
                 <h1 class="c-form__authTtl">プロフィールの変更</h1>
                 <div class="c-form__userThumbnail">
                     <div class="c-form__userThumbnail__img">
-                        @if($user->thumbnail == "")
+                        @if(auth()->user()->thumbnail == "")
                             <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="">
                         @else
-                            <img src="{{ asset('/storage/thumbnail/'.$user->thumbnail) }}" alt="" class="l-main__thumbnailImg">
+                            <img src="{{ asset('/storage/thumbnail/'.auth()->user()->thumbnail) }}" alt="" class="l-main__thumbnailImg">
                         @endif
                     </div>
                     <div class="c-form__userThumbnail__txt">

@@ -1,7 +1,11 @@
 <div id="slide_menu" class="l-sidebarWrap">
     <div class="l-sidebar__userInfo">
         <div class="l-sidebar__userInfo__img">
-            <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="p-detail__main__comment__img">
+            @if(auth()->user()->thumbnail == "")
+                <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="">
+            @else
+                <img src="{{ asset('/storage/thumbnail/'.auth()->user()->thumbnail) }}" alt="" class="l-main__thumbnailImg">
+            @endif
         </div>
         <div class="l-sidebar__userInfo__txt">
             <p class="">{{ auth()->user()->name }}</p>
