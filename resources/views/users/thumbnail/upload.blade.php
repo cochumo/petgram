@@ -20,6 +20,7 @@
                 </label>
             </div>
             <div class="u-flxJCnt">
+                <a href="{{ route('profile.edit') }}" class="c-button--05">戻る</a>
                 <input type="submit" value="確認" class="c-button--01">
             </div>
         </form>

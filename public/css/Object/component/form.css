@@ -206,7 +206,7 @@
     margin-bottom: 1rem;
 }
 
-.c-form__userThumbnail__txt a {
+.c-form__userThumbnail__txt {
     color: #137aff;
     font-size: 1.3rem;
 }

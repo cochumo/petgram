@@ -19,6 +19,7 @@
                 <input id="height" name="height" type="hidden" value="">
             </div>
             <div id="crop_btnArea" class="u-flxJCnt u-pT1 u-pB1">
+                <a href="{{ route('thumbnail.edit') }}" class="c-button--05">戻る</a>
                 <input type="submit" value="切り取る" class="c-button--01">
             </div>
         </div>

@@ -90,12 +90,6 @@ class ThumbnailController extends Controller
     {
         $input = $request->all();
         $data = $request->session()->get('data');
-//        dump($request->session());
-//        dump($input);
-//        dump($request->get('width'));
-//        dump($request->get('height'));
-//        dump($request->get('x'));
-//        dump($request->get('y'));
 
         $temp_path = $data['temp_path'];
         $preview_img = $data['preview_img'];
@@ -136,6 +130,14 @@ class ThumbnailController extends Controller
         $store_path = 'public/thumbnail';
         $store_temp_path = 'public/temp/thumbnail';
 //        dump($data);
+
+        // 確認画面で修正ボタンが押された場合の処理
+//        if ($request->get('action') === 'back') {
+            // トリミング画面へ戻る
+//            return redirect()->route('thumbnail.crop', [$user->id])->withInput($request->session()->get('data'));
+//            return back();
+//            return redirect()->action('ThumbnailController@crop', ['user' => $user->id])->withInput($request->session()->get('data'));
+//        }
 
         $store_img = str_replace($store_temp_path, $store_path, $data['temp_path']);
 //        dump($store_img);

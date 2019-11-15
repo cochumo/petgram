@@ -9,7 +9,8 @@
                     <img src="{{ asset($data['preview_img']) }}" class="l-main__thumbnailImg--01">
                 </div>
                 <div class="u-flxJCnt u-pT2 u-pB1">
-                    <input type="submit" value="変更" class="c-button--01">
+{{--                    <button type="submit" name="action" value="back" class="c-button--05">修正</button>--}}
+                    <button type="submit" name="action" value="submit" class="c-button--01">変更</button>
                 </div>
             </div>
         </div>

@@ -5,7 +5,7 @@
         <div class="c-form__authWrapInner--register">
             <div class="">
                 <h1 class="c-form__authTtl">プロフィールの変更</h1>
-                <div class="c-form__userThumbnail">
+                <a href="{{ route('thumbnail.edit') }}" class="c-form__userThumbnail">
                     <div class="c-form__userThumbnail__img">
                         @if(auth()->user()->thumbnail == "")
                             <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="">
@@ -14,9 +14,9 @@
                         @endif
                     </div>
                     <div class="c-form__userThumbnail__txt">
-                        <a href="{{ route('thumbnail.edit') }}" class="">プロフィール画像の変更</a>
+                        プロフィール画像の変更
                     </div>
-                </div>
+                </a>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
