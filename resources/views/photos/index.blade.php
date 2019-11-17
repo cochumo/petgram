@@ -14,7 +14,8 @@
     <div id="grid" class="c-gridWrap">
         @foreach($photos as $photo)
             <a href="{{ route('photos.show', [ $photo->id ]) }}" id="{{ pathinfo($photo->filename, PATHINFO_FILENAME) }}" class="c-grid__list">
-                <img src="{{ url($read_img_path . $photo->filename) }}" class="c-grid__img">
+{{--                <img src="{{ url($read_img_path . $photo->filename) }}" class="c-grid__img">--}}
+                <img src="{{ url($photo->url) }}" class="c-grid__img">
             </a>
         @endforeach
     </div>

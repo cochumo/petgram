@@ -28,7 +28,7 @@ class PhotosController extends Controller
 
         return view('photos/index', [
             'photos' => $photos,
-            'read_img_path' => self::read_img_path,
+            'read_img_path' => Photo::READ_IMG_PATH,
         ]);
     }
 
@@ -41,7 +41,7 @@ class PhotosController extends Controller
 
         return view('photos/detail', [
            'photo' => $photo,
-           'read_img_path' => self::read_img_path,
+           'read_img_path' => Photo::READ_IMG_PATH,
         ]);
     }
 
@@ -56,7 +56,7 @@ class PhotosController extends Controller
 //        dd($photo);
 
         // 該当の投稿の画像を削除
-        Storage::disk('local')->delete(self::save_img_path . $photo->filename);
+        Storage::disk('local')->delete(Photo::SAVE_IMG_PATH . $photo->filename);
 
         // レコードの削除
         $photo->delete();
@@ -89,9 +89,9 @@ class PhotosController extends Controller
 //        dd($input['message']);
 
         // 保存した時に生成した一意なファイル名とパス
-        $temp_path = $imagefile->store('public/temp');
+        $temp_path = $imagefile->store(Photo::SAVE_TEMP_PATH);
         // 一意なファイル名
-        $filename = str_replace('public/temp/', '', $temp_path);
+        $filename = str_replace(Photo::SAVE_TEMP_PATH, '', $temp_path);
         // 表示の際に読むファイル名とパス
         $read_temp_path = str_replace('public/', 'storage/', $temp_path);
 
@@ -129,14 +129,14 @@ class PhotosController extends Controller
         $message = $data['message'];
 
         // 保存されるパス + ファイル名
-        $storage_path = self::save_img_path . $filename;
+        $storage_path = Photo::SAVE_IMG_PATH . $filename;
 //        dump($storage_path);
 
         // session の data を初期化
         $request->session()->forget('data');
 
         // 読み込むパス + ファイル名
-        $read_path = str_replace(self::save_img_path, self::read_img_path, $storage_path);
+        $read_path = str_replace(Photo::SAVE_IMG_PATH, Photo::READ_IMG_PATH, $storage_path);
 //        dd($read_path);
 
         // ExifのOrientation正常化処理
@@ -212,7 +212,7 @@ class PhotosController extends Controller
 
         return view('photos/edit', [
             'photo' => $photo,
-            'read_img_path' => self::read_img_path,
+            'read_img_path' => Photo::READ_IMG_PATH,
         ]);
     }
 

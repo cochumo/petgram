@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Thumbnail;
 use Illuminate\Http\Request;
 use App\Http\Requests\ThumbnailRequest;
 use App\User;
@@ -26,10 +27,10 @@ class ThumbnailController extends Controller
         $imagefile = $request->file('thumbnail');
 //        dd($imagefile);
 
-        $store_temp_path = 'public/temp/thumbnail';
+        $save_temp_path = User::SAVE_TEMP_PATH;
 
-        $temp_path = $imagefile->store($store_temp_path);
-        $filename = str_replace($store_temp_path . '/', '', $temp_path);
+        $temp_path = $imagefile->store($save_temp_path);
+        $filename = str_replace($save_temp_path . '/', '', $temp_path);
         $preview_img = str_replace('public/', 'storage/', $temp_path);
 
         // ExifのOrientation正常化処理
@@ -127,8 +128,11 @@ class ThumbnailController extends Controller
     public function update(Request $request, User $user)
     {
         $data = $request->session()->get('data');
-        $store_path = 'public/thumbnail';
-        $store_temp_path = 'public/temp/thumbnail';
+//        $save_path = 'public/thumbnail';
+        $save_path = User::SAVE_IMG_PATH;
+//        $save_temp_path = 'public/temp/thumbnail';
+        $save_temp_path = User::SAVE_TEMP_PATH;
+
 //        dump($data);
 
         // 確認画面で修正ボタンが押された場合の処理
@@ -139,12 +143,17 @@ class ThumbnailController extends Controller
 //            return redirect()->action('ThumbnailController@crop', ['user' => $user->id])->withInput($request->session()->get('data'));
 //        }
 
-        $store_img = str_replace($store_temp_path, $store_path, $data['temp_path']);
+        $store_img = str_replace($save_temp_path, $save_path, $data['temp_path']);
 //        dump($store_img);
 //
 //        dump($data['temp_path']);
 
         Storage::move($data['temp_path'], $store_img);
+
+        // 既にサムネイルが設定してあったらその画像を削除
+        if ($user->thumbnail != "") {
+            Storage::disk('local')->delete(User::SAVE_IMG_PATH . $user->thumbnail);
+        }
 
         $user->thumbnail = $data['filename'];
         $user->save();

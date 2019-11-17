@@ -4,7 +4,8 @@
             @if(auth()->user()->thumbnail == "")
                 <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="">
             @else
-                <img src="{{ asset('/storage/thumbnail/'.auth()->user()->thumbnail) }}" alt="" class="l-main__thumbnailImg">
+{{--                <img src="{{ asset('/storage/thumbnail/'.auth()->user()->thumbnail) }}" alt="" class="l-main__thumbnailImg">--}}
+                <img src="{{ asset(\App\User::READ_IMG_PATH . auth()->user()->thumbnail) }}" alt="" class="l-main__thumbnailImg">
             @endif
         </div>
         <div class="l-sidebar__userInfo__txt">
