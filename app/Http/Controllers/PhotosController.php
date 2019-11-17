@@ -48,7 +48,8 @@ class PhotosController extends Controller
     /**
      * 投稿削除
      */
-    public function destroy(Photo $photo){
+    public function destroy(Photo $photo)
+    {
         // 削除する投稿を取得
 //        $photo = Photo::find($id);
 //        dump($id);
@@ -230,7 +231,7 @@ class PhotosController extends Controller
         }
 
         // 編集者が投稿者と同じか検査
-        if(!($user['id'] == $photo['user_id'])) {
+        if (!($user['id'] == $photo['user_id'])) {
             return redirect()->route('photos.index');
         }
 

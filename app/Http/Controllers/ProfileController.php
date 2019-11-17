@@ -44,7 +44,6 @@ class ProfileController extends Controller
         $request->session()->put('data', $data);
 
         return view('users/profile/edit_confirm', compact('data'));
-
     }
 
     /**

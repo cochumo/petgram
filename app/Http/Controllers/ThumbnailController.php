@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Thumbnail;
 use Illuminate\Http\Request;
 use App\Http\Requests\ThumbnailRequest;
 use App\User;
@@ -109,8 +108,9 @@ class ThumbnailController extends Controller
                     round($width),
                     round($height),
                     round($x),
-                    round($y))
-                ->resize(200,200)
+                    round($y)
+                )
+                ->resize(200, 200)
                 ->save($preview_img);
 
             $data['crop_flag'] = false;
@@ -137,7 +137,7 @@ class ThumbnailController extends Controller
 
         // 確認画面で修正ボタンが押された場合の処理
 //        if ($request->get('action') === 'back') {
-            // トリミング画面へ戻る
+        // トリミング画面へ戻る
 //            return redirect()->route('thumbnail.crop', [$user->id])->withInput($request->session()->get('data'));
 //            return back();
 //            return redirect()->action('ThumbnailController@crop', ['user' => $user->id])->withInput($request->session()->get('data'));

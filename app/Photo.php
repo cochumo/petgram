@@ -21,7 +21,6 @@ class Photo extends Model
     public function getPhoto($photo_id)
     {
         return $this->with('user')->where('id', $photo_id)->first();
-
     }
 
     public function getUrlAttribute()

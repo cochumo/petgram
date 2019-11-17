@@ -41,7 +41,6 @@ class UsersController extends Controller
         $request->session()->put('data', $data);
 
         return view('users/edit_confirm', compact('data'));
-
     }
 
     /**
@@ -66,4 +65,3 @@ class UsersController extends Controller
         return redirect()->route('photos.index')->with('success', 'アカウント情報を変更しました！');
     }
 }
-
