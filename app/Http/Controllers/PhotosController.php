@@ -11,11 +11,6 @@ use Intervention\Image\Facades\Image;
 
 class PhotosController extends Controller
 {
-    // 読み込むパス
-    const read_img_path = "storage/photos/";
-    // 保存されるパス
-    const save_img_path = "public/photos/";
-
     /**
      * 投稿一覧表示
      */
