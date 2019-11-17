@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PhotosRequest;
 use App\Photo;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -75,8 +74,8 @@ class PhotosController extends Controller
     {
 //        dd($request);
 
-        $input = $request->all();
-        $imagefile = $request->file('photo');
+        $input = $request->validated();
+        $imagefile = $input['photo'];
 
         if ($input['message'] == null) {
             $input['message'] = "";

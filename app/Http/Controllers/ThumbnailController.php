@@ -22,8 +22,8 @@ class ThumbnailController extends Controller
             return redirect('/photos')->with('success', '指定されたリンクは無効です。');
         }
 
-        $input = $request->all();
-        $imagefile = $request->file('thumbnail');
+        $input = $request->validated();
+        $imagefile = $input['thumbnail'];
 //        dd($imagefile);
 
         $save_temp_path = User::SAVE_TEMP_PATH;
