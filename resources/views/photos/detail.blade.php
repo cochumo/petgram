@@ -34,7 +34,7 @@
                 <h2 class="p-detail__main__comment__txt">{{ $photo['message'] }}</h2>
             </div>
         </div>
-        <img src="{{ url($read_img_path . $photo->filename) }}">
+        <img src="{{ url($photo->url) }}">
     </div>
     <div class="c-modalWrap" id="photo_delete">
         <div class="c-modal__overLay c-modal__close">

@@ -18,6 +18,11 @@ class Photo extends Model
         return $this->belongsTo('App\User');
     }
 
+    public function tag()
+    {
+        return $this->belongsToMany('App\Tag');
+    }
+
     public function getPhoto($photo_id)
     {
         return $this->with('user')->where('id', $photo_id)->first();

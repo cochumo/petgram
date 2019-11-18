@@ -4,7 +4,7 @@
     <div class="l-main__content">
         <form action="{{ route('photos.update', [ $photo->id ]) }}" method="post">
             @csrf
-            <img src="{{ url($read_img_path . $photo->filename) }}" class="form_img">
+            <img src="{{ url($photo->url) }}" class="form_img">
             <ul class="c-form__inputWrap">
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">メッセージ</h3>

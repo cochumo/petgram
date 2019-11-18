@@ -22,7 +22,6 @@ class PhotosController extends Controller
 
         return view('photos/index', [
             'photos' => $photos,
-            'read_img_path' => Photo::READ_IMG_PATH,
         ]);
     }
 
@@ -35,7 +34,6 @@ class PhotosController extends Controller
 
         return view('photos/detail', [
            'photo' => $photo,
-           'read_img_path' => Photo::READ_IMG_PATH,
         ]);
     }
 
@@ -207,7 +205,6 @@ class PhotosController extends Controller
 
         return view('photos/edit', [
             'photo' => $photo,
-            'read_img_path' => Photo::READ_IMG_PATH,
         ]);
     }
 
