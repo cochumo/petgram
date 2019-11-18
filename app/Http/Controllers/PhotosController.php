@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PhotosRequest;
 use App\Photo;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
@@ -62,7 +63,11 @@ class PhotosController extends Controller
      */
     public function create()
     {
-        return view('photos/create');
+        $tags = Tag::all();
+
+        return view('photos/create', [
+            'tags' => $tags,
+        ]);
     }
 
     /**
@@ -70,7 +75,7 @@ class PhotosController extends Controller
      */
     public function confirm(PhotosRequest $request)
     {
-//        dd($request);
+//        dd($request->validated());
 
         $input = $request->validated();
         $imagefile = $input['photo'];
@@ -90,10 +95,18 @@ class PhotosController extends Controller
 
 //        dd($read_temp_path);
 
+        $tags_name = $input['tags'];
+
+        if (isset($input['tags']) && is_array($input['tags'])) {
+            $tags_name = implode(", ", $input['tags']);
+        }
+
         $data = [
             'temp_path' => $temp_path,
             'read_temp_path' => $read_temp_path,
             'filename' => $filename,
+            'tags' => $input['tags'],
+            'tags_name' => $tags_name,
             'message' => $input['message'],
         ];
 
@@ -119,7 +132,11 @@ class PhotosController extends Controller
         $temp_path = $data['temp_path'];
         $read_temp_path = $data['read_temp_path'];
         $filename = $data['filename'];
+        $tags = $data['tags'];
+        $tags_name = $data['tags_name'];
         $message = $data['message'];
+
+        dump($tags);
 
         // 保存されるパス + ファイル名
         $storage_path = Photo::SAVE_IMG_PATH . $filename;
@@ -191,6 +208,18 @@ class PhotosController extends Controller
         $photo->filename = $filename;
         $photo->message = $message;
         $photo->save();
+
+//        $tags_id = [];
+//
+//        foreach ($tags as $tag) {
+//            $tag_data = Tag::where('name', $tag)->first();
+//            $tags_id[] =  $tag_data->id;
+//            dump($tags_id);
+//        }
+//
+//        $photo->tag()->sync($tags_id);
+
+        dd();
 
         return redirect()->route('photos.index')->with('success', '画像の投稿を完了しました！');
     }
