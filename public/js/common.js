@@ -1,5 +1,5 @@
 // 現在のルート
-const routeName = $('body').attr('data-route');
+var routeName = $('body').attr('data-route');
 
 // サクセスメッセージ
 if ($('#success').length) {
@@ -7,9 +7,9 @@ if ($('#success').length) {
 }
 
 // サイドバー
-const menu = $('#slide_menu');
-const body = $(document.body);
-const menuWidth = menu.outerWidth();
+var menu = $('#slide_menu');
+var body = $(document.body);
+var menuWidth = menu.outerWidth();
 $('#slide_menu').css('height', window.innerHeight);
 
 $('#slide_menu_btn, #close').on('click', function(){
@@ -25,13 +25,13 @@ $(window).on("touchmove", function(){
 
 // formの2重submit対策
 $('form button[type="submit"]').click(function (event) {
-    const TIMEOUT = 10000;
-    const target  = event.target;
-    const $form   = $(target).closest('form');
-    const $submit = $form.find('button[type="submit"]');
+    var TIMEOUT = 10000;
+    var target  = event.target;
+    var $form   = $(target).closest('form');
+    var $submit = $form.find('button[type="submit"]');
 
     // clickしたsubmitの値をhiddenに保存
-    const $hidden = $('<input/>', {
+    var $hidden = $('<input/>', {
         type: 'hidden',
         name: target.name,
         value: target.value
@@ -57,7 +57,7 @@ $('form button[type="submit"]').click(function (event) {
  */
 $(window).on('load',function(){
     // 現在のルート
-    const routeName = $('body').attr('data-route');
+    var routeName = $('body').attr('data-route');
 
     //ログイン画面かどうか検査
     if (routeName == 'login') {
@@ -90,7 +90,7 @@ function filePreview(){
     $('input[type=file]').after('<span class="c-form__preview"></span>');
 
     $('input[type=file]').change(function () {
-        const file = $(this).prop('files')[0];
+        var file = $(this).prop('files')[0];
 
         if (file != undefined) {
             if (!($('.c-form__preview').length)) {
@@ -102,9 +102,9 @@ function filePreview(){
                 return;
             }
 
-            const reader = new FileReader();
+            var reader = new FileReader();
             reader.onload = function () {
-                const img_src = $('<img>').attr('src', reader.result);
+                var img_src = $('<img>').attr('src', reader.result);
                 $('.c-form__preview').html(img_src);
             }
             reader.readAsDataURL(file);
@@ -162,7 +162,7 @@ function backgroundMovie() {
 
 // 離脱確認
 function leavePages() {
-    let submitFlg = false;
+    var submitFlg = false;
     // サイドバーのログアウトボタンを押せないようにする
     $('#logout_btn').css('pointer-events', 'none');
 
@@ -173,9 +173,9 @@ function leavePages() {
 
     // 離脱確認ポップアップ表示
     $('a:not(#finished_confirmation), #sidebar__logout').click(function (event) {
-        const localName = $(this).prop('localName').toLowerCase();
+        var localName = $(this).prop('localName').toLowerCase();
         if (localName == 'a') {
-            const transition_page = $(this).prop('href');
+            var transition_page = $(this).prop('href');
             $('#finished_confirmation').attr('href', transition_page);
         } else if (localName == 'div') {
             $('#finished_confirmation').attr('href', 'logout');
