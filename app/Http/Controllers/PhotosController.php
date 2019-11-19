@@ -141,7 +141,6 @@ class PhotosController extends Controller
         $read_temp_path = $data['read_temp_path'];
         $filename = $data['filename'];
         $tags = $data['tags'];
-        $tags_name = $data['tags_name'];
         $message = $data['message'];
 
 //        dump($tags);
