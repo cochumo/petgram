@@ -1,0 +1,50 @@
+body {
+    min-height: 100vh;
+    position: relative;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: #fff;
+    -webkit-text-size-adjust: 100%;
+    overscroll-behavior: none;
+    font-family: 'Noto Sans', '游ゴシック体', 'メイリオ', Meiryo, sans-serif;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+a {
+    color: #707070;
+}
+
+ul {
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.wrapper {
+    height: 100vh;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.preview--area {
+    width: 100%;
+}
+
+.preview--area img {
+    padding: .5em;
+    width: 100%;
+    max-width: 100%;
+}
+
+.form_img {
+    padding: .5em;
+    width: 100%;
+    max-width: 100%;
+}

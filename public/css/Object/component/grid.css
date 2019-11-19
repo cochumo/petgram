@@ -1,20 +1,21 @@
-.c-grid--area {
+.c-gridWrap {
     display: flex;
     flex-wrap: wrap;
     margin: 0 1%;
 }
-.c-grid {
+.c-grid__list {
     position: relative;
-    width: 23%;
+    width: 48%;
     margin: 1%;
     list-style: none;
+    /*border: solid 1px #d2d2d2;*/
 }
-.c-grid:before {
+.c-grid__list:before {
     content: "";
     display: block;
     padding-top: 100%;
 }
-.c-grid img {
+.c-grid__img {
     position: absolute;
     width: 100%;
     height: 100%;

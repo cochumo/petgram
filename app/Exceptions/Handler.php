@@ -46,6 +46,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) {
+            // ステータスコードがあったらリダイレクト
+            if ($exception->getStatusCode()) {
+                return redirect('/photos');
+            }
+        }
         return parent::render($request, $exception);
     }
 }

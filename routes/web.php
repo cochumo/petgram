@@ -16,24 +16,49 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::group(['middleware' => 'auth'], function() {
 
 // photos
-    // 一覧表示
-    Route::get('/photos', 'PhotosController@index');
-    // 個別投稿
-    Route::get('/photos/post/{id}', 'PhotosController@show');
-    // 投稿削除
-    Route::post('/photos/delete/{id}', 'PhotosController@destroy');
-    // 入力フォーム
+    // 投稿画像一覧表示
+    Route::get('/photos', 'PhotosController@index')->name('photos.index');
+    // 投稿画像詳細表示
+    Route::get('/photos/post/{photo}', 'PhotosController@show')->name('photos.show');
+    // 投稿画像削除処理
+    Route::post('/photos/delete/{photo}', 'PhotosController@destroy')->name('photos.destroy');
+    // 投稿画像入力フォーム
     Route::get('/photos/create', 'PhotosController@create')->name('photos.create');
-    // 確認画面
-    Route::post('/photos/create_confirm', 'PhotosController@confirm');
-    // 保存
-    Route::post('/photos/create_complete', 'PhotosController@store');
-    // 編集フォーム
-    Route::get('/photos/edit/{id}', 'PhotosController@edit');
-    // 編集処理
-    Route::post('/photos/edit/{id}', 'PhotosController@update');
+    // 投稿画像確認
+    Route::post('/photos/create_confirm', 'PhotosController@confirm')->name('photos.confirm');
+    // 投稿画像保存処理
+    Route::post('/photos/create_complete', 'PhotosController@store')->name('photos.store');
+    // 投稿画像編集フォーム
+    Route::get('/photos/edit/{photo}', 'PhotosController@edit')->name('photos.edit');
+    // 投稿画像編集処理
+    Route::post('/photos/edit/{photo}', 'PhotosController@update')->name('photos.update');
 
+// User
+    // 登録情報編集フォーム
+    Route::get('/mypage/edit', 'UsersController@edit')->name('users.edit');
+    // 編集内容確認
+    Route::post('/mypage/edit_confirm/{user}', 'UsersController@confirm')->name('users.confirm');
+    // 登録情報編集処理
+    Route::post('/mypage/edit_complete/{user}', 'UsersController@update')->name('users.update');
+
+// Profile
+    // プロフィール編集フォーム
+    Route::get('/mypage/profile/edit', 'ProfileController@edit')->name('profile.edit');
+    // 編集内容確認
+    Route::post('/mypage/profile/edit_confirm/{user}', 'ProfileController@confirm')->name('profile.confirm');
+    // 登録情報編集処理
+    Route::post('/mypage/profile/edit_complete/{user}', 'ProfileController@update')->name('profile.update');
 });
+
+// Thumbnail
+    // サムネイル画像のアップロード
+    Route::get('/mypage/thumbnail/edit', 'ThumbnailController@edit')->name('thumbnail.edit');
+    // サムネイル画像の加工
+    Route::post('/mypage/thumbnail/crop/{user}', 'ThumbnailController@crop')->name('thumbnail.crop');
+    // 加工後の画像の確認
+    Route::post('/mypage/thumbnail/edit_confirm/{user}', 'ThumbnailController@confirm')->name('thumbnail.confirm');
+    // サムネイル保存処理
+    Route::post('/mypage/thumbnail/edit_complete/{user}', 'ThumbnailController@update')->name('thumbnail.update');
 
 Auth::routes();
 

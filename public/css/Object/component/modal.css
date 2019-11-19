@@ -1,3 +1,50 @@
 .c-modal--area {
     display: none;
 }
+
+.c-modalWrap {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+
+.c-modal__overLay {
+    background-color: #0c0c0c7a;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.c-modal__inner {
+    margin: 0 2rem;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.c-modal__header {
+    background-color: #ffd500;
+    border-radius: 10px 10px 0 0;
+    padding: 1rem 0;
+}
+
+.c-modal__header h3 {
+    font-size: 1.8rem;
+}
+
+.c-modal__main {
+    font-size: 1.5rem;
+    padding: 2rem 0;
+}
+
+.c-modal__footer {
+    border-radius: 0 0 10px 10px;
+    padding-bottom: 1.5rem;
+}

@@ -1,0 +1,97 @@
+/* utility */
+
+.u-dispN {display: none;}
+.u-dispB {display: block;}
+
+.u-textR {text-align: right;}
+.u-textL {text-align: left;}
+.u-textC {text-align: center;}
+
+/* flex */
+.u-flx {
+    display: flex;
+    flex-wrap: wrap;
+}
+.u-flxACnt { /* 高さ中央寄せ */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.u-flxJCnt { /* 幅中央寄せ */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.u-flxMid { /* 高さ,幅中央寄せ */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.u-fStart{
+    align-items: flex-start;
+}
+.u-fStr {
+    align-items: stretch;
+}
+.u-fEnd {
+    align-items: flex-end;
+}
+.u-fJcEnd {
+    justify-content: flex-end;
+}
+.u-fBet {
+    justify-content: space-between;
+}
+.u-fAro {
+    justify-content: space-around;
+}
+.u-fEvn {
+    justify-content: space-evenly;
+}
+.u-fCnt {
+    justify-content: center;
+}
+.u-flxNoWrap {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.u-fRow_r {
+    flex-direction: row-reverse;
+}
+.u-fCol {
+    flex-direction: column;
+}
+.u-fCol_r {
+    flex-direction: column-reverse;
+}
+
+.u-inversion {
+    transform: scale(-1, 1);
+}
+
+.u-mT1 { margin-top: 1rem;}
+.u-mT2 { margin-top: 2rem;}
+
+.u-mB1 { margin-bottom: 1rem;}
+.u-mB2 { margin-bottom: 2rem;}
+
+.u-pT1 { padding-top: 1rem;}
+.u-pT2 { padding-top: 2rem;}
+
+.u-pB1 { padding-bottom: 1rem;}
+.u-pB2 { padding-bottom: 2rem;}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.u-fadeIn {
+    animation-name: fade-in;
+    animation-duration: 1s;
+}

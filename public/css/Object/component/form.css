@@ -1,0 +1,212 @@
+/*--------------------------------------
+  Form
+--------------------------------------*/
+.c-movieWrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    width: 100vw;
+    height: 100%;
+    height: 100vh;
+    opacity: .5;
+}
+.c-movie {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-width: 100vw;
+    min-height: 100%;
+    min-height: 100vh;
+}
+
+.c-form__inputWrap {
+    margin-bottom: 1rem;
+}
+
+.c-form__inputList {
+    text-align: center;
+    padding: 0 2rem 1.5rem;
+}
+
+.c-form__inputList .c-form__title {
+    font-size: 2rem;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: .75rem;
+}
+
+.c-form__inputList .c-form__note {
+    font-size: 1.2rem;
+    text-align: left;
+    padding-left: 0.5rem;
+    margin-bottom: .5rem;
+}
+
+.c-form__inputList .c-form__input--text {
+    background-color: #fff;
+    width: 100%;
+    border-bottom: solid 2px #999;
+    padding: 0.5rem 0.25rem 0.1rem;
+    font-size: 1.7rem;
+    text-align: left;
+}
+
+/* .c-form__authWrap {
+    display: flex;
+    align-items: center;
+    min-height: 100vh;
+} */
+
+.c-form__authWrapInner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.c-form__auth--logo {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.c-form__auth--logo img {
+    width: 60%;
+}
+
+.c-form__authInput {
+    margin-bottom: 1rem;
+    padding: 0 2rem;
+}
+
+.c-form__authInput input[type="text"],
+.c-form__authInput input[type="email"],
+.c-form__authInput input[type="password"],
+.c-form__authInput textarea {
+    font-size: 1.5rem;
+    padding: 1rem .75rem;
+    height: initial;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.c-form__authInput label {
+    font-weight: normal;
+}
+
+.c-form__authInput .form-check-label {
+    font-size: 1.3rem;
+}
+
+.c-form__authInput .form-check-input {
+    vertical-align: text-bottom;
+}
+
+.c-form__preview {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.c-form__preview img {
+    z-index: 100;
+    max-height: 100%;
+}
+
+/*--------------------------------------
+  register
+--------------------------------------*/
+.c-form__authWrap {
+    margin-bottom: 0;
+}
+.c-form__logoWrap {
+    text-align: center;
+    padding: 10px 0;
+    background-color: #FFD500;
+}
+.c-form__logo {
+    width: 100px;
+}
+
+.c-form__authWrapInner--register {
+    width: 100%;
+    height: calc(100vh - 62.36px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.c-form__authTtl {
+    font-size: 20px;
+    text-align: center;
+    margin: 5rem 0;
+}
+.c-form__confirmBtnWrap {
+    text-align: center;
+    margin: 4em 0;
+}
+
+.c-form__registrationGuidance {
+    text-align: center;
+}
+
+.c-form__registrationGuidance--link {
+    font-size: 1.3rem;
+    color: #137aff;
+}
+
+.c-form__registrationGuidance p {
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.c-form__itemTtl {
+    color: #707070;
+    font-size: 1.4rem;
+    margin-bottom: .25rem;
+}
+
+/*--------------------------------------
+  user info edit
+--------------------------------------*/
+.c-form__confirmTtl {
+    color: #848484;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.c-form__confirmTxt {
+    color: #434a54;
+    font-size: 1.7rem;
+    text-align: left;
+    border-bottom: solid 1px #434a54;
+    padding: .5rem 0 .25rem;
+}
+
+/*--------------------------------------
+  user profile edit
+--------------------------------------*/
+
+.c-form__userThumbnail {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.c-form__userThumbnail__img {
+    margin-bottom: 1rem;
+}
+
+.c-form__userThumbnail__txt {
+    color: #137aff;
+    font-size: 1.3rem;
+}
