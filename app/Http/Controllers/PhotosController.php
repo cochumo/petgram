@@ -209,17 +209,15 @@ class PhotosController extends Controller
         $photo->message = $message;
         $photo->save();
 
-//        $tags_id = [];
-//
-//        foreach ($tags as $tag) {
-//            $tag_data = Tag::where('name', $tag)->first();
-//            $tags_id[] =  $tag_data->id;
-//            dump($tags_id);
-//        }
-//
-//        $photo->tag()->sync($tags_id);
+        $tags_id = [];
 
-        dd();
+        foreach ($tags as $tag) {
+            $tag_data = Tag::where('name', $tag)->first();
+            $tags_id[] =  $tag_data->id;
+        }
+        dump($tags_id);
+
+//        $photo->tag()->attach($tags_id); ここでエラー
 
         return redirect()->route('photos.index')->with('success', '画像の投稿を完了しました！');
     }
