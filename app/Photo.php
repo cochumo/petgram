@@ -20,7 +20,7 @@ class Photo extends Model
 
     public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'photo_tags', 'photo_id', 'tag_id');
     }
 
     public function getPhoto($photo_id)

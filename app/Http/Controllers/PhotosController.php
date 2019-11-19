@@ -11,6 +11,14 @@ use Intervention\Image\Facades\Image;
 
 class PhotosController extends Controller
 {
+    private $photo;
+
+    // DIでPhotoモデルをインスタンス化
+    public function __construct(Photo $photo)
+    {
+        $this->photo = $photo;
+    }
+
     /**
      * 投稿一覧表示
      */
@@ -202,12 +210,12 @@ class PhotosController extends Controller
         Storage::move($temp_path, $storage_path);
 
         // 登録処理
-        $photo = new Photo();
-
-        $photo->user_id = $user['id'];
-        $photo->filename = $filename;
-        $photo->message = $message;
-        $photo->save();
+//        $photo = new Photo();
+//
+//        $photo->user_id = $user['id'];
+//        $photo->filename = $filename;
+//        $photo->message = $message;
+//        $photo->save();
 
         $tags_id = [];
 
@@ -215,9 +223,16 @@ class PhotosController extends Controller
             $tag_data = Tag::where('name', $tag)->first();
             $tags_id[] =  $tag_data->id;
         }
-//        dump($tags_id);
 
-        $photo->tag()->attach($tags_id);
+        $this->photo->fill([
+            'user_id' => $user['id'],
+            'filename' => $filename,
+            'message' => $message,
+        ])->save();
+
+        $this->photo->tags()->sync(collect($tags)->map(function($tag) {
+            return Tag::firstOrCreate(['name' => $tag])->id;
+        }));
 
         return redirect()->route('photos.index')->with('success', '画像の投稿を完了しました！');
     }
