@@ -136,7 +136,7 @@ class PhotosController extends Controller
         $tags_name = $data['tags_name'];
         $message = $data['message'];
 
-        dump($tags);
+//        dump($tags);
 
         // 保存されるパス + ファイル名
         $storage_path = Photo::SAVE_IMG_PATH . $filename;
@@ -215,9 +215,9 @@ class PhotosController extends Controller
             $tag_data = Tag::where('name', $tag)->first();
             $tags_id[] =  $tag_data->id;
         }
-        dump($tags_id);
+//        dump($tags_id);
 
-//        $photo->tag()->attach($tags_id); ここでエラー
+        $photo->tag()->attach($tags_id);
 
         return redirect()->route('photos.index')->with('success', '画像の投稿を完了しました！');
     }

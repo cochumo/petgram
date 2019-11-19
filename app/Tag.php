@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function photo()
+    public function photos()
     {
         return $this->belongsToMany('App\photo');
     }
