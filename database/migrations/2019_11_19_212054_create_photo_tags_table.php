@@ -26,8 +26,6 @@ class CreatePhotoTagsTable extends Migration
                 ->references('id')
                 ->on('tags')
                 ->onDelete('cascade');
-
-            $table->timestamps();
         });
     }
 

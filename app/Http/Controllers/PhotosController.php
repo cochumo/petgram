@@ -209,27 +209,14 @@ class PhotosController extends Controller
         // 一時保存場所から移動
         Storage::move($temp_path, $storage_path);
 
-        // 登録処理
-//        $photo = new Photo();
-//
-//        $photo->user_id = $user['id'];
-//        $photo->filename = $filename;
-//        $photo->message = $message;
-//        $photo->save();
-
-        $tags_id = [];
-
-        foreach ($tags as $tag) {
-            $tag_data = Tag::where('name', $tag)->first();
-            $tags_id[] =  $tag_data->id;
-        }
-
+        // 画像情報登録処理
         $this->photo->fill([
             'user_id' => $user['id'],
             'filename' => $filename,
             'message' => $message,
         ])->save();
 
+        // 中間テーブル
         $this->photo->tags()->sync(collect($tags)->map(function($tag) {
             return Tag::firstOrCreate(['name' => $tag])->id;
         }));
