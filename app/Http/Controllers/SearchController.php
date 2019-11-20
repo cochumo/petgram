@@ -20,8 +20,10 @@ class SearchController extends Controller
 
     public function tag(Tag $tag)
     {
+        $photos = $tag->photos()->simplePaginate(8);
+
         return view('search/tag', [
-            'tag' => $tag,
+            'photos' => $photos,
         ]);
     }
 }

@@ -8,17 +8,17 @@
 {{--            <a href="{{ route('search.mypost') }}" class="l-main__categoryList selected">マイ投稿</a>--}}
         </ul>
     </div>
-{{--    <div class="l-main__pagenation">--}}
-{{--        {{ $photos->links() }}--}}
-{{--    </div>--}}
+    <div class="l-main__pagenation">
+        {{ $photos->links() }}
+    </div>
     <div id="grid" class="c-gridWrap">
-        @foreach($tag->photos as $photo)
+        @foreach($photos as $photo)
             <a href="{{ route('photos.show', [ $photo->id ]) }}" id="{{ pathinfo($photo->filename, PATHINFO_FILENAME) }}" class="c-grid__list">
                 <img src="{{ url($photo->url) }}" class="c-grid__img">
             </a>
         @endforeach
     </div>
     <div class="l-main__pagenation l-main__bottomPagenation">
-        {{ $tag->photos->links() }}
+        {{ $photos->links() }}
     </div>
 @endsection
