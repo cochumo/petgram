@@ -48,19 +48,23 @@
 }
 
 .c-form__inputList .c-form__input--text {
+     background-color: #fff;
+     width: 100%;
+     border-bottom: solid 2px #999;
+     padding: 0.5rem 0.25rem 0.1rem;
+     font-size: 1.7rem;
+     text-align: left;
+ }
+
+.c-form__inputList .c-form__inputTags--text {
     background-color: #fff;
-    width: 100%;
+    width: 80%;
     border-bottom: solid 2px #999;
     padding: 0.5rem 0.25rem 0.1rem;
     font-size: 1.7rem;
     text-align: left;
+    margin-top: .5rem;
 }
-
-/* .c-form__authWrap {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-} */
 
 .c-form__authWrapInner {
     width: 100%;
@@ -209,4 +213,18 @@
 .c-form__userThumbnail__txt {
     color: #137aff;
     font-size: 1.3rem;
+}
+
+/*--------------------------------------
+  photo create
+--------------------------------------*/
+
+.c-form__tagsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.c-form__tagsList {
+    margin-right: 1rem;
 }

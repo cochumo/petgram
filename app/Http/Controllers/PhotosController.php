@@ -71,7 +71,7 @@ class PhotosController extends Controller
      */
     public function create()
     {
-        $tags = Tag::all();
+        $tags = Tag::where('original_flag', 1)->get();
 
         return view('photos/create', [
             'tags' => $tags,
@@ -103,7 +103,7 @@ class PhotosController extends Controller
 
 //        dd($read_temp_path);
 
-        $tags_name = $input['tags'];
+        $input['tags'] = array_filter($input['tags']);
 
         if (isset($input['tags']) && is_array($input['tags'])) {
             $tags_name = implode(", ", $input['tags']);

@@ -13,6 +13,6 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         $tags = ['かっこいい', 'かわいい', 'おもしろい', 'おどろき', 'もっと見たい'];
-        foreach ($tags as $tag) Tag::create(['name' => $tag]);
+        foreach ($tags as $tag) Tag::create(['name' => $tag, 'original_flag' => 1]);
     }
 }

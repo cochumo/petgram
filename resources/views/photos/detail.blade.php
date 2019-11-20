@@ -5,17 +5,17 @@
 @endsection
 
 @section('content')
-    <div class="p-detail__header">
-        <a href="{{ url()->previous() }}" class="p-detail__header__back">◀戻る</a>
+    <div class="c-detail__header">
+        <a href="{{ url()->previous() }}" class="c-detail__header__back">◀戻る</a>
         @if($photo->user->id == auth()->user()->id)
-            <div id="menu_opan_btn" class="p-detail__header__menuLinkBtn">
+            <div id="menu_opan_btn" class="c-detail__header__menuLinkBtn">
                 <i class="fas fa-ellipsis-h fa-2x"></i>
             </div>
-            <nav id="header_menu_wrap" class="p-detail__header__menuWrap" style="display: none;">
-                <div id="header_menu_btn_wrap" class="p-detail__header__menuBtnWrap" style="display: none;">
-                    <a href="{{ route('photos.edit', [$photo->id]) }}" class="p-detail__header__menuBtn">編集</a>
-                    <a id="post_delete" class="p-detail__header__menuBtn">削除</a>
-                    <a id="menu_close_btn" class="p-detail__header__menuBtn">▲閉じる</a>
+            <nav id="header_menu_wrap" class="c-detail__header__menuWrap" style="display: none;">
+                <div id="header_menu_btn_wrap" class="c-detail__header__menuBtnWrap" style="display: none;">
+                    <a href="{{ route('photos.edit', [$photo->id]) }}" class="c-detail__header__menuBtn">編集</a>
+                    <a id="post_delete" class="c-detail__header__menuBtn">削除</a>
+                    <a id="menu_close_btn" class="c-detail__header__menuBtn">▲閉じる</a>
                 </div>
             </nav>
             <form action="{{ route('photos.destroy', [ $photo->id ]) }}" method="post" id="delete-form" class="u-dispN">
@@ -24,17 +24,20 @@
             </form>
         @endif
     </div>
-    <div class="p-detail__main">
-        <div class="p-detail__main__photoInfoWrap">
-            <div class="p-detail__main__thumbnail">
-                <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="p-detail__main__comment__img">
+    <div class="c-detail__main">
+        <div class="c-detail__main__photoInfoWrap">
+            <div class="c-detail__main__thumbnail">
+                <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="c-detail__main__comment__img">
             </div>
-            <div class="p-detail__main__photoInfo">
-                <h1 class="p-detail__main__name__txt">{{ $photo->user->name }}</h1>
-                <h2 class="p-detail__main__comment__txt">{{ $photo['message'] }}</h2>
+            <div class="c-detail__main__photoInfo">
+                <h1 class="c-detail__main__name__txt">{{ $photo->user->name }}</h1>
+                <h2 class="c-detail__main__comment__txt">{{ $photo['message'] }}</h2>
             </div>
         </div>
         <img src="{{ url($photo->url) }}">
+        @foreach($photo->tags as $tag)
+            <a class="c-detail__tags--text">#{{ $tag->name }}</a>
+        @endforeach
     </div>
     <div class="c-modalWrap" id="photo_delete">
         <div class="c-modal__overLay c-modal__close">

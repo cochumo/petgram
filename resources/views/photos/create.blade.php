@@ -22,14 +22,17 @@
             <ul class="c-form__inputWrap">
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">タグ</h3>
-                    <div class="">
+                    <ul class="c-form__tagsWrap">
                         @foreach($tags as $tag)
-                            <div class="">
+                            <li class="c-form__tagsList">
                                 <input type="checkbox" name="tags[]" id="{{ $tag->id }}" value="{{ $tag->name }}">
                                 <label for="{{ $tag->id }}">{{ $tag->name }}</label>
-                            </div>
+                            </li>
                         @endforeach
-                    </div>
+                    </ul>
+                    <input type="text" name="tags[]" class="c-form__inputTags--text">
+                    <input type="text" name="tags[]" class="c-form__inputTags--text">
+                    <input type="text" name="tags[]" class="c-form__inputTags--text">
                 </li>
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">コメント</h3>
