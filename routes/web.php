@@ -60,5 +60,9 @@ Route::group(['middleware' => 'auth'], function() {
     // サムネイル保存処理
     Route::post('/mypage/thumbnail/edit_complete/{user}', 'ThumbnailController@update')->name('thumbnail.update');
 
+// Search
+    // 自分の投稿
+    Route::get('/photos/mypost', 'SearchController@mypost')->name('search.mypost');
+
 Auth::routes();
 

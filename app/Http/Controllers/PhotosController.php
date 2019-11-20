@@ -95,13 +95,14 @@ class PhotosController extends Controller
 //        dd($input['message']);
 
         // 保存した時に生成した一意なファイル名とパス
-        $temp_path = $imagefile->store(Photo::SAVE_TEMP_PATH);
+        $temp_path = $imagefile->store(rtrim(Photo::SAVE_TEMP_PATH, '/'));
         // 一意なファイル名
         $filename = str_replace(Photo::SAVE_TEMP_PATH, '', $temp_path);
         // 表示の際に読むファイル名とパス
         $read_temp_path = str_replace('public/', 'storage/', $temp_path);
 
-//        dd($read_temp_path);
+        dump($temp_path);
+        dd($filename);
 
         $input['tags'] = array_filter($input['tags']);
 
