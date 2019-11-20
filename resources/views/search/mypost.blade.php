@@ -3,7 +3,7 @@
 @section('content')
     <div class="">
         <ul class="l-main__categoryWrap">
-            <li class="l-main__categoryList">タイムライン</li>
+            <a href="{{ route('photos.index') }}" class="l-main__categoryList">タイムライン</a>
             <li class="l-main__categoryList">コレクション</li>
             <li class="l-main__categoryList selected">マイ投稿</li>
         </ul>

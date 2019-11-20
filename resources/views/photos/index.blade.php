@@ -5,7 +5,7 @@
         <ul class="l-main__categoryWrap">
             <li class="l-main__categoryList selected">タイムライン</li>
             <li class="l-main__categoryList">コレクション</li>
-            <li class="l-main__categoryList">マイ投稿</li>
+            <a href="{{ route('search.mypost') }}" class="l-main__categoryList">マイ投稿</a>
         </ul>
     </div>
     <div class="l-main__pagenation">

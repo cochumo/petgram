@@ -18,6 +18,7 @@ main {
     font-size: 1.6rem;
     font-weight: bold;
     border-bottom: solid 4px #fff;
+    color: #434a54;
 }
 
 .l-main__categoryList.selected {

@@ -26,7 +26,7 @@ class PhotosRequest extends FormRequest
         return [
             'photo' => ['required','file','image','mimes:jpeg,png,jpg,gif','max:10000'],
             'tags' => [],
-            'message' => ['string','max:40']
+            'message' => ['max:40']
         ];
     }
 }

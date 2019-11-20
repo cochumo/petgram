@@ -1,15 +1,11 @@
 @extends('layouts.layout')
 
-@section('styles')
-    <script src="https://kit.fontawesome.com/322edd454d.js" crossorigin="anonymous"></script>
-@endsection
-
 @section('content')
     <div class="c-detail__header">
         <a href="{{ url()->previous() }}" class="c-detail__header__back">◀戻る</a>
         @if($photo->user->id == auth()->user()->id)
             <div id="menu_opan_btn" class="c-detail__header__menuLinkBtn">
-                <i class="fas fa-ellipsis-h fa-2x"></i>
+                <img src="{{ asset('img/icon-menu_btn.svg') }}" class="">
             </div>
             <nav id="header_menu_wrap" class="c-detail__header__menuWrap" style="display: none;">
                 <div id="header_menu_btn_wrap" class="c-detail__header__menuBtnWrap" style="display: none;">

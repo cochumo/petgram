@@ -101,9 +101,6 @@ class PhotosController extends Controller
         // 表示の際に読むファイル名とパス
         $read_temp_path = str_replace('public/', 'storage/', $temp_path);
 
-        dump($temp_path);
-        dd($filename);
-
         $input['tags'] = array_filter($input['tags']);
 
         if (isset($input['tags']) && is_array($input['tags'])) {
