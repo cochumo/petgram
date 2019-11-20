@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
 use App\Photo;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,6 +15,13 @@ class SearchController extends Controller
 
         return view('search/mypost', [
             'photos' => $photos,
+        ]);
+    }
+
+    public function tag(Tag $tag)
+    {
+        return view('search/tag', [
+            'tag' => $tag,
         ]);
     }
 }

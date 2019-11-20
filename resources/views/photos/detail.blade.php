@@ -32,7 +32,7 @@
         </div>
         <img src="{{ url($photo->url) }}">
         @foreach($photo->tags as $tag)
-            <a class="c-detail__tags--text">#{{ $tag->name }}</a>
+            <a href="{{ route('search.tag', [ $tag->id ]) }}" class="c-detail__tags--text">#{{ $tag->name }}</a>
         @endforeach
     </div>
     <div class="c-modalWrap" id="photo_delete">

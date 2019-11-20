@@ -13,7 +13,7 @@ class Photo extends Model
     // 一時保存されるパス
     const SAVE_TEMP_PATH = "public/temp/photos/";
 
-    protected $fillable = ['user_id', 'filename', 'message'];
+    protected $fillable = ['id', 'user_id', 'filename', 'message'];
 
     public function user()
     {
