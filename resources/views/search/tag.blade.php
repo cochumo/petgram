@@ -1,12 +1,14 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="">
-        <ul class="l-main__categoryWrap">
-{{--            <a href="{{ route('photos.index') }}" class="l-main__categoryList">タイムライン</a>--}}
-            <li class="l-main__categoryList">タグ</li>
-{{--            <a href="{{ route('search.mypost') }}" class="l-main__categoryList selected">マイ投稿</a>--}}
-        </ul>
+    <div class="l-main__tag--ttlWrap">
+        <h1 class="l-main__tag--ttl">{{ $tag->hashtag }}</h1>
+    </div>
+    <div class="l-main__tag--infoWrap">
+        <div class="">
+            <img src="{{ asset($photos->first()->url) }}" class="l-main__tagThumbnail--img">
+        </div>
+        <p class="l-main__tag--txt">{{ $photos->count() }}件</p>
     </div>
     <div class="l-main__pagenation">
         {{ $photos->links() }}

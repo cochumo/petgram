@@ -85,3 +85,32 @@ main {
 .disabled .page-link {
     opacity: .5;
 }
+
+.l-main__tagThumbnail--img {
+    width: 50px;
+    height: 50px;
+    border: solid 1px #8e8e8e;
+    border-radius: 50%;
+}
+
+.l-main__tag--ttlWrap {
+    width: 100%;
+    background-color: #efefef;
+    margin-bottom: 1rem;
+}
+
+.l-main__tag--ttl {
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.l-main__tag--infoWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.l-main__tag--txt {
+    margin: 0 .75rem;
+}

@@ -12,4 +12,9 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\photo', 'photo_tags', 'tag_id', 'photo_id');
     }
+
+    public function getHashtagAttribute()
+    {
+        return "#" . $this->name;
+    }
 }
