@@ -21,7 +21,7 @@
         @endif
     </div>
     <div class="c-detail__main">
-        <div class="c-detail__main__photoInfoWrap">
+        <a href="{{ route('search.user', [ $photo->user->id ]) }}" class="c-detail__main__photoInfoWrap">
             <div class="c-detail__main__thumbnail">
                 <img src="{{ asset('/img/default_thumbnail.svg') }}" alt="" class="c-detail__main__comment__img">
             </div>
@@ -29,7 +29,7 @@
                 <h1 class="c-detail__main__name__txt">{{ $photo->user->name }}</h1>
                 <h2 class="c-detail__main__comment__txt">{{ $photo['message'] }}</h2>
             </div>
-        </div>
+        </a>
         <img src="{{ url($photo->url) }}">
         @foreach($photo->tags as $tag)
             <a href="{{ route('search.tag', [ $tag->id ]) }}" class="c-detail__tags--text">#{{ $tag->name }}</a>

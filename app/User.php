@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile', 'thumbnail',
     ];
 
     /**
@@ -44,8 +44,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
+    }
+
     public function getUrlAttribute()
     {
-        return asset(self::READ_IMG_PATH . $this->filename);
+        if ($this->thumbnail == "") {
+            return asset('img/default_thumbnail.svg');
+        }
+
+        return asset(self::READ_IMG_PATH . $this->thumbnail);
     }
 }

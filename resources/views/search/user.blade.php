@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 
 @section('content')
-    <div class="l-main__tag--ttlWrap">
-        <h1 class="l-main__tag--ttl">{{ $tag->hashtag }}</h1>
+    <div class="l-main__user--ttlWrap">
+        <h1 class="l-main__user--ttl">{{ $user->name }}</h1>
     </div>
-    <div class="l-main__tag--infoWrap">
+    <div class="l-main__user--infoWrap">
         <div class="">
-            <img src="{{ asset($tag->photos()->first()->url) }}" class="l-main__tagThumbnail--img">
+            <img src="{{ asset($user->url) }}" class="l-main__userThumbnail--img">
         </div>
-        <p class="l-main__tag--txt">{{ $tag->photos()->count() }}件</p>
+        <p class="l-main__user--txt">{{ $user->photos()->count() }}件</p>
     </div>
     <div class="l-main__pagenation">
         {{ $photos->links() }}

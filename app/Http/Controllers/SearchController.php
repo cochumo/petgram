@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\User;
 use App\Tag;
 use App\Photo;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
@@ -20,10 +21,20 @@ class SearchController extends Controller
 
     public function tag(Tag $tag)
     {
-        $photos = $tag->photos()->simplePaginate(8);
+        $photos = $tag->photos()->latest()->simplePaginate(8);
 
         return view('search/tag', [
             'tag' => $tag,
+            'photos' => $photos,
+        ]);
+    }
+
+    public function user(User $user)
+    {
+        $photos = $user->photos()->latest()->simplePaginate(8);
+
+        return view('search/user', [
+            'user' => $user,
             'photos' => $photos,
         ]);
     }
