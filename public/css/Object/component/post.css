@@ -2,6 +2,10 @@
   投稿詳細
 --------------------------------------------------*/
 
+.c-detailWrap {
+    margin-bottom: 3rem;
+}
+
 /* header */
 .c-detail__header {
     display: flex;
@@ -61,6 +65,7 @@
 .c-detail__main {
     padding: 0 2rem;
 }
+
 .c-detail__main__photoInfoWrap {
     display: flex;
     flex-wrap: wrap;
@@ -87,9 +92,41 @@
     font-weight: normal;
 }
 
+.c-detail__tagsWrap {
+    margin-top: .5rem;
+}
+
 .c-detail__tags--text {
     margin-right: 0.5rem;
     display: inline-block;
     font-size: 1.3rem;
     color: #137aff;
+}
+
+.c-detail__reactionWrap {
+    margin-top: .5rem;
+}
+
+.c-detail__reaction__btn {
+    border: solid 1px #707070;
+    border-radius: 99999px;
+    padding: 0.3rem 1rem 0;
+    background-color: #fff;
+    margin: 0 .5rem;
+}
+
+/*.c-detail__reaction__btn {*/
+/*    border: solid 1px #efefef;*/
+/*    border-radius: 99999px;*/
+/*    padding: 0.3rem 1rem 0;*/
+/*    background-color: #efefef;*/
+/*    margin: 0 .5rem;*/
+/*}*/
+
+.c-detail__reaction__btn:first-child {
+    margin: 0;
+}
+
+.c-detail__reaction__btn p {
+    font-size: 20px;
 }

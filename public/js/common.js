@@ -258,6 +258,41 @@ function thumbnailClip() {
     });
 }
 
+// ajaxで画像にリアクションする
+function reactToImage() {
+    $('[id^=reaction_btn_]').on('click', function(){
+        console.log($(this).val());
+        console.log($('meta[name="csrf-token"]').attr('content'));
+        console.log($('#reaction_data').attr('url'));
+        console.log('user_id: ' + $('#reaction_data').attr('user_id'));
+        console.log('photo_id: ' + $('#reaction_data').attr('photo_id'));
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: $('#reaction_data').attr('url'),
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({
+                user_id: $('#reaction_data').attr('user_id'),
+                photo_id: $('#reaction_data').attr('photo_id'),
+                reaction: $(this).val(),
+                // '_method': 'DELETE',
+            })
+        })
+        // Ajaxリクエストが成功した場合
+        .done(function(response) {
+            console.log('成功');
+            console.log(response);
+        })
+        // Ajaxリクエストが失敗した場合
+        .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log('失敗');
+            console.log("エラーが発生しました：" + textStatus + ":\n" + errorThrown);
+        });
+    });
+}
+
 /**
  * ページ固有の処理
  */
@@ -288,6 +323,7 @@ if (routeName == 'photos.confirm') {
 // 投稿詳細ページ
 if (routeName == 'photos.show') {
     operationMenu();
+    reactToImage();
 }
 
 // サムネイルアップロード

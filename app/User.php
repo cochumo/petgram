@@ -5,9 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ReacterableContract
 {
+    use Reacterable;
+
     // 読み込むパス
     const READ_IMG_PATH = "storage/thumbnail/";
     // 保存されるパス

@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 
-class Photo extends Model
+class Photo extends Model implements ReactableContract
 {
+    use Reactable;
+
     // 読み込むパス
     const READ_IMG_PATH = "storage/photos/";
     // 保存されるパス
