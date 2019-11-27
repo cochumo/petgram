@@ -264,7 +264,6 @@ function reactToImage() {
         console.log($(this).val());
         console.log($('meta[name="csrf-token"]').attr('content'));
         console.log($('#reaction_data').attr('url'));
-        console.log('user_id: ' + $('#reaction_data').attr('user_id'));
         console.log('photo_id: ' + $('#reaction_data').attr('photo_id'));
         $.ajax({
             headers: {
@@ -274,21 +273,26 @@ function reactToImage() {
             type: 'POST',
             dataType: 'json',
             data: JSON.stringify({
-                user_id: $('#reaction_data').attr('user_id'),
                 photo_id: $('#reaction_data').attr('photo_id'),
                 reaction: $(this).val(),
-                // '_method': 'DELETE',
             })
         })
         // Ajaxリクエストが成功した場合
         .done(function(response) {
             console.log('成功');
             console.log(response);
+            var $target = $('button[value="' + response['reaction'] + '"]');
+            if ($('#reaction_data').find($target).hasClass('js-active')) {
+                $('#reaction_data').find($target).removeClass('js-active').addClass('js-inactive');
+                $target.find('#reaction_count').html(response['reaction_count']);
+            } else if ($('#reaction_data').find($target).hasClass('js-inactive')) {
+                $('#reaction_data').find($target).removeClass('js-inactive').addClass('js-active');
+                $target.find('#reaction_count').html(response['reaction_count']);
+            }
         })
         // Ajaxリクエストが失敗した場合
         .fail(function(XMLHttpRequest, textStatus, errorThrown) {
             console.log('失敗');
-            console.log("エラーが発生しました：" + textStatus + ":\n" + errorThrown);
         });
     });
 }

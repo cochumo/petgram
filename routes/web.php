@@ -34,10 +34,8 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/photos/edit/{photo}', 'PhotosController@update')->name('photos.update');
 
 // photo Reactions
-    // リアクション追加
-    Route::post('/photos/reaction/create', 'Photo\ReactionController@create')->name('photos.reaction.create');
-    // リアクション取り消し
-    Route::post('/photos/reaction/destroy', 'Photo\ReactionController@destroy')->name('photos.reaction.destroy');
+    // リアクションをする
+    Route::post('/photos/reaction', 'Photo\ReactionController@reaction')->name('photos.reaction');
 
 // User
     // 登録情報編集フォーム

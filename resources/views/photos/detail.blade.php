@@ -37,21 +37,36 @@
                     <a href="{{ route('search.tag', [ $tag->id ]) }}" class="c-detail__tags--text">#{{ $tag->name }}</a>
                 @endforeach
             </div>
-            <div id="reaction_data" class="c-detail__reactionWrap" url="{{ route('photos.reaction.create') }}" user_id="{{ auth()->user()->id }}" photo_id="{{ $photo->id }}">
-                <button id="reaction_btn_1" value="Reaction01" class="c-detail__reaction__btn">
-                    <p class="">😄</p>
+            <div id="reaction_data" class="c-detail__reactionWrap" url="{{ route('photos.reaction') }}" photo_id="{{ $photo->id }}">
+                <button id="reaction_btn_1" value="Reaction01" class="c-detail__reaction__btn {{ $reacter->hasReactedTo($reactant, Cog\Laravel\Love\ReactionType\Models\ReactionType::fromName('Reaction01')) ? 'js-active' : 'js-inactive' }}">
+                    <div class="u-flx">
+                        <i class="">😄</i>
+                        <p id="reaction_count">{{ $photo->viaLoveReactant()->getReactionCounterOfType('Reaction01')->getCount() }}</p>
+                    </div>
                 </button>
-                <button id="reaction_btn_2" value="Reaction02" class="c-detail__reaction__btn">
-                    <p class="">🤣</p>
+                <button id="reaction_btn_2" value="Reaction02" class="c-detail__reaction__btn {{ $reacter->hasReactedTo($reactant, Cog\Laravel\Love\ReactionType\Models\ReactionType::fromName('Reaction02')) ? 'js-active' : 'js-inactive' }}">
+                    <div class="u-flx">
+                        <i class="">🤣</i>
+                        <p id="reaction_count">{{ $photo->viaLoveReactant()->getReactionCounterOfType('Reaction02')->getCount() }}</p>
+                    </div>
                 </button>
-                <button id="reaction_btn_3" value="Reaction03" class="c-detail__reaction__btn">
-                    <p class="">😊</p>
+                <button id="reaction_btn_3" value="Reaction03" class="c-detail__reaction__btn {{ $reacter->hasReactedTo($reactant, Cog\Laravel\Love\ReactionType\Models\ReactionType::fromName('Reaction03')) ? 'js-active' : 'js-inactive' }}">
+                    <div class="u-flx">
+                        <i class="">😊</i>
+                        <p id="reaction_count">{{ $photo->viaLoveReactant()->getReactionCounterOfType('Reaction03')->getCount() }}</p>
+                    </div>
                 </button>
-                <button id="reaction_btn_4" value="Reaction04" class="c-detail__reaction__btn">
-                    <p class="">😍</p>
+                <button id="reaction_btn_4" value="Reaction04" class="c-detail__reaction__btn {{ $reacter->hasReactedTo($reactant, Cog\Laravel\Love\ReactionType\Models\ReactionType::fromName('Reaction04')) ? 'js-active' : 'js-inactive' }}">
+                    <div class="u-flx">
+                        <i class="">😍</i>
+                        <p id="reaction_count">{{ $photo->viaLoveReactant()->getReactionCounterOfType('Reaction04')->getCount() }}</p>
+                    </div>
                 </button>
-                <button id="reaction_btn_5" value="Reaction05" class="c-detail__reaction__btn">
-                    <p class="">😲</p>
+                <button id="reaction_btn_5" value="Reaction05" class="c-detail__reaction__btn {{ $reacter->hasReactedTo($reactant, Cog\Laravel\Love\ReactionType\Models\ReactionType::fromName('Reaction05')) ? 'js-active' : 'js-inactive' }}">
+                    <div class="u-flx">
+                        <i class="">😲</i>
+                        <p id="reaction_count">{{ $photo->viaLoveReactant()->getReactionCounterOfType('Reaction05')->getCount() }}</p>
+                    </div>
                 </button>
             </div>
         </div>

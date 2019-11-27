@@ -6,6 +6,7 @@ use App\Http\Requests\PhotosRequest;
 use App\Photo;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
@@ -40,9 +41,23 @@ class PhotosController extends Controller
     public function show(Photo $photo)
     {
         $photo = $photo->getPhoto($photo->id);
+        $user = Auth::user();
+
+        if ($user->isNotRegisteredAsLoveReacter()) {
+            $user->registerAsLoveReacter();
+        }
+        if ($photo->isNotRegisteredAsLoveReactant()) {
+            $photo->registerAsLoveReactant();
+        }
+
+        $reacter = $user->getLoveReacter();
+        $reactant = $photo->getLoveReactant();
 
         return view('photos/detail', [
-           'photo' => $photo,
+            'photo' => $photo,
+            'user' => $user,
+            'reacter' => $reacter,
+            'reactant' => $reactant,
         ]);
     }
 
