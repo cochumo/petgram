@@ -4,7 +4,7 @@
     <div class="">
         <ul class="l-main__categoryWrap">
             <a href="{{ route('photos.index') }}" class="l-main__categoryList">タイムライン</a>
-            <li class="l-main__categoryList">コレクション</li>
+            <a href="{{ route('search.collection') }}" class="l-main__categoryList">コレクション</a>
             <li class="l-main__categoryList selected">マイ投稿</li>
         </ul>
     </div>

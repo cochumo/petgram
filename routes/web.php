@@ -67,6 +67,8 @@ Route::group(['middleware' => 'auth'], function() {
 // Search
     // 自分の投稿
     Route::get('/photos/mypost', 'SearchController@mypost')->name('search.mypost');
+    // 自分のリアクションした投稿
+    Route::get('/photos/collection', 'SearchController@collection')->name('search.collection');
     // タグの検索
     Route::get('/photos/explore/tags/{tag}', 'SearchController@tag')->name('search.tag');
     // ユーザーの検索

@@ -19,6 +19,12 @@ class SearchController extends Controller
         ]);
     }
 
+    public function collection()
+    {
+        $user = Auth::user();
+        $reacter = $user->getLoveReacter();
+    }
+
     public function tag(Tag $tag)
     {
         $photos = $tag->photos()->latest()->simplePaginate(8);
