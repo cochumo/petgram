@@ -281,12 +281,12 @@ function reactToImage() {
         .done(function(response) {
             console.log('成功');
             console.log(response);
-            var $target = $('button[value="' + response['reaction'] + '"]');
-            if ($('#reaction_data').find($target).hasClass('js-active')) {
-                $('#reaction_data').find($target).removeClass('js-active').addClass('js-inactive');
+            var $target = $('#reaction_data').find(('button[value="' + response['reaction'] + '"]'));
+            if ($target.hasClass('js-active')) {
+                $target.removeClass('js-active').addClass('js-inactive');
                 $target.find('#reaction_count').html(response['reaction_count']);
             } else if ($('#reaction_data').find($target).hasClass('js-inactive')) {
-                $('#reaction_data').find($target).removeClass('js-inactive').addClass('js-active');
+                $target.removeClass('js-inactive').addClass('js-active');
                 $target.find('#reaction_count').html(response['reaction_count']);
             }
         })
