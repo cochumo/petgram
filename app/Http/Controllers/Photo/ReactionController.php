@@ -11,6 +11,11 @@ use Cog\Laravel\Love\ReactionType\Models\ReactionType;
 
 class ReactionController extends Controller
 {
+    /**
+     * リアクションの追加、解除
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function reaction(Request $request)
     {
         $ajax = json_decode($request->getContent(), true);

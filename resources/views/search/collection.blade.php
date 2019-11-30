@@ -6,10 +6,12 @@
             <li class="l-main__categoryList">
                 <a href="{{ route('photos.index') }}">タイムライン</a>
             </li>
-            <li class="l-main__categoryList">
-                <a href="{{ route('search.collection') }}">コレクション</a>
+            <li class="l-main__categoryList selected">
+                コレクション
             </li>
-            <li class="l-main__categoryList selected">マイ投稿</li>
+            <li class="l-main__categoryList">
+                <a href="{{ route('search.mypost') }}">マイ投稿</a>
+            </li>
         </ul>
     </div>
     <div class="l-main__pagenation">

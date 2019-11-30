@@ -10,6 +10,8 @@ class UsersController extends Controller
 {
     /**
      * 登録情報の編集フォーム
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request)
     {
@@ -22,6 +24,9 @@ class UsersController extends Controller
 
     /**
      * 編集内容の確認
+     * @param UserRequest $request
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function confirm(UserRequest $request, User $user)
     {
@@ -45,6 +50,9 @@ class UsersController extends Controller
 
     /**
      * 登録情報の編集処理
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {

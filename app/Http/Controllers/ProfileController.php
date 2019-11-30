@@ -10,6 +10,8 @@ class ProfileController extends Controller
 {
     /**
      * プロフィールの編集フォーム
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request)
     {
@@ -22,6 +24,9 @@ class ProfileController extends Controller
 
     /**
      * プロフィールの編集内容の確認
+     * @param ProfileRequest $request
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
      */
     public function confirm(ProfileRequest $request, User $user)
     {
@@ -48,6 +53,9 @@ class ProfileController extends Controller
 
     /**
      * プロフィールの登録情報の編集処理
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, User $user)
     {

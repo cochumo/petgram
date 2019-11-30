@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PhotosMessageRequest;
 use App\Http\Requests\PhotosRequest;
 use App\Photo;
 use App\Tag;
@@ -15,13 +16,20 @@ class PhotosController extends Controller
     private $photo;
 
     // DIでPhotoモデルをインスタンス化
+
+    /**
+     * PhotosController constructor.
+     * @param Photo $photo
+     */
     public function __construct(Photo $photo)
     {
         $this->photo = $photo;
     }
 
+
     /**
      * 投稿一覧表示
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
@@ -37,6 +45,8 @@ class PhotosController extends Controller
 
     /**
      * 投稿詳細表示
+     * @param Photo $photo
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Photo $photo)
     {
@@ -63,6 +73,9 @@ class PhotosController extends Controller
 
     /**
      * 投稿削除
+     * @param Photo $photo
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Photo $photo)
     {
@@ -81,8 +94,10 @@ class PhotosController extends Controller
         return redirect()->route('photos.index')->with('success', '投稿の削除を完了しました！');
     }
 
+
     /**
      * 投稿入力フォーム
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -95,6 +110,8 @@ class PhotosController extends Controller
 
     /**
      * 投稿確認画面
+     * @param PhotosRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function confirm(PhotosRequest $request)
     {
@@ -138,6 +155,8 @@ class PhotosController extends Controller
 
     /**
      * 投稿保存
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -238,6 +257,8 @@ class PhotosController extends Controller
 
     /**
      * 編集フォーム表示
+     * @param Photo $photo
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Photo $photo)
     {
@@ -251,8 +272,11 @@ class PhotosController extends Controller
 
     /**
      * 編集処理
+     * @param Photo $photo
+     * @param PhotosMessageRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Photo $photo, Request $request)
+    public function update(Photo $photo, PhotosMessageRequest $request)
     {
         $user = auth()->user();
 
@@ -268,8 +292,7 @@ class PhotosController extends Controller
         }
 
         // メッセージをupdate
-        $photo->message = $data['message'];
-        $photo->save();
+        $photo->fill($request->validated())->save();
 
         return redirect()->route('photos.index')->with('success', '投稿の編集を完了しました！');
     }

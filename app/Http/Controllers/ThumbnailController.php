@@ -10,11 +10,21 @@ use Intervention\Image\Facades\Image;
 
 class ThumbnailController extends Controller
 {
+    /**
+     * サムネイルの編集フォーム
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit()
     {
         return view('users/thumbnail/upload');
     }
 
+    /**
+     * サムネイルのトリミング
+     * @param ThumbnailRequest $request
+     * @param User $user
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|\Illuminate\View\View
+     */
     public function crop(ThumbnailRequest $request, User $user)
     {
         // formのuser_idが入る箇所を編集して送信した場合の処理
@@ -86,6 +96,11 @@ class ThumbnailController extends Controller
         return view('users/thumbnail/crop', compact('data'));
     }
 
+    /**
+     * トリミングした画像の確認
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function confirm(Request $request)
     {
         $input = $request->all();
@@ -125,6 +140,12 @@ class ThumbnailController extends Controller
         return view('users/thumbnail/confirm', compact('data'));
     }
 
+    /**
+     * 変更処理
+     * @param Request $request
+     * @param User $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(Request $request, User $user)
     {
         $data = $request->session()->get('data');
