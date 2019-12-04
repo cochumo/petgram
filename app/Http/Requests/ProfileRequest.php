@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:12'],
-            'profile' => ['max:50'],
+            'profile' => ['nullable', 'string', 'max:50'],
         ];
     }
 }

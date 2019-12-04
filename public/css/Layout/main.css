@@ -1,9 +1,18 @@
+/*--------------------------------------
+  SP style
+--------------------------------------*/
+
 main {
     padding-bottom: 60px;
 }
 
+.auth_layout main {
+    padding-bottom: 0;
+}
+
 .l-main__content {
     padding: 20px 0;
+    width: 100%;
 }
 
 .l-main__categoryWrap {
@@ -124,4 +133,39 @@ main {
 .l-main__tag--txt,
 .l-main__user--txt {
     margin: 0 .75rem;
+}
+
+/*--------------------------------------
+  TAB style
+--------------------------------------*/
+
+@media screen and (min-width:480px) and ( max-width:768px) {
+    body[data-route="photos.create"] main,
+    body[data-route="photos.confirm"] main {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    body[data-route="photos.create"] main,
+    body[data-route="photos.confirm"] main {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/*--------------------------------------
+  PC style
+--------------------------------------*/
+
+@media screen and (min-width:1024px) {
+    body[data-route="photos.create"] main,
+    body[data-route="photos.confirm"] main {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
 }

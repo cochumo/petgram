@@ -79,6 +79,8 @@ $(window).on('resize', function(){
     if (body.hasClass('open')) {
         $('#slide_menu').css('height', window.innerHeight);
     }
+
+    backgroundMovie()
 });
 
 /**
