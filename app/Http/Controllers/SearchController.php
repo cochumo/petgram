@@ -11,13 +11,16 @@ use Cog\Laravel\Love\ReactionType\Models\ReactionType;
 
 class SearchController extends Controller
 {
+    // 1ページ内の件数
+    const DISPLAY_COUNT = 24;
+
     /**
      * 自分の投稿
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function mypost()
     {
-        $photos = Photo::where('user_id', Auth::id())->simplePaginate(8);
+        $photos = Photo::where('user_id', Auth::id())->simplePaginate(self::DISPLAY_COUNT);
 
         return view('search/mypost', [
             'photos' => $photos,
@@ -32,7 +35,7 @@ class SearchController extends Controller
     {
         $photos = Photo::query()
             ->whereReactedBy(Auth::user())
-            ->simplePaginate(8);
+            ->simplePaginate(self::DISPLAY_COUNT);
 
         return view('search/collection', [
             'photos' => $photos,
@@ -46,7 +49,7 @@ class SearchController extends Controller
      */
     public function tag(Tag $tag)
     {
-        $photos = $tag->photos()->latest()->simplePaginate(8);
+        $photos = $tag->photos()->latest()->simplePaginate(self::DISPLAY_COUNT);
 
         return view('search/tag', [
             'tag' => $tag,
@@ -61,7 +64,7 @@ class SearchController extends Controller
      */
     public function user(User $user)
     {
-        $photos = $user->photos()->latest()->simplePaginate(8);
+        $photos = $user->photos()->latest()->simplePaginate(self::DISPLAY_COUNT);
 
         return view('search/user', [
             'user' => $user,
