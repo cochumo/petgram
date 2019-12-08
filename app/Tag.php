@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    public function photo()
+    protected $fillable = ['id', 'name'];
+
+    public function photos()
     {
-        return $this->belongsToMany('App\photo');
+        return $this->belongsToMany('App\photo', 'photo_tags', 'tag_id', 'photo_id');
+    }
+
+    public function getHashtagAttribute()
+    {
+        return "#" . $this->name;
     }
 }

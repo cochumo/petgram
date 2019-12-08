@@ -3,9 +3,15 @@
 @section('content')
     <div class="">
         <ul class="l-main__categoryWrap">
-            <li class="l-main__categoryList selected">タイムライン</li>
-            <li class="l-main__categoryList">コレクション</li>
-            <li class="l-main__categoryList">マイ投稿</li>
+            <li class="l-main__categoryList selected">
+                タイムライン
+            </li>
+            <li class="l-main__categoryList">
+                <a href="{{ route('search.collection') }}">コレクション</a>
+            </li>
+            <li class="l-main__categoryList">
+                <a href="{{ route('search.mypost') }}">マイ投稿</a>
+            </li>
         </ul>
     </div>
     <div class="l-main__pagenation">

@@ -1,6 +1,8 @@
 /*--------------------------------------
-  Form
+  SP style
 --------------------------------------*/
+
+/* Form */
 .c-movieWrap {
     position: fixed;
     top: 0;
@@ -22,6 +24,12 @@
     min-width: 100vw;
     min-height: 100%;
     min-height: 100vh;
+}
+
+.c-form__img {
+    padding: .5em;
+    width: 100%;
+    max-width: 100%;
 }
 
 .c-form__inputWrap {
@@ -48,21 +56,25 @@
 }
 
 .c-form__inputList .c-form__input--text {
+     background-color: #fff;
+     width: 100%;
+     border-bottom: solid 2px #999;
+     padding: 0.5rem 0.25rem 0.1rem;
+     font-size: 1.7rem;
+     text-align: left;
+ }
+
+.c-form__inputList .c-form__inputTags--text {
     background-color: #fff;
-    width: 100%;
+    width: 80%;
     border-bottom: solid 2px #999;
     padding: 0.5rem 0.25rem 0.1rem;
     font-size: 1.7rem;
     text-align: left;
+    margin-top: .5rem;
 }
 
-/* .c-form__authWrap {
-    display: flex;
-    align-items: center;
-    min-height: 100vh;
-} */
-
-.c-form__authWrapInner {
+.c-form__authWrap__outer {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -121,9 +133,7 @@
     max-height: 100%;
 }
 
-/*--------------------------------------
-  register
---------------------------------------*/
+/* register */
 .c-form__authWrap {
     margin-bottom: 0;
 }
@@ -174,9 +184,7 @@
     margin-bottom: .25rem;
 }
 
-/*--------------------------------------
-  user info edit
---------------------------------------*/
+/* user info edit */
 .c-form__confirmTtl {
     color: #848484;
     font-size: 1.2rem;
@@ -191,9 +199,7 @@
     padding: .5rem 0 .25rem;
 }
 
-/*--------------------------------------
-  user profile edit
---------------------------------------*/
+/* user profile edit */
 
 .c-form__userThumbnail {
     margin-bottom: 1rem;
@@ -209,4 +215,121 @@
 .c-form__userThumbnail__txt {
     color: #137aff;
     font-size: 1.3rem;
+}
+
+/* photo create */
+
+.c-form__tagsWrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+.c-form__tagsList {
+    margin-right: 1rem;
+}
+
+/*--------------------------------------
+  TAB style
+--------------------------------------*/
+
+@media screen and (min-width:480px) and ( max-width:768px) {
+    .c-form__authWrap__inner {
+        width: 60%;
+        margin: 0 auto 3rem;
+    }
+
+    .c-form__authWrap__outer {
+        justify-content: center;
+    }
+
+    .c-form__auth--logo {
+        margin-bottom: 4rem;
+    }
+
+    .c-form__registrationGuidance {
+        margin-bottom: 4rem;
+    }
+
+    .c-form__authWrapInner--register {
+        justify-content: center;
+    }
+
+    .c-form__textWrap {
+        width: 75%;
+        margin: 0 auto;
+    }
+
+    .c-form__imgWrap,
+    .c-form__inputWrap {
+        width: 75%;
+        margin: auto;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    .c-form__authWrap__inner {
+        width: 40%;
+        margin: 0 auto 3rem;
+    }
+
+    .c-form__authWrap__outer {
+        justify-content: center;
+    }
+
+    .c-form__auth--logo {
+        margin-bottom: 4rem;
+    }
+
+    .c-form__registrationGuidance {
+        margin-bottom: 4rem;
+    }
+
+    .c-form__authWrapInner--register {
+        justify-content: center;
+    }
+
+    .c-form__textWrap {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .c-form__imgWrap,
+    .c-form__inputWrap {
+        width: 60%;
+        margin: auto;
+    }
+}
+
+/*--------------------------------------
+  PC style
+--------------------------------------*/
+
+@media screen and (min-width:1024px) {
+    .c-form__authWrap__outer {
+        justify-content: center;
+    }
+
+    .c-form__authWrap__inner {
+        width: 50%;
+        margin: 0 auto 3rem;
+    }
+
+    .c-form__auth--logo {
+        margin-bottom: 4rem;
+    }
+
+    .c-form__registrationGuidance {
+        margin-bottom: 4rem;
+    }
+
+    .c-form__authWrapInner--register {
+        justify-content: center;
+    }
+
+    .c-form__textWrap {
+        width: 80%;
+        margin: 0 auto;
+    }
 }

@@ -5,9 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Cog\Contracts\Love\Reacterable\Models\Reacterable as ReacterableContract;
+use Cog\Laravel\Love\Reacterable\Models\Traits\Reacterable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements ReacterableContract
 {
+    use Reacterable;
+
     // 読み込むパス
     const READ_IMG_PATH = "storage/thumbnail/";
     // 保存されるパス
@@ -23,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile', 'thumbnail',
     ];
 
     /**
@@ -44,8 +48,17 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function photos()
+    {
+        return $this->hasMany('App\Photo');
+    }
+
     public function getUrlAttribute()
     {
-        return asset(self::READ_IMG_PATH . $this->filename);
+        if ($this->thumbnail == "") {
+            return asset('img/default_thumbnail.svg');
+        }
+
+        return asset(self::READ_IMG_PATH . $this->thumbnail);
     }
 }

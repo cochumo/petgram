@@ -1,3 +1,7 @@
+/*--------------------------------------
+  SP style
+--------------------------------------*/
+
 body {
     min-height: 100vh;
     position: relative;
@@ -27,6 +31,14 @@ li {
     list-style: none;
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+:focus {
+    outline: none;
+}
+
 .wrapper {
     height: 100vh;
     overflow: scroll;
@@ -43,8 +55,25 @@ li {
     max-width: 100%;
 }
 
-.form_img {
-    padding: .5em;
-    width: 100%;
-    max-width: 100%;
+/*--------------------------------------
+  TAB style
+--------------------------------------*/
+
+@media screen and (min-width:480px) and ( max-width:768px) {
+
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+
+}
+
+/*--------------------------------------
+  PC style
+--------------------------------------*/
+
+@media screen and (min-width:1024px) {
+    main {
+        width: 640px;
+        margin: 0 auto;
+    }
 }

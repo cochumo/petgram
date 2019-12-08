@@ -1,3 +1,7 @@
+/*--------------------------------------
+  SP style
+--------------------------------------*/
+
 /* ボタンタイプ */
 .c-button--01 {
     background-color: #707070;
@@ -165,4 +169,36 @@ a.c-button__yes--02 {
     position: absolute;
     left: -10px;
     bottom: -3rem;
+}
+
+/*--------------------------------------
+  TAB style
+--------------------------------------*/
+
+@media screen and (min-width:480px) and ( max-width:768px) {
+    .c-button__file input[type="file"] {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    .c-button__file input[type="file"] {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+}
+
+/*--------------------------------------
+  PC style
+--------------------------------------*/
+
+@media screen and (min-width:1024px) {
+    .c-button__file input[type="file"] {
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
 }

@@ -4,15 +4,17 @@
     <div class="l-main__content">
         <form action="{{ route('photos.store') }}" method="post">
             @csrf
-            <img src="{{ asset($data['read_temp_path']) }}" class="form_img">
+            <div class="c-form__imgWrap">
+                <img src="{{ asset($data['read_temp_path']) }}" class="c-form__img">
+            </div>
             <ul class="c-form__inputWrap">
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">タグ</h3>
-                    <p class="c-form__input--text">{{ $data['tags_name'] }}</p>
+                    <p class="c-form__input--text @if($data['tags_name'] == "")u-mT2 @endif">{{ $data['tags_name'] }}</p>
                 </li>
                 <li class="c-form__inputList">
                     <h3 class="c-form__title">メッセージ</h3>
-                    <p class="c-form__input--text">{{ $data['message'] }}</p>
+                    <p class="c-form__input--text @if($data['message'] == "")u-mT2 @endif">{{ $data['message'] }}</p>
                 </li>
             </ul>
             <div class="u-flxJCnt">

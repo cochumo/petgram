@@ -3,16 +3,15 @@
 @section('movie')
     <div class="c-movieWrap">
         <video autoplay loop muted playsinline name="media" class="c-movie js-movie">
-            <source src="{{ asset('movie/dog.mp4') }}" type="video/mp4">
-            <source src="{{ asset('movie/dog.webm') }}" type="video/webm">
+            <source src="{{ asset('movie/petgram.mp4') }}" type="video/mp4">
         </video>
     </div>
 @endsection
 
 @section('content')
     <div class="c-form__authWrap">
-        <div class="c-form__authWrapInner">
-            <div class="">
+        <div class="c-form__authWrap__outer">
+            <div class="c-form__authWrap__inner">
                 <div class="c-form__auth--logo">
                     <img src="{{ asset('img/logo-petgram.svg') }}" class="">
                 </div>

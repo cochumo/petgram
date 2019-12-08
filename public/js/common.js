@@ -79,6 +79,8 @@ $(window).on('resize', function(){
     if (body.hasClass('open')) {
         $('#slide_menu').css('height', window.innerHeight);
     }
+
+    backgroundMovie()
 });
 
 /**
@@ -258,6 +260,45 @@ function thumbnailClip() {
     });
 }
 
+// ajaxで画像にリアクションする
+function reactToImage() {
+    $('[id^=reaction_btn_]').on('click', function(){
+        console.log($(this).val());
+        console.log($('meta[name="csrf-token"]').attr('content'));
+        console.log($('#reaction_data').attr('url'));
+        console.log('photo_id: ' + $('#reaction_data').attr('photo_id'));
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            url: $('#reaction_data').attr('url'),
+            type: 'POST',
+            dataType: 'json',
+            data: JSON.stringify({
+                photo_id: $('#reaction_data').attr('photo_id'),
+                reaction: $(this).val(),
+            })
+        })
+        // Ajaxリクエストが成功した場合
+        .done(function(response) {
+            console.log('成功');
+            console.log(response);
+            var $target = $('#reaction_data').find(('button[value="' + response['reaction'] + '"]'));
+            if ($target.hasClass('js-active')) {
+                $target.removeClass('js-active').addClass('js-inactive');
+                $target.find('#reaction_count').html(response['reaction_count']);
+            } else if ($('#reaction_data').find($target).hasClass('js-inactive')) {
+                $target.removeClass('js-inactive').addClass('js-active');
+                $target.find('#reaction_count').html(response['reaction_count']);
+            }
+        })
+        // Ajaxリクエストが失敗した場合
+        .fail(function(XMLHttpRequest, textStatus, errorThrown) {
+            console.log('失敗');
+        });
+    });
+}
+
 /**
  * ページ固有の処理
  */
@@ -288,6 +329,7 @@ if (routeName == 'photos.confirm') {
 // 投稿詳細ページ
 if (routeName == 'photos.show') {
     operationMenu();
+    reactToImage();
 }
 
 // サムネイルアップロード

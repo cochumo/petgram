@@ -1,13 +1,15 @@
 @extends('layouts.auth')
 
-@section('content')
+@section('header')
     <header class="c-form__logoWrap">
         <img src="{{ asset('img/logo-petgram.svg') }}" alt="Petgram" class="c-form__logo">
     </header>
+@endsection
+
+@section('content')
     <main class="c-form__authWrap">
         <div class="c-form__authWrapInner--register">
-            <div class="">
-
+            <div class="c-form__authWrap__inner">
                 <h1 class="c-form__authTtl">Petgramアカウントの新規登録</h1>
                 <form method="POST" action="{{ route('register') }}" class="c-form__authForm">
                     @csrf

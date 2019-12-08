@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function() {
     // 投稿画像一覧表示
     Route::get('/photos', 'PhotosController@index')->name('photos.index');
     // 投稿画像詳細表示
-    Route::get('/photos/post/{photo}', 'PhotosController@show')->name('photos.show');
+    Route::get('/photos/detail/{photo}', 'PhotosController@show')->name('photos.show');
     // 投稿画像削除処理
     Route::post('/photos/delete/{photo}', 'PhotosController@destroy')->name('photos.destroy');
     // 投稿画像入力フォーム
@@ -32,6 +32,10 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/photos/edit/{photo}', 'PhotosController@edit')->name('photos.edit');
     // 投稿画像編集処理
     Route::post('/photos/edit/{photo}', 'PhotosController@update')->name('photos.update');
+
+// photo Reactions
+    // リアクションをする
+    Route::post('/photos/reaction', 'Photo\ReactionController@reaction')->name('photos.reaction');
 
 // User
     // 登録情報編集フォーム
@@ -59,6 +63,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::post('/mypage/thumbnail/edit_confirm/{user}', 'ThumbnailController@confirm')->name('thumbnail.confirm');
     // サムネイル保存処理
     Route::post('/mypage/thumbnail/edit_complete/{user}', 'ThumbnailController@update')->name('thumbnail.update');
+
+// Search
+    // 自分の投稿
+    Route::get('/photos/mypost', 'SearchController@mypost')->name('search.mypost');
+    // 自分のリアクションした投稿
+    Route::get('/photos/collection', 'SearchController@collection')->name('search.collection');
+    // タグの検索
+    Route::get('/photos/explore/tags/{tag}', 'SearchController@tag')->name('search.tag');
+    // ユーザーの検索
+    Route::get('/photos/explore/users/{user}', 'SearchController@user')->name('search.user');
 
 Auth::routes();
 

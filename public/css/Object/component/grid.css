@@ -1,20 +1,26 @@
+/*--------------------------------------
+  SP style
+--------------------------------------*/
+
 .c-gridWrap {
     display: flex;
     flex-wrap: wrap;
     margin: 0 1%;
 }
+
 .c-grid__list {
     position: relative;
     width: 48%;
     margin: 1%;
     list-style: none;
-    /*border: solid 1px #d2d2d2;*/
 }
+
 .c-grid__list:before {
     content: "";
     display: block;
     padding-top: 100%;
 }
+
 .c-grid__img {
     position: absolute;
     width: 100%;
@@ -26,4 +32,33 @@
     margin: auto;
     object-fit: cover;
     background-color: #fff;
+}
+
+/*--------------------------------------
+  TAB style
+--------------------------------------*/
+
+@media screen and (min-width:480px) and ( max-width:768px) {
+    .c-grid__list {
+        width: 31.333%;
+        margin: .5%;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    .c-grid__list {
+        width: 24%;
+        margin: .5%;
+    }
+}
+
+/*--------------------------------------
+  PC style
+--------------------------------------*/
+
+@media screen and (min-width:1024px) {
+    .c-grid__list {
+        width: 24%;
+        margin: .5%;
+    }
 }

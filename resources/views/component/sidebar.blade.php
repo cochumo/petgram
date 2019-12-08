@@ -13,6 +13,9 @@
         </div>
     </div>
     <div class="l-sidebar__list">
+        <a href="{{ route('search.mypost') }}" class="l-sidebar__btn">マイ投稿</a>
+    </div>
+    <div class="l-sidebar__list">
         <a href="{{ route('profile.edit') }}" class="l-sidebar__btn">プロフィール編集</a>
     </div>
     <div class="l-sidebar__list">

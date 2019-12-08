@@ -2,23 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PhotosMessageRequest;
 use App\Http\Requests\PhotosRequest;
 use App\Photo;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 
 class PhotosController extends Controller
 {
+    private $photo;
+
+    // DIでPhotoモデルをインスタンス化
+
+    /**
+     * PhotosController constructor.
+     * @param Photo $photo
+     */
+    public function __construct(Photo $photo)
+    {
+        $this->photo = $photo;
+    }
+
+
     /**
      * 投稿一覧表示
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
         // 投稿を取得
 //        $photos = Photo::latest()->get();
-        $photos = Photo::latest()->simplePaginate(8);
+        $photos = Photo::latest()->simplePaginate(24);
 //        dd($photos);
 
         return view('photos/index', [
@@ -28,18 +45,37 @@ class PhotosController extends Controller
 
     /**
      * 投稿詳細表示
+     * @param Photo $photo
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function show(Photo $photo)
     {
         $photo = $photo->getPhoto($photo->id);
+        $user = Auth::user();
+
+        if ($user->isNotRegisteredAsLoveReacter()) {
+            $user->registerAsLoveReacter();
+        }
+        if ($photo->isNotRegisteredAsLoveReactant()) {
+            $photo->registerAsLoveReactant();
+        }
+
+        $reacter = $user->getLoveReacter();
+        $reactant = $photo->getLoveReactant();
 
         return view('photos/detail', [
-           'photo' => $photo,
+            'photo' => $photo,
+            'user' => $user,
+            'reacter' => $reacter,
+            'reactant' => $reactant,
         ]);
     }
 
     /**
      * 投稿削除
+     * @param Photo $photo
+     * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Photo $photo)
     {
@@ -58,12 +94,14 @@ class PhotosController extends Controller
         return redirect()->route('photos.index')->with('success', '投稿の削除を完了しました！');
     }
 
+
     /**
      * 投稿入力フォーム
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        $tags = Tag::all();
+        $tags = Tag::where('original_flag', 1)->get();
 
         return view('photos/create', [
             'tags' => $tags,
@@ -72,6 +110,8 @@ class PhotosController extends Controller
 
     /**
      * 投稿確認画面
+     * @param PhotosRequest $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function confirm(PhotosRequest $request)
     {
@@ -87,15 +127,13 @@ class PhotosController extends Controller
 //        dd($input['message']);
 
         // 保存した時に生成した一意なファイル名とパス
-        $temp_path = $imagefile->store(Photo::SAVE_TEMP_PATH);
+        $temp_path = $imagefile->store(rtrim(Photo::SAVE_TEMP_PATH, '/'));
         // 一意なファイル名
         $filename = str_replace(Photo::SAVE_TEMP_PATH, '', $temp_path);
         // 表示の際に読むファイル名とパス
         $read_temp_path = str_replace('public/', 'storage/', $temp_path);
 
-//        dd($read_temp_path);
-
-        $tags_name = $input['tags'];
+        $input['tags'] = array_filter($input['tags']);
 
         if (isset($input['tags']) && is_array($input['tags'])) {
             $tags_name = implode(", ", $input['tags']);
@@ -117,6 +155,8 @@ class PhotosController extends Controller
 
     /**
      * 投稿保存
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -133,10 +173,9 @@ class PhotosController extends Controller
         $read_temp_path = $data['read_temp_path'];
         $filename = $data['filename'];
         $tags = $data['tags'];
-        $tags_name = $data['tags_name'];
         $message = $data['message'];
 
-        dump($tags);
+//        dump($tags);
 
         // 保存されるパス + ファイル名
         $storage_path = Photo::SAVE_IMG_PATH . $filename;
@@ -201,31 +240,25 @@ class PhotosController extends Controller
         // 一時保存場所から移動
         Storage::move($temp_path, $storage_path);
 
-        // 登録処理
-        $photo = new Photo();
+        // 画像情報登録処理
+        $this->photo->fill([
+            'user_id' => $user['id'],
+            'filename' => $filename,
+            'message' => $message,
+        ])->save();
 
-        $photo->user_id = $user['id'];
-        $photo->filename = $filename;
-        $photo->message = $message;
-        $photo->save();
-
-//        $tags_id = [];
-//
-//        foreach ($tags as $tag) {
-//            $tag_data = Tag::where('name', $tag)->first();
-//            $tags_id[] =  $tag_data->id;
-//            dump($tags_id);
-//        }
-//
-//        $photo->tag()->sync($tags_id);
-
-        dd();
+        // 中間テーブル
+        $this->photo->tags()->sync(collect($tags)->map(function($tag) {
+            return Tag::firstOrCreate(['name' => $tag])->id;
+        }));
 
         return redirect()->route('photos.index')->with('success', '画像の投稿を完了しました！');
     }
 
     /**
      * 編集フォーム表示
+     * @param Photo $photo
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Photo $photo)
     {
@@ -239,8 +272,11 @@ class PhotosController extends Controller
 
     /**
      * 編集処理
+     * @param Photo $photo
+     * @param PhotosMessageRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Photo $photo, Request $request)
+    public function update(Photo $photo, PhotosMessageRequest $request)
     {
         $user = auth()->user();
 
@@ -256,8 +292,7 @@ class PhotosController extends Controller
         }
 
         // メッセージをupdate
-        $photo->message = $data['message'];
-        $photo->save();
+        $photo->fill($request->validated())->save();
 
         return redirect()->route('photos.index')->with('success', '投稿の編集を完了しました！');
     }

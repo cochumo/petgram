@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cog\Contracts\Love\Reactable\Models\Reactable as ReactableContract;
+use Cog\Laravel\Love\Reactable\Models\Traits\Reactable;
 
-class Photo extends Model
+class Photo extends Model implements ReactableContract
 {
+    use Reactable;
+
     // 読み込むパス
     const READ_IMG_PATH = "storage/photos/";
     // 保存されるパス
@@ -13,14 +17,16 @@ class Photo extends Model
     // 一時保存されるパス
     const SAVE_TEMP_PATH = "public/temp/photos/";
 
+    protected $fillable = ['id', 'user_id', 'filename', 'message'];
+
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function tag()
+    public function tags()
     {
-        return $this->belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag', 'photo_tags', 'photo_id', 'tag_id');
     }
 
     public function getPhoto($photo_id)
