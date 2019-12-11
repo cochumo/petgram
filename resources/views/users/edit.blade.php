@@ -3,7 +3,7 @@
 @section('content')
     <main class="c-form__authWrap">
         <div class="c-form__authWrapInner--register">
-            <div class="">
+            <div class="c-form__authWrapInner--content">
                 <h1 class="c-form__authTtl">アカウント情報の変更</h1>
                 @if ($errors->any())
                     <div class="alert alert-danger">
