@@ -14,9 +14,7 @@ class Imagick
     public static function autoOrient($filepath)
     {
         // 画像をimagickのインスタンスを作成
-//        if () {
-            $imagick_photo = Image::make($filepath)->getCore();
-//        }
+        $imagick_photo = Image::make($filepath)->getCore();
 
         // 画像のプロパティ
         $properties = $imagick_photo->getImageProperties();
@@ -24,7 +22,6 @@ class Imagick
         // autoOrient()もgetImageOrientation()も思ったとおりに動かないため、プロパティを見て自分でrotateする処理
         if (isset($properties['exif:Orientation'])) {
             $orientation = $imagick_photo->getImageProperties()['exif:Orientation'];
-//            dd($orientation);
             switch ($orientation) {
                 case 2:
                     $imagick_photo->flopImage();

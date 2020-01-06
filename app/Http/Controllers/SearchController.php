@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Tag;
 use App\Photo;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Cog\Laravel\Love\ReactionType\Models\ReactionType;
 
 class SearchController extends Controller
 {

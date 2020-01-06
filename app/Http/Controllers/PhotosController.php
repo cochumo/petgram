@@ -34,9 +34,7 @@ class PhotosController extends Controller
     public function index()
     {
         // 投稿を取得
-//        $photos = Photo::latest()->get();
         $photos = Photo::latest()->simplePaginate(24);
-//        dd($photos);
 
         return view('photos/index', [
             'photos' => $photos,
@@ -79,12 +77,6 @@ class PhotosController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        // 削除する投稿を取得
-//        $photo = Photo::find($id);
-//        dump($id);
-//        dump($photo->filename);
-//        dd($photo);
-
         // 該当の投稿の画像を削除
         Storage::disk('local')->delete(Photo::SAVE_IMG_PATH . $photo->filename);
 
@@ -115,16 +107,12 @@ class PhotosController extends Controller
      */
     public function confirm(PhotosRequest $request)
     {
-//        dd($request->validated());
-
         $input = $request->validated();
         $imagefile = $input['photo'];
 
         if ($input['message'] == null) {
             $input['message'] = "";
         }
-
-//        dd($input['message']);
 
         // 保存した時に生成した一意なファイル名とパス
         $temp_path = $imagefile->store(rtrim(Photo::SAVE_TEMP_PATH, '/'));
