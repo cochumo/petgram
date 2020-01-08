@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Imagick;
 use Illuminate\Http\Request;
 use App\Http\Requests\ThumbnailRequest;
 use App\User;
@@ -42,47 +43,9 @@ class ThumbnailController extends Controller
         $filename = str_replace($save_temp_path . '/', '', $temp_path);
         $preview_img = str_replace('public/', 'storage/', $temp_path);
 
-        // ExifのOrientation正常化処理
-        $imagick_photo = Image::make($preview_img)->getCore();
 
-        // 画像のプロパティ
-        $properties = $imagick_photo->getImageProperties();
-
-        // autoOrient()もgetImageOrientation()も思ったとおりに動かないため、プロパティを見て自分でrotateする処理
-        if (isset($properties['exif:Orientation'])) {
-            $orientation = $imagick_photo->getImageProperties()['exif:Orientation'];
-//            dd($orientation);
-            switch ($orientation) {
-                case 2:
-                    $imagick_photo->flopImage();
-                    break;
-                case 3:
-                    $imagick_photo->rotateImage('#000000', 180);
-                    break;
-                case 4:
-                    $imagick_photo->flipImage();
-                    break;
-                case 5:
-                    $imagick_photo->flopImage();
-                    $imagick_photo->rotateImage('#000000', 270);
-                    break;
-                case 6:
-                    $imagick_photo->rotateImage('#000000', 90);
-                    break;
-                case 7:
-                    $imagick_photo->flopImage();
-                    $imagick_photo->rotateImage('#000000', 90);
-                    break;
-                case 8:
-                    $imagick_photo->rotateImage('#000000', 270);
-                    break;
-            }
-            //Exif情報を全削除
-            $imagick_photo->stripImage();
-            //回転させたあとにExifに無回転だと設定
-            $imagick_photo->setImageOrientation(1);
-            $imagick_photo->writeImage($preview_img);
-        }
+        // Exif情報正常化
+        Imagick::autoOrient($preview_img);
 
         $data = [
             'temp_path' => $temp_path,

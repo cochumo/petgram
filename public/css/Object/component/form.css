@@ -254,6 +254,11 @@
 
     .c-form__authWrapInner--register {
         justify-content: center;
+        align-items: center;
+    }
+
+    .c-form__authWrapInner--content {
+        width: 80%;
     }
 
     .c-form__textWrap {
@@ -288,6 +293,11 @@
 
     .c-form__authWrapInner--register {
         justify-content: center;
+        align-items: center;
+    }
+
+    .c-form__authWrapInner--content {
+        width: 60%;
     }
 
     .c-form__textWrap {
@@ -326,6 +336,11 @@
 
     .c-form__authWrapInner--register {
         justify-content: center;
+        align-items: center;
+    }
+
+    .c-form__authWrapInner--content {
+        width: 70%;
     }
 
     .c-form__textWrap {

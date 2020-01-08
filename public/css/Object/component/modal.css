@@ -1,3 +1,7 @@
+/*--------------------------------------
+  SP style
+--------------------------------------*/
+
 .c-modal--area {
     display: none;
 }
@@ -46,5 +50,35 @@
 
 .c-modal__footer {
     border-radius: 0 0 10px 10px;
-    padding-bottom: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+
+/*--------------------------------------
+  TAB style
+--------------------------------------*/
+
+@media screen and (min-width:480px) and ( max-width:768px) {
+    .c-modal__inner {
+        margin: 0 auto;
+        width: 70%;
+    }
+}
+
+@media screen and (min-width:768px) and ( max-width:1024px) {
+    .c-modal__inner {
+        margin: 0 auto;
+        width: 50%;
+    }
+}
+
+/*--------------------------------------
+  PC style
+--------------------------------------*/
+
+@media screen and (min-width:1024px) {
+    .c-modal__inner {
+        margin: 0 auto;
+        width: 35%;
+    }
 }

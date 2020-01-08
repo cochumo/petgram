@@ -9,7 +9,7 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Facades\Image;
+use App\Services\Imagick;
 
 class PhotosController extends Controller
 {
@@ -34,9 +34,7 @@ class PhotosController extends Controller
     public function index()
     {
         // 投稿を取得
-//        $photos = Photo::latest()->get();
         $photos = Photo::latest()->simplePaginate(24);
-//        dd($photos);
 
         return view('photos/index', [
             'photos' => $photos,
@@ -79,12 +77,6 @@ class PhotosController extends Controller
      */
     public function destroy(Photo $photo)
     {
-        // 削除する投稿を取得
-//        $photo = Photo::find($id);
-//        dump($id);
-//        dump($photo->filename);
-//        dd($photo);
-
         // 該当の投稿の画像を削除
         Storage::disk('local')->delete(Photo::SAVE_IMG_PATH . $photo->filename);
 
@@ -115,16 +107,12 @@ class PhotosController extends Controller
      */
     public function confirm(PhotosRequest $request)
     {
-//        dd($request->validated());
-
         $input = $request->validated();
         $imagefile = $input['photo'];
 
         if ($input['message'] == null) {
             $input['message'] = "";
         }
-
-//        dd($input['message']);
 
         // 保存した時に生成した一意なファイル名とパス
         $temp_path = $imagefile->store(rtrim(Photo::SAVE_TEMP_PATH, '/'));
@@ -162,11 +150,9 @@ class PhotosController extends Controller
     {
         // session の data を取得
         $data = $request->session()->get('data');
-//        dd($data);
 
         // ログインしているuserの情報を取得
         $user = auth()->user();
-//        dd($user['id']);
 
         // 初期化する前に変数へ代入
         $temp_path = $data['temp_path'];
@@ -175,67 +161,17 @@ class PhotosController extends Controller
         $tags = $data['tags'];
         $message = $data['message'];
 
-//        dump($tags);
-
         // 保存されるパス + ファイル名
         $storage_path = Photo::SAVE_IMG_PATH . $filename;
-//        dump($storage_path);
 
         // session の data を初期化
         $request->session()->forget('data');
 
-        // 読み込むパス + ファイル名
-        $read_path = str_replace(Photo::SAVE_IMG_PATH, Photo::READ_IMG_PATH, $storage_path);
-//        dd($read_path);
-
-        // ExifのOrientation正常化処理
-        $imagick_photo = Image::make($read_temp_path)->getCore();
-
-        // 画像のプロパティ
-        $properties = $imagick_photo->getImageProperties();
-
-        // autoOrient()もgetImageOrientation()も思ったとおりに動かないため、プロパティを見て自分でrotateする処理
-        if (isset($properties['exif:Orientation'])) {
-            $orientation = $imagick_photo->getImageProperties()['exif:Orientation'];
-//            dd($orientation);
-            switch ($orientation) {
-                case 2:
-                    $imagick_photo->flopImage();
-                    break;
-                case 3:
-                    $imagick_photo->rotateImage('#000000', 180);
-                    break;
-                case 4:
-                    $imagick_photo->flipImage();
-                    break;
-                case 5:
-                    $imagick_photo->flopImage();
-                    $imagick_photo->rotateImage('#000000', 270);
-                    break;
-                case 6:
-                    $imagick_photo->rotateImage('#000000', 90);
-                    break;
-                case 7:
-                    $imagick_photo->flopImage();
-                    $imagick_photo->rotateImage('#000000', 90);
-                    break;
-                case 8:
-                    $imagick_photo->rotateImage('#000000', 270);
-                    break;
-            }
-            //Exif情報を全削除
-            $imagick_photo->stripImage();
-            //回転させたあとにExifに無回転だと設定
-            $imagick_photo->setImageOrientation(1);
-            $imagick_photo->writeImage($read_temp_path);
-        }
+        // Exif情報正常化
+        Imagick::autoOrient($read_temp_path);
 
         // リサイズ
-        $width = 750;
-        $height = 750;
-
-        $imagick_photo->resizeImage($width, $height, \Imagick::FILTER_LANCZOS, 1, true);
-        $imagick_photo->writeImage($read_temp_path);
+        Imagick::resize($read_temp_path, 750, 750);
 
         // 一時保存場所から移動
         Storage::move($temp_path, $storage_path);
@@ -262,9 +198,6 @@ class PhotosController extends Controller
      */
     public function edit(Photo $photo)
     {
-        // 編集する投稿を取得
-//        $photo = Photo::find($id);
-
         return view('photos/edit', [
             'photo' => $photo,
         ]);
