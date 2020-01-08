@@ -23,27 +23,27 @@ class Imagick
         if (isset($properties['exif:Orientation'])) {
             $orientation = $imagick_photo->getImageProperties()['exif:Orientation'];
             switch ($orientation) {
-                case 2:
+                case \Imagick::ORIENTATION_TOPRIGHT:
                     $imagick_photo->flopImage();
                     break;
-                case 3:
+                case \Imagick::ORIENTATION_BOTTOMRIGHT:
                     $imagick_photo->rotateImage('#000000', 180);
                     break;
-                case 4:
+                case \Imagick::ORIENTATION_BOTTOMLEFT:
                     $imagick_photo->flipImage();
                     break;
-                case 5:
+                case \Imagick::ORIENTATION_LEFTTOP:
                     $imagick_photo->flopImage();
                     $imagick_photo->rotateImage('#000000', 270);
                     break;
-                case 6:
+                case \Imagick::ORIENTATION_RIGHTTOP:
                     $imagick_photo->rotateImage('#000000', 90);
                     break;
-                case 7:
+                case \Imagick::ORIENTATION_RIGHTBOTTOM:
                     $imagick_photo->flopImage();
                     $imagick_photo->rotateImage('#000000', 90);
                     break;
-                case 8:
+                case \Imagick::ORIENTATION_LEFTBOTTOM:
                     $imagick_photo->rotateImage('#000000', 270);
                     break;
             }
